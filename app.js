@@ -38,3 +38,50 @@ BTN_FILTROS.onclick = () => {
         CARD_FILTROS.classList.add("is-hidden");
     }
 }
+//AGREGAR CATEGORIAS
+
+const categorias = ["Alimentos", "Mascotas", "Sueldo", "Transporte"];
+
+    const obtenerCategorias = () =>{
+        const catEnLS = localStorage.getItem("categorias")
+
+        if (catEnLS === null){
+            return categorias
+        
+        }
+        else{
+        return JSON.parse (catEnLS)
+        }
+    }
+
+const AgregarCategoriasAlSelect = () =>{
+    const categorias = obtenerCategorias()
+
+    const categoriasString = categorias.reduce ((acc,categoria) => {
+        return acc + `<option value="${categoria}">${categoria}</option>`
+    },"")
+
+    INPUT_CATEGORIAS.innerHTML = categoriasString
+}
+
+const agregarCategoriasHTML = () => {
+    const categorias = obtenerCategorias()
+    const lista = document.querySelector("#lista-categorias")
+
+    const categoriasString = categorias.reduce((acc,elemento,index) =>{
+        return acc + `
+        <div id="lista-categorias" class="columns">
+            <div class="column is-9">
+                <p class="tag is-primary is-light "> ${elemento}</p>
+            </div>
+            <div class="column is-1 has-text-right">
+                <button class="button is-ghost is-size-7 m-0">Editar</button>
+
+            </div>
+
+            <div class="column is-2 ">
+                <button class="button is-ghost  is-size-7">Eliminar</button>
+
+            </div>`
+    },"")
+}
