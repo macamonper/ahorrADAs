@@ -68,11 +68,11 @@ const agregarCategoriasHTML = () => {
     const categorias = obtenerCategorias()
     const lista = document.querySelector("#lista-categorias")
 
-    const categoriasString = categorias.reduce((acc,categoria,index) =>{
+    const categoriasString = categorias.reduce((acc,elemento,index) =>{
         return acc + `
         <div id="lista-categorias" class="columns">
             <div class="column is-9">
-                <p class="tag is-primary is-light "> ${categoria}</p>
+                <p class="tag is-primary is-light "> ${elemento}</p>
             </div>
             <div class="column is-1 has-text-right">
                 <button class="button is-ghost is-size-7 m-0">Editar</button>
