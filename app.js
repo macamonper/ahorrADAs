@@ -6,9 +6,12 @@ const CARD_CATEGORIAS= document.getElementById("card-categorias");
 const CARD_REPORTES= document.getElementById("card-reportes");
 const BTN_FILTROS= document.getElementById("btn-filtros");
 const CARD_FILTROS = document.getElementById("card-filtros");
-const BTN_AGREGAR_CAT = document.getElementById("btn-agregar-cat");
-const INPUT_CATEGORIAS = document.getElementById("input-categorias");
 const selectCategorias=document.querySelector("#select-de-categorias")
+const listaCategorias=document.querySelector("#lista-categorias")
+const botonAgregarCategoria=document.querySelector("#btn-agregar-categoria")
+const inputAgregarCategoria=document.querySelector("#input-agregar-categoria")
+
+
 
 
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
@@ -47,7 +50,8 @@ BTN_FILTROS.onclick = () => {
 
 //CATEGORIAS PRECARGADAS
 
-const categorias=["Comida", "Servicios", "Salidas", "Educacion, Transporte", "Trabajo"]
+const categorias=[]
+//"Comida", "Servicios", "Salidas", "Educacion, Transporte", "Trabajo"
 
 const obtenerCategorias = () => {
     const categoriasEnLocalStorage = localStorage.getItem("categorias")
@@ -66,5 +70,41 @@ const agregarCategoriasAlSelect = () => {
     }, "")
 
     selectCategorias.innerHTML = categoriasString
+}
+
+const agregarCategoriasAHTML = () => {
+    const categorias = obtenerCategorias()
+    const categoriasAHTML = categorias.reduce((acc, categoria, index) => {
+        return acc + `
+        <div class="columns is-vcentered">
+        <div class="column">
+            <span class="tag is-primary is-light">${categoria}</span>
+        </div>
+
+        <div class="column is-narrow">
+            <button id=btn-editar-${index} class="button is-ghost is-size-7">Editar</button>
+            <button id=btn-borrar-${index} class="button is-ghost is-size-7">Eliminar</button>
+
+        </div>
+
+       `
+    }, "")
+    listaCategorias.innerHTML = categoriasAHTML
+}
+
+agregarCategoriasAlSelect()
+agregarCategoriasAHTML()
+
+botonAgregarCategoria.onclick=()=>{
+    const nuevaCategoria = inputAgregarCategoria.value
+    const categorias = obtenerCategorias()
+    categorias.push(nuevaCategoria)
+    inputAgregarCategoria.value = ""
+
+    const categoriasConvertidasAJSON = JSON.stringify(categorias)
+    localStorage.setItem("categorias", categoriasConvertidasAJSON)
+
+    agregarCategoriasAlSelect()
+    agregarCategoriasAHTML()
 }
 
