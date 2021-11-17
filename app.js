@@ -38,3 +38,31 @@ BTN_FILTROS.onclick = () => {
         CARD_FILTROS.classList.add("is-hidden");
     }
 }
+
+//SECCION AGREGAR CATEGORIAS 
+//AGREGAR CATEGORIAS AL SELECT OPERACIONES
+//GUARDAR CATEGORIAS EN LS
+
+//CATEGORIAS PRECARGADAS
+
+const categorias=["Comida", "Servicios", "Salidas", "Educacion, Transporte", "Trabajo"]
+
+const obtenerCategorias = () => {
+    const categoriasEnLocalStorage = localStorage.getItem("categorias")
+    if (categoriasEnLocalStorage === null) {
+        return categorias
+    }
+    else {
+        return JSON.parse(categoriasEnLocalStorage)
+    }
+}
+
+const agregarCategoriasAlSelect = () => {
+    const categorias = obtenerCategorias()
+    const categoriasString = categorias.reduce((acc, categoria) => {
+        return acc + `<option value=${categoria}>${categoria}</option>`
+    }, "")
+
+    selectCategorias.innerHTML = categoriasString
+}
+
