@@ -8,6 +8,8 @@ const BTN_FILTROS= document.getElementById("btn-filtros");
 const CARD_FILTROS = document.getElementById("card-filtros");
 const BTN_AGREGAR_CAT = document.getElementById("btn-agregar-cat");
 const INPUT_CATEGORIAS = document.getElementById("input-categorias");
+const selectCategorias=document.querySelector("#select-de-categorias")
+
 
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
 BALANCE.onclick = () => {

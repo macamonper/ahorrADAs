@@ -282,7 +282,7 @@
         </div>
 
         <!-- FORMULARIO NUEVA OPERACION   -->
-        <section class="section mt-5 vista" id="form-nueva-operacion">
+        <section class="section mt-5 vista is-hidden" id="form-nueva-operacion">
             <div class="container">
                 <div class="columns is-multiline">
                     <div class="column is-8-widescreen is-10-desktop is-offset-2-widescreen is-offset-1-desktop">
@@ -354,53 +354,54 @@
 
         <!--  MODAL CATEGORIAS                               MODAL CATEGORIAS                               MODAL CATEGORIAS        -->
 
-        <div id="card-categorias" class="columns is-centered is-hidden section">
-            <div class="column is-8">
-                <article class="box pb-6">
+        <section id="card-categorias" class="section is-hidden">
+            <div class="columns">
+                <div class="column is-offset-2 is-8">
+                    <div class="box">
+                        <h3 class="title is-8">Categorias</h3>
+                        <div class="field is-grouped">
+                            <label class="label" for="categoria-input">Nombre</label>
+                            <p class="control is-expanded">
+                                <input class="input is-medium " id="input-categorias" type="text" name="name">
+                            </p>
+                            <p class="control">
+                                <input id="btn-agregar-cat" type="button" value="Agregar"
+                                    class="button is-medium is-success">
+                                </input>
+                            </p>
+                        </div>
 
-                    <h2 class="title is-2 has-text-weight-bold">Categorías</h2>
-                    <div class="columns">
-
-                        <form class="column is-12">
-
-                            <label class="label mt-5 ">Nombre</label>
-
-                            <div class="columns is-centered mr-2 ">
-                                <div class="column is-10">
-
-                                    <input class="input is-medium " id="input-categorias" type="text" name="name">
+                        <div class="mt-6">
+                            <div class="columns is-vcentered">
+                                <div class="column">
+                                    <span class="tag is-primary is-light"></span>
                                 </div>
 
-                                <div class="column is-2 ">
-                                    <input id="btn-agregar-cat" type="button" value="Agregar"
-                                        class="button is-medium is-success  ">
+                                <div class="column is-narrow">
+                                    <button class="button is-ghost is-size-7">Editar</button>
+                                    <button class="button is-ghost is-size-7">Eliminar</button>
+
                                 </div>
+
                             </div>
-                        </form>
+
+
+                        </div>
+
                     </div>
 
-                    <div class="columns" id="lista-categorias">
-                        <div class="column is-9">
-                            <p class="tag is-primary is-light "> cscasc</p>
-                        </div>
-                        <div class="column is-1 has-text-right">
-                            <button class="button is-ghost is-size-7 m-0">Editar</button>
 
-                        </div>
 
-                        <div class="column is-2 ">
-                            <button class="button is-ghost  is-size-7">Eliminar</button>
 
-                        </div>
-                    </div>
-
+                </div>
+            </div>
             </div>
 
+            </div>
+            </div>
+            </div>
+        </section>
 
-        </div>
-        </article>
-        </div>
-        </div>
 
         <!-- MODAL REPORTES   MODAL REPORTES                                    MODAL REPORTES-->
 
