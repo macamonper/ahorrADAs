@@ -1,15 +1,15 @@
-const BALANCE= document.getElementById ("btn-balance");
-const BTN_CATEGORIAS= document.getElementById("btn-categorias");
-const REPORTES= document.getElementById("btn-reportes");
-const CARD_BALANCE= document.getElementById("card-balance");
-const CARD_CATEGORIAS= document.getElementById("card-categorias");
-const CARD_REPORTES= document.getElementById("card-reportes");
-const BTN_FILTROS= document.getElementById("btn-filtros");
+const BALANCE = document.getElementById("btn-balance");
+const BTN_CATEGORIAS = document.getElementById("btn-categorias");
+const REPORTES = document.getElementById("btn-reportes");
+const CARD_BALANCE = document.getElementById("card-balance");
+const CARD_CATEGORIAS = document.getElementById("card-categorias");
+const CARD_REPORTES = document.getElementById("card-reportes");
+const BTN_FILTROS = document.getElementById("btn-filtros");
 const CARD_FILTROS = document.getElementById("card-filtros");
-const selectCategorias=document.querySelector("#select-de-categorias")
-const listaCategorias=document.querySelector("#lista-categorias")
-const botonAgregarCategoria=document.querySelector("#btn-agregar-categoria")
-const inputAgregarCategoria=document.querySelector("#input-agregar-categoria")
+const selectCategorias = document.querySelector("#select-de-categorias")
+const listaCategorias = document.querySelector("#lista-categorias")
+const botonAgregarCategoria = document.querySelector("#btn-agregar-categoria")
+const inputAgregarCategoria = document.querySelector("#input-agregar-categoria")
 
 
 
@@ -19,26 +19,26 @@ BALANCE.onclick = () => {
     CARD_CATEGORIAS.classList.add("is-hidden");
     CARD_REPORTES.classList.add("is-hidden");
     CARD_BALANCE.classList.remove("is-hidden");
- }
- 
+}
+
 BTN_CATEGORIAS.onclick = () => {
     CARD_BALANCE.classList.add("is-hidden");
     CARD_REPORTES.classList.add("is-hidden");
     CARD_CATEGORIAS.classList.remove("is-hidden");
 
- }
+}
 
-REPORTES.onclick= () => {
+REPORTES.onclick = () => {
     CARD_BALANCE.classList.add("is-hidden");
     CARD_CATEGORIAS.classList.add("is-hidden");
     CARD_REPORTES.classList.remove("is-hidden");
 }
 
 BTN_FILTROS.onclick = () => {
-    if (BTN_FILTROS.innerHTML=== "Mostrar filtros"){
+    if (BTN_FILTROS.innerHTML === "Mostrar filtros") {
         BTN_FILTROS.innerHTML = "Ocultar filtros"
         CARD_FILTROS.classList.remove("is-hidden");
-    }else{
+    } else {
         BTN_FILTROS.innerHTML = "Mostrar filtros"
         CARD_FILTROS.classList.add("is-hidden");
     }
@@ -50,8 +50,7 @@ BTN_FILTROS.onclick = () => {
 
 //CATEGORIAS PRECARGADAS
 
-const categorias=[]
-//"Comida", "Servicios", "Salidas", "Educacion, Transporte", "Trabajo"
+const categorias = ["Comida", "Servicios", "Salidas", "Educacion", "Transporte", "Trabajo"]
 
 const obtenerCategorias = () => {
     const categoriasEnLocalStorage = localStorage.getItem("categorias")
@@ -77,14 +76,16 @@ const agregarCategoriasAHTML = () => {
     const categoriasAHTML = categorias.reduce((acc, categoria, index) => {
         return acc + `
         <div class="columns is-vcentered">
-        <div class="column">
-            <span class="tag is-primary is-light">${categoria}</span>
-        </div>
-
-        <div class="column is-narrow">
+            <div class="column">
+                <span class="tag is-primary is-light">${categoria}  
+                </span>
+            </div>
+            <div class="column is-narrow">
             <button id=btn-editar-${index} class="button is-ghost is-size-7">Editar</button>
             <button id=btn-borrar-${index} class="button is-ghost is-size-7">Eliminar</button>
 
+        </div>
+        
         </div>
 
        `
@@ -95,7 +96,11 @@ const agregarCategoriasAHTML = () => {
 agregarCategoriasAlSelect()
 agregarCategoriasAHTML()
 
-botonAgregarCategoria.onclick=()=>{
+
+agregarCategoriasAlSelect()
+agregarCategoriasAHTML()
+
+botonAgregarCategoria.onclick = () => {
     const nuevaCategoria = inputAgregarCategoria.value
     const categorias = obtenerCategorias()
     categorias.push(nuevaCategoria)
