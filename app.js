@@ -9,6 +9,22 @@ const CARD_FILTROS = document.getElementById("card-filtros");
 const BTN_AGREGAR_CAT = document.getElementById("btn-agregar-cat");
 const INPUT_CATEGORIAS = document.getElementById("input-categorias");
 
+
+const botonNuevaOperacion = document.querySelector("#boton-nueva-operacion")
+const vistaOperaciones = document.querySelector("#vista-operaciones")
+const vistaOperacionesTitulos = document.querySelector("#vista-operaciones-titulos")
+const vistaSinOperaciones = document.querySelector("#sin-operaciones")
+
+const formNuevaOperacion = document.querySelector("#form-nueva-operacion")
+const selectCategorias = document.querySelector("#select-de-categorias")
+const listaCategorias = document.querySelector("#lista-categorias")
+
+
+const inputDescripcion = document.querySelector("#descripcion-input")
+const montoInput = document.querySelector("#monto-input")
+const tipoInput = document.querySelector("#editar-tipo-operacion")
+const fechaInput = document.querySelector("#editar-fecha-input")
+
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
 BALANCE.onclick = () => {
     CARD_CATEGORIAS.classList.add("is-hidden");
