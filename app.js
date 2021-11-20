@@ -121,5 +121,33 @@ console.log(cancelarForm)
 const editarCategoriaBtn = document.querySelector("#editar-categoria-boton")
 console.log(editarCategoriaBtn)
 
+const editarCategoria=(categoria)=>{
+    formularioEditarCategoria.classList.remove("is-hidden")
+    seccionCategorias.classList.add("is-hidden")
+    inputEditarCategoria.value = categoria
+
+    formularioEditarCategoria.onsubmit = (e) => {
+        e.preventDefault()//esto hace que no se recargue la pagina, en este caso.
+        const categorias = obtenerCategorias()
+        const indice = categorias.indexOf(categoria)
+        categorias[indice] = inputEditarCategoria.value
+        guardarEnLocalStorage("categorias", categorias)
+        agregarCategoriasAHTML()
+        formularioEditarCategoria.classList.add("is-hidden")
+        seccionCategorias.classList.remove("is-hidden")
+
+        }
+
+
+    }
+    
+    const eliminarCategoria=(categoria)=>{
+        const categorias=obtenerCategorias()
+        const categoriasFiltradas=categorias.filter((elemento, index)=>{
+            return elemento != categoria
+        })
+        guardarEnLocalStorage("categorias",categoriasFiltradas)
+        agregarCategoriasAHTML()
+    }
 
 
