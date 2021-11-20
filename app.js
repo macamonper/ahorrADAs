@@ -116,6 +116,7 @@ const formularioEditarCategoria = document.querySelector("#editar-categoria")
 const inputEditarCategoria = document.querySelector("#editar-categoria-input")
 const cancelarForm = document.querySelector("#cancelar-categoria-boton")
 const editarCategoriaBtn = document.querySelector("#editar-categoria-boton")
+
 console.log(editarCategoriaBtn)
 
 const editarCategoria=(categoria)=>{
@@ -146,5 +147,8 @@ const editarCategoria=(categoria)=>{
         guardarEnLocalStorage("categorias",categoriasFiltradas)
         agregarCategoriasAHTML()
     }
-
+    cancelarForm.onclick=()=>{
+    formularioEditarCategoria.classList.add("is-hidden")
+    CARD_CATEGORIAS.classList.remove("is-hidden")
+}
 
