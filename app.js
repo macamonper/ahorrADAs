@@ -84,8 +84,8 @@ const agregarCategoriasAHTML = () => {
                 </span>
             </div>
             <div class="column is-narrow">
-            <button id=btn-editar-${index} class="button is-ghost is-size-7">Editar</button>
-            <button id=btn-borrar-${index} class="button is-ghost is-size-7">Eliminar</button>
+            <button onclick="editarCategoria('${categoria}')"  id=btn-editar-${index} class="button is-ghost is-size-7">Editar</button>
+            <button onclick="eliminarCategoria('${categoria}')" id=btn-borrar-${index} class="button is-ghost is-size-7">Eliminar</button>
 
         </div>
         
@@ -100,49 +100,3 @@ agregarCategoriasAlSelect()
 agregarCategoriasAHTML()
 
 
-botonAgregarCategoria.onclick = () => {
-    const nuevaCategoria = inputAgregarCategoria.value
-    const categorias = obtenerCategorias()
-    categorias.push(nuevaCategoria)
-    inputAgregarCategoria.value = ""
-
- 
-    guardarEnLocalStorage("categorias", categorias)
-    agregarCategoriasAlSelect()
-    agregarCategoriasAHTML()
-}
-
-const formularioEditarCategoria = document.querySelector("#editar-categoria")
-const inputEditarCategoria = document.querySelector("#editar-categoria-input")
-const cancelarForm = document.querySelector("#cancelar-categoria-boton")
-const editarCategoriaBtn = document.querySelector("#editar-categoria-boton")
-
-const editarCategoria = (categoria) => {
-
-    formularioEditarCategoria.classList.remove("is-hidden")
-    seccionCategorias.classList.add("is-hidden")
-    inputEditarCategoria.value = categoria
-
-    formularioEditarCategoria.onsubmit = (e) => {
-        e.preventDefault()
-        const categorias = obtenerCategorias()
-        const indice = categorias.indexOf(categoria)
-        categorias[indice] = inputEditarCategoria.value
-        guardarEnLocalStorage("categorias", categorias)
-        agregarCategoriasAHTML()
-        formularioEditarCategoria.classList.add("is-hidden")
-        seccionCategorias.classList.remove("is-hidden")
-
-        }
-
-
-    }
-
-    const eliminarCategoria=(categoria)=>{
-        const categorias=obtenerCategorias()
-        const categoriasFiltradas=categorias.filter((elemento, index)=>{
-            return elemento != categoria
-        })
-        guardarEnLocalStorage("categorias",categoriasFiltradas)
-        agregarCategoriasAHTML()
-    }
