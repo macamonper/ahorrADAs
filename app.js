@@ -30,6 +30,8 @@ const MONTO_INPUT = document.querySelector("#monto-input")
 const TIPO_INPUT = document.querySelector("#editar-tipo-operacion")
 const FECHA_INPUT = document.querySelector("#editar-fecha-input")
 
+const formAgregarCategorias=document.querySelector("#form-agregar-categorias")
+
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
 BTN_BALANCE.onclick = () => {
     CARD_CATEGORIAS.classList.add("is-hidden");
@@ -37,6 +39,7 @@ BTN_BALANCE.onclick = () => {
     CARDS_PRINCIPALES.classList.remove("is-hidden");
     VISTA_OPERACIONES.classList.remove("is-hidden")
     CARD_NUEVA_OPERACION.classList.add("is-hidden")
+    console.log(CARD_NUEVA_OPERACION)
 
  }
  
@@ -46,6 +49,8 @@ BTN_CATEGORIAS.onclick = () => {
     CARD_CATEGORIAS.classList.remove("is-hidden");
     CARD_AGREGAR_CATEGORIAS.classList.remove ("is-hidden");
     CARD_EDITAR_CATEGORIAS.classList.add ("is-hidden");
+    LISTA_CATEGORIAS.classList.remove("is-hidden")
+
  }
 
 BTN_REPORTES.onclick= () => {
@@ -72,7 +77,8 @@ BTN_NUEVA_OPERACION.onclick = () => {
     CARD_REPORTES.classList.add("is-hidden")
 }
 
-BTN_AGREGAR_CAT.onclick = () => {
+formAgregarCategorias.onsubmit = (e) => {
+    e.preventDefault()
     const nuevaCategoria = INPUT_CATEGORIAS.value
     const categorias = obtenerCategorias()
     categorias.push(nuevaCategoria)
@@ -86,8 +92,6 @@ BTN_AGREGAR_CAT.onclick = () => {
 //CATEGORIAS EXISTENTES
 const categorias = ["Comida", "Servicios", "Salidas", "Educacion", "Transporte", "Trabajo"]
 
-//const categoriasConvertidasAJSON = JSON.stringify(categorias)
-//localStorage.setItem("categorias", categoriasConvertidasAJSON)
 
 const guardarEnLocalStorage = (clave, objeto) => {
     const objetoConvertidoAJSON = JSON.stringify(objeto)
@@ -140,7 +144,7 @@ const agregarCategoriasAHTML = () => {
     }, "")
 
     LISTA_CATEGORIAS.innerHTML = categoriasAHTML;
-    //crearBotonesEliminar()
+ 
 
 }
 
@@ -157,7 +161,7 @@ const editarCategoria = (categoria) => {
 
     CARD_EDITAR_CATEGORIAS.onsubmit = (e) => {
 
-        e.preventDefault()//esto hace que no se recargue la pagina, en este caso.
+        e.preventDefault()
         const categorias = obtenerCategorias()
         const indice = categorias.indexOf(categoria)
         categorias[indice] = INPUT_EDITAR_CATEGORIAS.value
@@ -165,13 +169,13 @@ const editarCategoria = (categoria) => {
         agregarCategoriasAHTML()
         CARD_EDITAR_CATEGORIAS.classList.add("is-hidden")
         CARD_AGREGAR_CATEGORIAS.classList.remove("is-hidden")
+        LISTA_CATEGORIAS.classList.remove("is-hidden")
     }
 }
 
 
 const eliminarCategoria = (categoria) =>{
     const categorias = obtenerCategorias()
-    //const indice=categorias.indexOf(categoria) esto se usaria si utilizo slice
     const categoriasFiltradas=categorias.filter((elemento)=>{
         return elemento != categoria
     })
