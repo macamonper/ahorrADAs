@@ -10,7 +10,7 @@ const selectCategorias = document.querySelector("#select-de-categorias")
 const listaCategorias = document.querySelector("#lista-categorias")
 const botonAgregarCategoria = document.querySelector("#btn-agregar-categoria")
 const inputAgregarCategoria = document.querySelector("#input-agregar-categoria")
-
+const btnNuevaOperacion=document.querySelector("#btn-Nueva-operacion")
 
 
 
@@ -43,6 +43,8 @@ BTN_FILTROS.onclick = () => {
         CARD_FILTROS.classList.add("is-hidden");
     }
 }
+
+
 
 
 //CATEGORIAS PRECARGADAS
@@ -98,5 +100,26 @@ const agregarCategoriasAHTML = () => {
 
 agregarCategoriasAlSelect()
 agregarCategoriasAHTML()
+
+botonAgregarCategoria.onclick = () => {
+    const nuevaCategoria = inputAgregarCategoria.value
+    const categorias = obtenerCategorias()
+    categorias.push(nuevaCategoria)
+    inputAgregarCategoria.value = ""
+
+    guardarEnLocalStorage("categorias", categorias)
+    agregarCategoriasAlSelect()
+    agregarCategoriasAHTML()
+}
+
+const formularioEditarCategoria = document.querySelector("#editar-categoria")
+console.log(formularioEditarCategoria);
+const inputEditarCategoria = document.querySelector("#editar-categoria-input")
+console.log(inputEditarCategoria)
+const cancelarForm = document.querySelector("#cancelar-categoria-boton")
+console.log(cancelarForm)
+const editarCategoriaBtn = document.querySelector("#editar-categoria-boton")
+console.log(editarCategoriaBtn)
+
 
 

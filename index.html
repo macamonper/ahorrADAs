@@ -259,7 +259,7 @@
 
                         </div>
                         <div class="column is-6 has-text-right">
-                            <button id="btn-agregar-op" class="button is-primary"> + Nueva operación</button>
+                            <button id="btn-Nueva-operacion" class="button is-primary"> + Nueva operación</button>
                         </div>
                     </div>
                     <!-- IMAGEN                                                IMAGEN                                    IMAGEN          -->
@@ -381,6 +381,35 @@
               </div>
             </div>
           </section>
+
+          <!--FORMULARIO PARA EDITAR CATEGORIAS-->
+          <form class="section mt-5 vista is-hidden" id="editar-categoria">
+            <div class="container">
+              <div class="columns is-multiline">
+                <div class="column is-8-widescreen is-10-desktop is-offset-2-widescreen is-offset-1-desktop">
+                  <div class="box">
+                    <h2 class="title is-size-2 has-text-weight-bold">
+                      Editar categoría
+                    </h2>
+                    <label class="label mt-6" for="editar-categoria-input">Nombre</label>
+                    <div class="field is-grouped">
+                      <div class="control is-expanded">
+                        <input class="input" type="text" name="" id="editar-categoria-input" value=""/>
+                      </div>
+                    </div>
+                    <div class="buttons mt-6">
+                      <button class="button is-light" id="cancelar-categoria-boton" type="button">
+                        Cancelar
+                      </button>
+                      <button class="button is-success" type="submit" id="editar-categoria-boton">
+                        Editar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
 
 
         <!-- MODAL REPORTES   MODAL REPORTES                                    MODAL REPORTES-->
