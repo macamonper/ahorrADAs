@@ -185,9 +185,3 @@ CANCELAR_EDITAR_CAT.onclick=()=>{
     LISTA_CATEGORIAS.classList.remove("is-hidden")
 
 }
-
-
-
-
-
-    
