@@ -1,55 +1,93 @@
-const BALANCE = document.getElementById("btn-balance");
-const BTN_CATEGORIAS = document.getElementById("btn-categorias");
-const REPORTES = document.getElementById("btn-reportes");
-const CARD_BALANCE = document.getElementById("card-balance");
-const CARD_CATEGORIAS = document.getElementById("card-categorias");
-const CARD_REPORTES = document.getElementById("card-reportes");
-const BTN_FILTROS = document.getElementById("btn-filtros");
+const BTN_BALANCE= document.getElementById ("btn-balance");
+const BTN_CATEGORIAS= document.getElementById("btn-categorias");
+const BTN_REPORTES= document.getElementById("btn-reportes");
+const CARDS_PRINCIPALES= document.getElementById("cards-principales");
+const CARD_CATEGORIAS= document.getElementById("card-categorias");
+const CARD_REPORTES= document.getElementById("card-reportes");
+const BTN_FILTROS= document.getElementById("btn-filtros");
 const CARD_FILTROS = document.getElementById("card-filtros");
-const selectCategorias = document.querySelector("#select-de-categorias")
-const listaCategorias = document.querySelector("#lista-categorias")
-const botonAgregarCategoria = document.querySelector("#btn-agregar-categoria")
-const inputAgregarCategoria = document.querySelector("#input-agregar-categoria")
-const btnNuevaOperacion=document.querySelector("#btn-Nueva-operacion")
+const BTN_AGREGAR_CAT = document.getElementById("btn-agregar-cat");
+const INPUT_CATEGORIAS = document.getElementById("input-categorias");
+const BTN_NUEVA_OPERACION = document.querySelector("#boton-nueva-operacion")
+
+const VISTA_OPERACIONES = document.querySelector("#vista-operaciones")
+
+const vistaOperacionesTitulos = document.querySelector("#vista-operaciones-titulos")
+const vistaSinOperaciones = document.querySelector("#sin-operaciones")
+
+const CARD_NUEVA_OPERACION = document.querySelector("#form-nueva-operacion")
+const SELECT_CATEGORIAS = document.querySelector("#select-de-categorias")
+const LISTA_CATEGORIAS = document.querySelector(".lista-categorias")
+const CARD_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria")
+const INPUT_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria-input")
+const CANCELAR_EDITAR_CAT = document.querySelector("#cancelar-categoria-boton")
+const EDITAR_CATEGORIA = document.querySelector("#editar-categoria-boton")
+const CARD_AGREGAR_CATEGORIAS =document.querySelector("#agregar-nuevas-categorias")
 
 
+const INPUT_DESCRIPCION = document.querySelector("#descripcion-input")
+const MONTO_INPUT = document.querySelector("#monto-input")
+const TIPO_INPUT = document.querySelector("#editar-tipo-operacion")
+const FECHA_INPUT = document.querySelector("#editar-fecha-input")
 
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
-BALANCE.onclick = () => {
+BTN_BALANCE.onclick = () => {
     CARD_CATEGORIAS.classList.add("is-hidden");
     CARD_REPORTES.classList.add("is-hidden");
-    CARD_BALANCE.classList.remove("is-hidden");
-}
+    CARDS_PRINCIPALES.classList.remove("is-hidden");
+    VISTA_OPERACIONES.classList.remove("is-hidden")
+    CARD_NUEVA_OPERACION.classList.add("is-hidden")
 
+ }
+ 
 BTN_CATEGORIAS.onclick = () => {
-    CARD_BALANCE.classList.add("is-hidden");
+    CARDS_PRINCIPALES.classList.add("is-hidden");
     CARD_REPORTES.classList.add("is-hidden");
     CARD_CATEGORIAS.classList.remove("is-hidden");
+    CARD_AGREGAR_CATEGORIAS.classList.remove ("is-hidden");
+    CARD_EDITAR_CATEGORIAS.classList.add ("is-hidden");
+ }
 
-}
-
-REPORTES.onclick = () => {
-    CARD_BALANCE.classList.add("is-hidden");
+BTN_REPORTES.onclick= () => {
+    CARDS_PRINCIPALES.classList.add("is-hidden");
     CARD_CATEGORIAS.classList.add("is-hidden");
     CARD_REPORTES.classList.remove("is-hidden");
 }
 
 BTN_FILTROS.onclick = () => {
-    if (BTN_FILTROS.innerHTML === "Mostrar filtros") {
+    if (BTN_FILTROS.innerHTML=== "Mostrar filtros"){
         BTN_FILTROS.innerHTML = "Ocultar filtros"
         CARD_FILTROS.classList.remove("is-hidden");
-    } else {
+    }else{
         BTN_FILTROS.innerHTML = "Mostrar filtros"
         CARD_FILTROS.classList.add("is-hidden");
     }
 }
 
+BTN_NUEVA_OPERACION.onclick = () => {
+    VISTA_OPERACIONES.classList.add("is-hidden")
+    CARD_NUEVA_OPERACION.classList.remove("is-hidden")
+    CARDS_PRINCIPALES.classList.add("is-hidden")
+    CARD_FILTROS.classList.add("is-hidden")
+    CARD_REPORTES.classList.add("is-hidden")
+}
 
+BTN_AGREGAR_CAT.onclick = () => {
+    const nuevaCategoria = INPUT_CATEGORIAS.value
+    const categorias = obtenerCategorias()
+    categorias.push(nuevaCategoria)
+    INPUT_CATEGORIAS.value = ""
 
+    guardarEnLocalStorage("categorias", categorias)
+    agregarCategoriasAlSelect()
+    agregarCategoriasAHTML()
+}
 
-//CATEGORIAS PRECARGADAS
-
+//CATEGORIAS EXISTENTES
 const categorias = ["Comida", "Servicios", "Salidas", "Educacion", "Transporte", "Trabajo"]
+
+//const categoriasConvertidasAJSON = JSON.stringify(categorias)
+//localStorage.setItem("categorias", categoriasConvertidasAJSON)
 
 const guardarEnLocalStorage = (clave, objeto) => {
     const objetoConvertidoAJSON = JSON.stringify(objeto)
@@ -73,82 +111,83 @@ const agregarCategoriasAlSelect = () => {
         return acc + `<option value=${categoria}>${categoria}</option>`
     }, "")
 
-    selectCategorias.innerHTML = categoriasString
+    SELECT_CATEGORIAS.innerHTML = categoriasString
 }
 
 const agregarCategoriasAHTML = () => {
+
     const categorias = obtenerCategorias()
+
     const categoriasAHTML = categorias.reduce((acc, categoria, index) => {
         return acc + `
-        <div class="columns is-vcentered">
-            <div class="column">
-                <span class="tag is-primary is-light">${categoria}  
-                </span>
-            </div>
-            <div class="column is-narrow">
-            <button onclick="editarCategoria('${categoria}')"  id=btn-editar-${index} class="button is-ghost is-size-7">Editar</button>
-            <button onclick="eliminarCategoria('${categoria}')" id=btn-borrar-${index} class="button is-ghost is-size-7">Eliminar</button>
 
-        </div>
-        
+        <div class="columns ">
+
+            <div class="column is-9">
+                <p class="tag is-primary is-light "> ${categoria} </p>
+            </div>
+            <div class="column is-1 has-text-right">
+                <button onclick="editarCategoria('${categoria}')" id="editar-categorias-${index}" class="button is-ghost is-size-7 m-0">Editar</button>
+            </div>
+
+            <div class="column is-2 ">
+                <button  onclick="eliminarCategoria('${categoria}')" id="eliminar-categorias-${index}" class="button is-ghost  is-size-7">Eliminar</button>
+            </div>
+
         </div>
 
        `
     }, "")
-    listaCategorias.innerHTML = categoriasAHTML
+
+    LISTA_CATEGORIAS.innerHTML = categoriasAHTML;
+    //crearBotonesEliminar()
+
 }
 
 agregarCategoriasAlSelect()
 agregarCategoriasAHTML()
 
-botonAgregarCategoria.onclick = () => {
-    const nuevaCategoria = inputAgregarCategoria.value
-    const categorias = obtenerCategorias()
-    categorias.push(nuevaCategoria)
-    inputAgregarCategoria.value = ""
 
-    guardarEnLocalStorage("categorias", categorias)
-    agregarCategoriasAlSelect()
+const editarCategoria = (categoria) => {
+
+    CARD_EDITAR_CATEGORIAS.classList.remove("is-hidden")
+    CARD_AGREGAR_CATEGORIAS.classList.add("is-hidden")
+    LISTA_CATEGORIAS.classList.add("is-hidden")
+    INPUT_EDITAR_CATEGORIAS.value = categoria
+
+    CARD_EDITAR_CATEGORIAS.onsubmit = (e) => {
+
+        e.preventDefault()//esto hace que no se recargue la pagina, en este caso.
+        const categorias = obtenerCategorias()
+        const indice = categorias.indexOf(categoria)
+        categorias[indice] = INPUT_EDITAR_CATEGORIAS.value
+        guardarEnLocalStorage("categorias", categorias)
+        agregarCategoriasAHTML()
+        CARD_EDITAR_CATEGORIAS.classList.add("is-hidden")
+        CARD_AGREGAR_CATEGORIAS.classList.remove("is-hidden")
+    }
+}
+
+
+const eliminarCategoria = (categoria) =>{
+    const categorias = obtenerCategorias()
+    //const indice=categorias.indexOf(categoria) esto se usaria si utilizo slice
+    const categoriasFiltradas=categorias.filter((elemento)=>{
+        return elemento != categoria
+    })
+    guardarEnLocalStorage("categorias",categoriasFiltradas)
     agregarCategoriasAHTML()
 }
 
-const formularioEditarCategoria = document.querySelector("#editar-categoria")
-const inputEditarCategoria = document.querySelector("#editar-categoria-input")
-const cancelarForm = document.querySelector("#cancelar-categoria-boton")
-const editarCategoriaBtn = document.querySelector("#editar-categoria-boton")
+CANCELAR_EDITAR_CAT.onclick=()=>{
+    CARD_EDITAR_CATEGORIAS.classList.add("is-hidden")
+    CARD_AGREGAR_CATEGORIAS.classList.remove("is-hidden")
+    LISTA_CATEGORIAS.classList.remove("is-hidden")
 
-console.log(editarCategoriaBtn)
-
-const editarCategoria=(categoria)=>{
-    formularioEditarCategoria.classList.remove("is-hidden")
-    CARD_CATEGORIAS.classList.add("is-hidden")
-    inputEditarCategoria.value = categoria
-
-    formularioEditarCategoria.onsubmit = (e) => {
-        e.preventDefault()
-        const categorias = obtenerCategorias()
-        const indice = categorias.indexOf(categoria)
-        categorias[indice] = inputEditarCategoria.value
-        guardarEnLocalStorage("categorias", categorias)
-        agregarCategoriasAHTML()
-        formularioEditarCategoria.classList.add("is-hidden")
-        CARD_CATEGORIAS.classList.remove("is-hidden")
-
-        }
-
-
-    }
-
-    const eliminarCategoria=(categoria)=>{
-        const categorias=obtenerCategorias()
-        const categoriasFiltradas=categorias.filter((elemento, index)=>{
-            return elemento != categoria
-        })
-        guardarEnLocalStorage("categorias",categoriasFiltradas)
-        agregarCategoriasAHTML()
-    }
-    cancelarForm.onclick=()=>{
-    formularioEditarCategoria.classList.add("is-hidden")
-    CARD_CATEGORIAS.classList.remove("is-hidden")
 }
 
+
+
+
+
+    
