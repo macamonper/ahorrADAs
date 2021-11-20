@@ -81,12 +81,15 @@ formAgregarCategorias.onsubmit = (e) => {
     e.preventDefault()
     const nuevaCategoria = INPUT_CATEGORIAS.value
     const categorias = obtenerCategorias()
+   if (categorias.indexOf(nuevaCategoria) === -1){
     categorias.push(nuevaCategoria)
     INPUT_CATEGORIAS.value = ""
 
     guardarEnLocalStorage("categorias", categorias)
     agregarCategoriasAlSelect()
     agregarCategoriasAHTML()
+   }
+    
 }
 
 //CATEGORIAS EXISTENTES
@@ -163,6 +166,7 @@ const editarCategoria = (categoria) => {
 
         e.preventDefault()
         const categorias = obtenerCategorias()
+        if (categorias.indexOf(INPUT_EDITAR_CATEGORIAS.value) ===-1 || categoria === INPUT_EDITAR_CATEGORIAS.value){
         const indice = categorias.indexOf(categoria)
         categorias[indice] = INPUT_EDITAR_CATEGORIAS.value
         guardarEnLocalStorage("categorias", categorias)
@@ -170,6 +174,7 @@ const editarCategoria = (categoria) => {
         CARD_EDITAR_CATEGORIAS.classList.add("is-hidden")
         CARD_AGREGAR_CATEGORIAS.classList.remove("is-hidden")
         LISTA_CATEGORIAS.classList.remove("is-hidden")
+    }
     }
 }
 
