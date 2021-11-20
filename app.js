@@ -44,13 +44,16 @@ BTN_FILTROS.onclick = () => {
     }
 }
 
-//SECCION AGREGAR CATEGORIAS 
-//AGREGAR CATEGORIAS AL SELECT OPERACIONES
-//GUARDAR CATEGORIAS EN LS
 
 //CATEGORIAS PRECARGADAS
 
 const categorias = ["Comida", "Servicios", "Salidas", "Educacion", "Transporte", "Trabajo"]
+
+const guardarEnLocalStorage = (clave, objeto) => {
+    const objetoConvertidoAJSON = JSON.stringify(objeto)
+    return localStorage.setItem(clave, objetoConvertidoAJSON)
+
+}
 
 const obtenerCategorias = () => {
     const categoriasEnLocalStorage = localStorage.getItem("categorias")
@@ -97,19 +100,49 @@ agregarCategoriasAlSelect()
 agregarCategoriasAHTML()
 
 
-agregarCategoriasAlSelect()
-agregarCategoriasAHTML()
-
 botonAgregarCategoria.onclick = () => {
     const nuevaCategoria = inputAgregarCategoria.value
     const categorias = obtenerCategorias()
     categorias.push(nuevaCategoria)
     inputAgregarCategoria.value = ""
 
-    const categoriasConvertidasAJSON = JSON.stringify(categorias)
-    localStorage.setItem("categorias", categoriasConvertidasAJSON)
-
+ 
+    guardarEnLocalStorage("categorias", categorias)
     agregarCategoriasAlSelect()
     agregarCategoriasAHTML()
 }
 
+const formularioEditarCategoria = document.querySelector("#editar-categoria")
+const inputEditarCategoria = document.querySelector("#editar-categoria-input")
+const cancelarForm = document.querySelector("#cancelar-categoria-boton")
+const editarCategoriaBtn = document.querySelector("#editar-categoria-boton")
+
+const editarCategoria = (categoria) => {
+
+    formularioEditarCategoria.classList.remove("is-hidden")
+    seccionCategorias.classList.add("is-hidden")
+    inputEditarCategoria.value = categoria
+
+    formularioEditarCategoria.onsubmit = (e) => {
+        e.preventDefault()
+        const categorias = obtenerCategorias()
+        const indice = categorias.indexOf(categoria)
+        categorias[indice] = inputEditarCategoria.value
+        guardarEnLocalStorage("categorias", categorias)
+        agregarCategoriasAHTML()
+        formularioEditarCategoria.classList.add("is-hidden")
+        seccionCategorias.classList.remove("is-hidden")
+
+        }
+
+
+    }
+
+    const eliminarCategoria=(categoria)=>{
+        const categorias=obtenerCategorias()
+        const categoriasFiltradas=categorias.filter((elemento, index)=>{
+            return elemento != categoria
+        })
+        guardarEnLocalStorage("categorias",categoriasFiltradas)
+        agregarCategoriasAHTML()
+    }
