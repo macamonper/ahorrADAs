@@ -20,7 +20,7 @@ const vistaSinOperaciones = document.querySelector("#sin-operaciones")
 
 const CARD_NUEVA_OPERACION = document.querySelector("#form-nueva-operacion")
 
-const SELECT_CATEGORIAS = document.querySelector("#select-de-categorias")
+//const SELECT_CATEGORIAS = document.querySelector("#select-de-categorias")
 const SELECT_CATEGORIAS_CARGA = document.querySelector("#select-categorias-carga")
 
 const LISTA_CATEGORIAS = document.querySelector(".lista-categorias")
@@ -124,7 +124,7 @@ const agregarCategoriasAlSelect = () => {
     }, "")
 
     SELECT_CATEGORIAS_CARGA.innerHTML = categoriasString
-    SELECT_CATEGORIAS.innerHTML = categoriasString
+    //SELECT_CATEGORIAS.innerHTML = categoriasString
 }
 
 const agregarCategoriasAHTML = () => {
@@ -268,7 +268,7 @@ const mostrarFormOperaciones = (operacion, indice) => {
         INPUT_DESCRIPCION.value = operacion.descripcion
         MONTO_INPUT.value = operacion.monto
         TIPO_INPUT.value = operacion.tipo
-        SELECT_CATEGORIAS.value = operacion.categoria
+        SELECT_CATEGORIAS_CARGA.value = operacion.categoria
         FECHA_INPUT.value = operacion.fecha
     }
 
@@ -278,7 +278,7 @@ const mostrarFormOperaciones = (operacion, indice) => {
             descripcion: INPUT_DESCRIPCION.value,
             monto:Number(MONTO_INPUT.value),
             tipo: TIPO_INPUT.value,
-            categoria: SELECT_CATEGORIAS.value,
+            categoria: SELECT_CATEGORIAS_CARGA.value,
             fecha:FECHA_INPUT.value,
 
         }
