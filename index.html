@@ -103,7 +103,7 @@
 
                         <div class="column is-5 has-text-right ">
 
-                            <p class=" subtitle is-6 has-text-danger ">-$0</p>
+                            <p class=" subtitle is-6 has-text-danger " id=" ">-$0</p>
 
                         </div>
                     </div>
@@ -118,13 +118,13 @@
 
                         <div class="column is-5 has-text-right">
 
-                            <p class=" subtitle is-6 has-text-weight-bold">$0</p>
+                            <p class=" subtitle is-6 has-text-weight-bold" id="">$0</p>
 
                         </div>
                     </div>
 
                 </article>
-                <!--  CARD FILTROS                CARD FILTROS               CARD FILTROS -->
+            <!--  CARD FILTROS                CARD FILTROS               CARD FILTROS -->
                 <article class="box">
 
                     <div class="columns">
@@ -137,8 +137,9 @@
 
                         <div class="column is-6 has-text-right">
 
-                            <button id="btn-filtros" class="button is-ghost is-small is-rounded"> Ocultar
-                                Filtros</button>
+                            <button id="btn-filtros" class="button is-ghost is-small is-rounded"> 
+                                Ocultar filtros
+                            </button>
 
                         </div>
 
@@ -159,10 +160,10 @@
 
                                         <div class="select is-fullwidth">
 
-                                            <select>
-                                                <option>Todos</option>
-                                                <option>Ganancias</option>
-                                                <option>Gastos</option>
+                                            <select id="select-ordenar-tipo">
+                                                <option value="todos">Todos</option>
+                                                <option value="ganancias">Ganancias</option>
+                                                <option value="gastos">Gastos</option>
 
                                             </select>
 
@@ -182,13 +183,16 @@
                                     <div class="control">
 
                                         <div class="select is-fullwidth">
+
                                             <select id="select-de-categorias">
+
                                                 <option value="comidas">Comidas</option>
                                                 <option value="servicios">Servicios</option>
                                                 <option value="salidas">Salidas</option>
                                                 <option value="educacion">Educación</option>
                                                 <option value="transportes">Transporte</option>
                                                 <option value="trabajo">Trabajo</option>
+
                                             </select>
                                         </div>
 
@@ -204,7 +208,7 @@
                                 <div class="field">
                                     <label class="label" for="date">Desde</label>
                                     <div class="control">
-                                        <input class="input" id="date" type="date">
+                                        <input class="input" id="select-date" type="date">
                                     </div>
                                 </div>
                             </div>
@@ -220,13 +224,13 @@
                                     <div class="control">
 
                                         <div class="select is-fullwidth">
-                                            <select>
-                                                <option>Más reciente</option>
-                                                <option>Menos reciente</option>
-                                                <option>Mayor monto</option>
-                                                <option>Menor monto</option>
-                                                <option>A/Z</option>
-                                                <option>Z/A</option>
+                                            <select id="select-ordenar-por">
+                                                <option value="mas-reciente">Más reciente</option>
+                                                <option value="menos-reciente">Menos reciente</option>
+                                                <option value="mayor-monto">Mayor monto</option>
+                                                <option value="menor-monto">Menor monto</option>
+                                                <option value="a-z">A/Z</option>
+                                                <option value="z-a">Z/A</option>
 
                                             </select>
                                         </div>
@@ -247,7 +251,7 @@
                 <article class="box ">
 
                     <div id="vista-operaciones">
-                        <div class="columns mb-6">
+                        <div class="columns">
                             <div class="column is-6">
                                 <h2 class="title is-4 has-text-weight-bold">Operaciones</h2>
 
@@ -270,9 +274,11 @@
                                         <img src="undraw_wallet_aym5.svg" aria-hidden="true">
                                     </div>
 
-                                    <h3 class="title has-text-semi-bold has-text-centered mt-6">Sin resultados</h3>
-                                    <h3 class="has-text-centered mb-6 has-text-weight-medium">Cambia los filtros o
-                                        agrega operaciones</h3>
+                                    <h3 class="title has-text-semi-bold has-text-centered mt-6">
+                                        Sin resultados</h3>
+                                    <h3 class="has-text-centered mb-6 has-text-weight-medium">
+                                        Cambia los filtros o agrega operaciones
+                                    </h3>
 
                                 </div>
 
@@ -474,31 +480,14 @@
         </div>
         <!--  MODAL CATEGORIAS                  MODAL CATEGORIAS              MODAL CATEGORIAS        -->
 
-        <div id="card-categorias" class="columns is-centered section is-hidden">
+        <div id="card-categorias" class="columns is-centered is-hidden">
 
             <div class="column is-8">
 
-                <article class="box pb-6">
-                    <form id="editar-categoria" class="is-hidden">
+                <article class="box">
 
-                        <h2 class="title is-size-2 has-text-weight-bold">
-                            Editar categoría
-                          </h2>
-                          <label class="label mt-6" for="editar-categoria-input">Nombre</label>
-                          <div class="field is-grouped">
-                            <div class="control is-expanded">
-                              <input required class="input" type="text" name="" id="editar-categoria-input" value="">
-                            </div>
-                          </div>
-                          <div class="buttons mt-6 is-flex is-justify-content-end ">
-                            <button class="button is-light" id="cancelar-categoria-boton" type="button">
-                              Cancelar
-                            </button>
-                            <button class="button is-success" type="submit" id="editar-categoria-boton">
-                              Editar
-                            </button>
-                          </div>
-                    </form>
+                        <!--AGREGAR CATEGORIA-->
+
                     <div id="agregar-nuevas-categorias">
                         <h2 class="title is-2 has-text-weight-bold">Categorías</h2>
 
@@ -506,7 +495,7 @@
 
                             <form class="column is-12" id="form-agregar-categorias">
 
-                                <label class="label mt-5 ">Nombre</label>
+                                <label class="label mt-2 ">Nombre</label>
 
                                 <div class="columns is-centered mr-2 ">
                                     <div class="column is-10">
@@ -522,30 +511,51 @@
 
                         </div>
                     </div>
+                        <!--LISTA CATEGORIAS-->
 
                     <div class="lista-categorias"></div>
 
+                        <!--FORMULARIO EDITAR CATEGORIA-->
+
+                    <form id="editar-categoria" class="is-hidden">
+
+                        <h2 class="title is-size-2 has-text-weight-bold">
+                            Editar categoría
+                        </h2>
+                        <label class="label mt-6" for="editar-categoria-input">Nombre</label>
+
+                        <div class="field">
+                            <div class="control is-expanded">
+                                <input required class="input" type="text" name="" id="editar-categoria-input" value="">
+                            </div>
+                        </div>
+                        <div class="buttons mt-6 is-flex is-justify-content-end ">
+                            <button class="button is-light" id="cancelar-categoria-boton" type="button">
+                              Cancelar
+                            </button>
+                            <button class="button is-success" type="submit" id="editar-categoria-boton">
+                              Editar
+                            </button>
+                        </div>
+                    </form>
                 </article>
             </div>
 
 
         </div>
-
-        <!--FORMULARIO EDITAR CATEGORIA-->
-        <!--<article class="box pb-6 is-hidden" -->
-
-   <!-- </article>-->
+   
 
         <!-- MODAL REPORTES                         MODAL REPORTES                      MODAL REPORTES-->
 
-        <div id="card-reportes" class="section columns is-centered is-hidden ">
+        <div id="card-reportes" class="columns is-centered is-hidden ">
 
             <div class="column is-8">
                 <article class="box ">
 
-                    <h2 class="title is-1 has-text-weight-bold pb-2">Reportes</h2>
-
-                    <div class="" id="">
+                    <h2 class="title is-2 has-text-weight-bold pb-2">Reportes</h2>
+                        <!--SIN REPORTE-->
+                        <!--CHEQUEAR CLASE IS HIDDEN PARA CORRECTO FUNCIONAMIENTO-->
+                    <div class="is-hidden" id="sin-reporte">
 
                         <div class="column is-offset-2 is-7 ">
                             <figure class="image mt-6">
@@ -560,143 +570,153 @@
                         </div>
 
                     </div>
+                    
+                    <!--   RESUMEN            RESUMEN-->
+                        <!--CHEQUEAR CLASE IS HIDDEN PARA CORRECTO FUNCIONAMIENTO-->
 
-            </div>
-            <div class="is-hidden">
-                <div class="m-5 " id="resumen">
-                    <!--   RESUMEN                RESUMEN-->
-                    <h4 class="title is-4 ">Resumen</h2>
+                    <div class="is-hidde">
+                        <div class="m-5 " id="resumen">
 
-                        <div class="columns">
-                            <div class="column is-6 ">
-                                <h3 class="subtitle is-5">Categoría con mayor ganancia</h3>
-                                <h3 class="subtitle is-5">Categoría con mayor gasto</h3>
-                                <h3 class="subtitle is-5">Categoría con mayor balance</h3>
-                                <h3 class="subtitle is-5">Mes con mayor ganancia</h3>
-                                <h3 class="subtitle is-5">Mes con mayor gasto</h3>
+                            <h4 class="title is-4 ">Resumen</h4>
 
-                            </div>
-                            <!--           CATEGORIAS               -->
+                            <div class="columns is-mobile">
+                                <div class="column is-6 ">
+                                    <h3 class="subtitle is-5">Categoría con mayor ganancia</h3>
+                                    <h3 class="subtitle is-5">Categoría con mayor gasto</h3>
+                                    <h3 class="subtitle is-5">Categoría con mayor balance</h3>
+                                    <h3 class="subtitle is-5">Mes con mayor ganancia</h3>
+                                    <h3 class="subtitle is-5">Mes con mayor gasto</h3>
 
-                            <div class="column is-2 ">
-                                <h3 class="field">
-                                    <span class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
-                                    </span>
-                                </h3>
-                                <h3 class="field">
-                                    <span class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
-                                    </span>
-                                </h3>
-                                <h3 class="field">
-                                    <span class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
-                                    </span>
-                                </h3>
-                                <h3 class="field">
-                                    <span class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
-                                    </span>
-                                </h3>
-                                <h3 class="field">
-                                    <span class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
-                                    </span>
-                                </h3>
+                                </div>
+                                <!--           CATEGORIAS               -->
 
-                            </div>
-                            <!--        MONTOS              -->
-                            <div class="column is-4 has-text-right">
-                                <h3 class="subtitle has-text-weight-bold">+0843u081</h3>
-                                <h3 class="subtitle has-text-weight-bold">+0843u081</h3>
-                                <h3 class="subtitle has-text-weight-bold">+0843u081</h3>
-                                <h3 class="subtitle has-text-weight-bold">+0843u081</h3>
-                                <h3 class="subtitle has-text-weight-bold">+0843u081</h3>
+                                <div class="column is-2 ">
+                                    <h3 class="field">
+                                        <span id="cat-mayor-ganancia" class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
+                                        </span>
+                                    </h3>
+                                    <h3 class="field">
+                                        <span id="cat-mayor-gasto" class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
+                                        </span>
+                                    </h3>
+                                    <h3 class="field">
+                                        <span id="cat-mayor-balance" class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
+                                        </span>
+                                    </h3>
+                                    <h3 class="field">
+                                        <span id="mes-mayor-ganancia" class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
+                                        </span>
+                                    </h3>
+                                    <h3 class="field">
+                                        <span id="mes-mayor-gasto" class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
+                                        </span>
+                                    </h3>
+
+                                </div>
+                                <!--        MONTOS              -->
+                                <div class="column is-4 has-text-right">
+                                    <h3 id="monto-mayor" class="subtitle has-text-weight-bold">
+                                        +0843u081
+                                    </h3>
+                                    <h3 id="monto-menor" class="subtitle has-text-weight-bold">
+                                        +0843u081
+                                    </h3>
+                                    <h3 id="mayor-balance" class="subtitle has-text-weight-bold">
+                                        +0843u081
+                                    </h3>
+                                    <h3 id="monto-mayor-mes" class="subtitle has-text-weight-bold">
+                                        +0843u081
+                                    </h3>
+                                    <h3 id="monto-menor-mes"class="subtitle has-text-weight-bold">
+                                        +0843u081
+                                    </h3>
+
+                                </div>
 
                             </div>
 
                         </div>
+                        <!--  TOTALES POR CATEGORIA                  TOTALES POR CATEGORIA-->
 
-                </div>
-                <!--         TOTALES POR CATEGORIA                  TOTALES POR CATEGORIA-->
+                        <div class="mx-5 my-6">
+                            <h4 class="title is-size-4 ">
+                                Totales por categorías
+                            </h4>
 
-                <div class="mx-5 my-6">
-                    <h4 class="title is-size-4 ">
-                        Totales por categorías
-                    </h4>
+                            <div id="reporte-categorias">
+                                <div class="columns is-mobile">
 
-                    <div id="reporte-categorias">
-                        <div class="columns is-mobile">
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold">Categoria</h4>
+                                    </div>
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold has-text-right  ">Ganancias</h4>
+                                    </div>
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold has-text-right">Gastos</h4>
+                                    </div>
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold has-text-right">Balance</h4>
+                                    </div>
+                                </div>
 
-                            <div class="column">
-                                <h4 class="has-text-weight-semibold">Categoria</h4>
-                            </div>
-                            <div class="column">
-                                <h4 class="has-text-weight-semibold has-text-right  ">Ganancias</h4>
-                            </div>
-                            <div class="column">
-                                <h4 class="has-text-weight-semibold has-text-right">Gastos</h4>
-                            </div>
-                            <div class="column">
-                                <h4 class="has-text-weight-semibold has-text-right">Balance</h4>
+                                <div class="columns ">
+                                    <div class="column">
+                                        <h3 class="has-text-weight-semibold" id="categoria-reporte">Comida</h3>
+                                    </div>
+                                    <div class="column has-text-success has-text-right" id="">
+                                        +$43443
+                                    </div>
+                                    <div class="column has-text-danger has-text-right" id="">
+                                        -$2734
+                                    </div>
+                                    <div class="column has-text-right" id="">
+                                        $40709
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <!--        TOTALES POR MES                 TOTALES POR MES                   -->
 
-                        <div class="columns ">
-                            <div class="column">
-                                <h3 class="has-text-weight-semibold">Comida</h3>
-                            </div>
-                            <div class="column has-text-success has-text-right">
-                                +$43443
-                            </div>
-                            <div class="column has-text-danger has-text-right">
-                                -$2734
-                            </div>
-                            <div class="column has-text-right">
-                                $40709
+                        <div class="mx-5 my-6">
+                            <h3 class="title is-size-4 ">Totales por mes</h3>
+                            <div id="reporte-mes">
+                                <div class="columns is-mobile">
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold" >Mes</h4>
+                                    </div>
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold has-text-right  ">Ganancias</h4>
+                                    </div>
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold has-text-right">Gastos</h4>
+                                    </div>
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold has-text-right">Balance</h4>
+                                    </div>
+                                </div>
+
+                                <div class="columns is-mobile">
+                                    <div class="column">
+                                        <h3 class="has-text-weight-semibold" id="">11/2021</h3>
+                                    </div>
+                                    <div class="column has-text-success has-text-right" id="">
+                                        +$43443
+                                    </div>
+                                    <div class="column has-text-danger has-text-right" id="">
+                                        -$2734
+                                    </div>
+                                    <div class="column has-text-right" id="">
+                                        $40709
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--        TOTALES POR MES                 TOTALES POR MES                   -->
-
-                <div class="mx-5 my-6">
-                    <h3 class="title is-size-4 ">Totales por mes</h3>
-                    <div id="reporte-mes">
-                        <div class="columns is-mobile">
-                            <div class="column">
-                                <h4 class="has-text-weight-semibold">Mes</h4>
-                            </div>
-                            <div class="column">
-                                <h4 class="has-text-weight-semibold has-text-right  ">Ganancias</h4>
-                            </div>
-                            <div class="column">
-                                <h4 class="has-text-weight-semibold has-text-right">Gastos</h4>
-                            </div>
-                            <div class="column">
-                                <h4 class="has-text-weight-semibold has-text-right">Balance</h4>
-                            </div>
-                        </div>
-
-                        <div class="columns is-mobile">
-                            <div class="column">
-                                <h3 class="has-text-weight-semibold">11/2021</h3>
-                            </div>
-                            <div class="column has-text-success has-text-right">
-                                +$43443
-                            </div>
-                            <div class="column has-text-danger has-text-right">
-                                -$2734
-                            </div>
-                            <div class="column has-text-right">
-                                $40709
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </article>
             </div>
 
-            </article>
         </div>
-
-        </div>
-
 
     </main>
 
