@@ -260,7 +260,7 @@
                         <!--        IMAGEN SIN OP                       IMAGEN SIN OP          -->
                         <!--CHEQUEAR CLASE IS-HIDDEN EN EL DIV DE ABAJO PARA CORRECTO FUNCIONAMIENTO -->
 
-                        <div id="sin-operaciones" class="">
+                        <div id="sin-operaciones" class="is">
 
                             <div class="columns section ">
 
@@ -310,168 +310,144 @@
 
                         <!--       LISTA DE OPERACIONES                LISTA DE OPERACIONES -->
                         <!--COPIAR ESTO EN JS PARA CREAR LISTADO-->
-                        <div class="columns">
-                            <div id="nombre-operacion" class="column is-3 ">
-                                <h3 class="has-text-weight-semibold">dsda</h3>
-                            </div>
+                        <div id="listado-operaciones" class="columns">
 
-                            <div class="column is-2">
-                                <span id="categoria-operacion" class="tag is-primary is-light">Comida</span>
-                            </div>
-                            <div id="fecha-operacion" class="column is-3 has-text-grey">
-                                20/11/2021
-                            </div>
-                            <!--CHEQUEAR COLOR DE GASTO O GANANCIA AL CARGARSE EN HTML-->
-                            <div id="monto-operacion" class="column is-2 has-text-weight-bold  has-text-danger">
-                                -$2300
-                            </div>
-
-                            <div class="column is-2 py-0">
-
-                                <button id="editar-operacion" class=" button is-small is-ghost ">Editar</a>
-                                    <button id="eliminar-operacion" class="button is-small is-ghost ">Eliminar</a>
-
-                            </div>
                         </div>
                         <!--HASTA ACA-->
 
                     </div>
 
-                    <!--    AGREGAR OPERACION                       AGREGAR OPERACION        -->
 
-                    <div class="columns ">
-
-                        <div id="card-nueva-operacion" class="column is-hidden">
-
-                            <h2 class="title is-size-2 has-text-weight-bold">Nueva operación</h2>
-                            <div class=" mt-6">
-                                <label class="label" for="descripcion-input">Descripción</label>
-                                <div class="control">
-                                    <div class="is-fullwidth">
-                                        <input class="input" type="text" name="descripcion-input"
-                                            id="descripcion-input">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="label" for="monto-input">Monto</label>
-                                <div class="control">
-                                    <div class="is-fullwidth">
-                                        <input class="input" type="number" name="descripcion-input" id="monto-input"
-                                            value="0">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="label" for="tipo">Tipo</label>
-                                <div class="control">
-                                    <div class="select is-fullwidth">
-                                        <select id="editar-tipo-operacion">
-                                            <option value="gasto">Gasto</option>
-                                            <option value="ganancia">Ganancia</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="label" for="editar-categoria">Categoria</label>
-                                <div class="control">
-                                    <div class="select is-fullwidth">
-                                        <select class="select-categorias" id="select-de-categorias">
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="label" for="editar-fecha-input">Fecha</label>
-                                <div class="control">
-                                    <div class="is-fullwidth">
-                                        <input class="input" type="date" id="editar-fecha-input">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="buttons mt-6">
-                                <button class="button is-light" id="boton-cancelar-editar-operacion">Cancelar</button>
-                                <button class="button is-success" id="boton-agregar-operacion">Agregar</button>
-                            </div>
-                        </div>
-
-
-                        <!--        EDITAR OPERACION                    EDITAR OPERACION       -->
-
-
-                        <div id="form-editar-operacion" class="column is-hidden">
-
-                            <h2 class="title is-size-2 has-text-weight-bold">Nueva operación</h2>
-
-                            <div class="mt-6">
-                                <label class="label" for="descripcion-input">Descripción</label>
-                                <div class="control">
-                                    <div class="is-fullwidth">
-                                        <input class="input" type="text" name="descripcion-input"
-                                            id="descripcion-input">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="label" for="monto-input">Monto</label>
-                                <div class="control">
-                                    <div class="is-fullwidth">
-                                        <input class="input" type="number" name="descripcion-input" id="monto-input"
-                                            value="0">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="label" for="tipo">Tipo</label>
-                                <div class="control">
-                                    <div class="select is-fullwidth">
-                                        <select id="editar-tipo-operacion">
-                                            <option value="gasto">Gasto</option>
-                                            <option value="ganancia">Ganancia</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="label" for="editar-categoria">Categoria</label>
-                                <div class="control">
-                                    <div class="select is-fullwidth">
-                                        <select class="select-categorias" id="select-de-categorias">
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="label" for="editar-fecha-input">Fecha</label>
-                                <div class="control">
-                                    <div class="is-fullwidth">
-                                        <input class="input" type="date" id="editar-fecha-input">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="buttons mt-6">
-                                <button class="button is-light" id="boton-cancelar-editar-operacion">Cancelar</button>
-                                <button class="button is-success" id="boton-agregar-operacion">Agregar</button>
-                            </div>
-
-                        </div>
-                    </div>
                 </article>
             </div>
         </div>
+
+        <!--FORMULARIO AGREGAR OPERACION-->
+        <section class="section is-hidden">
+            <form class="box columns" id="form-nueva-operacion">
+
+                <div class="column">
+
+                    <h2 class="title is-size-2 has-text-weight-bold">Nueva operación</h2>
+                    <div class=" mt-6">
+                        <label class="label" for="descripcion-input">Descripción</label>
+                        <div class="control">
+                            <div class="is-fullwidth">
+                                <input class="input" type="text" name="descripcion-input" id="descripcion-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="label" for="monto-input">Monto</label>
+                        <div class="control">
+                            <div class="is-fullwidth">
+                                <input class="input" type="number" name="descripcion-input" id="monto-input" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="label" for="tipo">Tipo</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select id="editar-tipo-operacion">
+                                    <option value="gasto">Gasto</option>
+                                    <option value="ganancia">Ganancia</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="label" for="editar-categoria">Categoria</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select class="select-categorias" id="select-de-categorias">
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="label" for="editar-fecha-input">Fecha</label>
+                        <div class="control">
+                            <div class="is-fullwidth">
+                                <input class="input" type="date" id="editar-fecha-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="buttons mt-6">
+                        <button class="button is-light" id="boton-cancelar-editar-operacion">Cancelar</button>
+                        <button class="button is-success" id="boton-agregar-operacion">Agregar</button>
+                    </div>
+            </form>
+        </section>
+
+        <!--       FORMULARIO EDITAR OPERACION                    EDITAR OPERACION       -->
+        <div id="form-editar-operacion" class="column section box">
+
+            <h2 class="title is-size-2 has-text-weight-bold">Editar operación</h2>
+
+            <div class="mt-6">
+                <label class="label" for="descripcion-input">Descripción</label>
+                <div class="control">
+                    <div class="is-fullwidth">
+                        <input class="input" type="text" name="descripcion-input" id="descripcion-input">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label class="label" for="monto-input">Monto</label>
+                <div class="control">
+                    <div class="is-fullwidth">
+                        <input class="input" type="number" name="descripcion-input" id="monto-input" value="0">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label class="label" for="tipo">Tipo</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="editar-tipo-operacion">
+                            <option value="gasto">Gasto</option>
+                            <option value="ganancia">Ganancia</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label class="label" for="editar-categoria">Categoria</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select class="select-categorias" id="select-de-categorias">
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label class="label" for="editar-fecha-input">Fecha</label>
+                <div class="control">
+                    <div class="is-fullwidth">
+                        <input class="input" type="date" id="editar-fecha-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons mt-6">
+                <button class="button is-light" id="boton-cancelar-editar-operacion">Cancelar</button>
+                <button class="button is-success" id="boton-agregar-operacion">Agregar</button>
+            </div>
+
+        </div>
+
         <!--  MODAL CATEGORIAS                  MODAL CATEGORIAS              MODAL CATEGORIAS        -->
 
         <div id="card-categorias" class="columns is-centered section is-hidden">
@@ -483,21 +459,21 @@
 
                         <h2 class="title is-size-2 has-text-weight-bold">
                             Editar categoría
-                          </h2>
-                          <label class="label mt-6" for="editar-categoria-input">Nombre</label>
-                          <div class="field is-grouped">
+                        </h2>
+                        <label class="label mt-6" for="editar-categoria-input">Nombre</label>
+                        <div class="field is-grouped">
                             <div class="control is-expanded">
-                              <input required class="input" type="text" name="" id="editar-categoria-input" value="">
+                                <input required class="input" type="text" name="" id="editar-categoria-input" value="">
                             </div>
-                          </div>
-                          <div class="buttons mt-6 is-flex is-justify-content-end ">
+                        </div>
+                        <div class="buttons mt-6 is-flex is-justify-content-end ">
                             <button class="button is-light" id="cancelar-categoria-boton" type="button">
-                              Cancelar
+                                Cancelar
                             </button>
                             <button class="button is-success" type="submit" id="editar-categoria-boton">
-                              Editar
+                                Editar
                             </button>
-                          </div>
+                        </div>
                     </form>
                     <div id="agregar-nuevas-categorias">
                         <h2 class="title is-2 has-text-weight-bold">Categorías</h2>
@@ -510,7 +486,8 @@
 
                                 <div class="columns is-centered mr-2 ">
                                     <div class="column is-10">
-                                        <input required class="input is-medium " id="input-categorias" type="text" name="name">
+                                        <input required class="input is-medium " id="input-categorias" type="text"
+                                            name="name">
                                     </div>
 
                                     <div class="column is-2 ">
@@ -534,7 +511,7 @@
         <!--FORMULARIO EDITAR CATEGORIA-->
         <!--<article class="box pb-6 is-hidden" -->
 
-   <!-- </article>-->
+        <!-- </article>-->
 
         <!-- MODAL REPORTES                         MODAL REPORTES                      MODAL REPORTES-->
 

@@ -16,9 +16,9 @@ const vistaOperacionesTitulos = document.querySelector("#vista-operaciones-titul
 const vistaSinOperaciones = document.querySelector("#sin-operaciones")
 
 const CARD_NUEVA_OPERACION = document.querySelector("#form-nueva-operacion")
-console.log(CARD_NUEVA_OPERACION)
+
 const SELECT_CATEGORIAS = document.querySelector("#select-de-categorias")
-console.log(SELECT_CATEGORIAS)
+
 const LISTA_CATEGORIAS = document.querySelector(".lista-categorias")
 const CARD_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria")
 const INPUT_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria-input")
@@ -31,6 +31,8 @@ const INPUT_DESCRIPCION = document.querySelector("#descripcion-input")
 const MONTO_INPUT = document.querySelector("#monto-input")
 const TIPO_INPUT = document.querySelector("#editar-tipo-operacion")
 const FECHA_INPUT = document.querySelector("#editar-fecha-input")
+
+const listadoOperaciones=document.querySelector("#listado-operaciones")
 
 const formAgregarCategorias=document.querySelector("#form-agregar-categorias")
 
@@ -209,5 +211,34 @@ const obtenerOperaciones=()=>{
     else {
         return JSON.parse(operacionesEnLocalStorage)
     }
+
+}
+
+/*const agregarOperacionesAHTML=()=>{
+    const operaciones=obtenerOperaciones()
+    const operacionesAHTML=operaciones.reduce((acc, operacion, index)=>{
+        return acc+``
+    },"")
+}
+*/
+
+const formNuevaOperacion=document.querySelector("#form-nueva-operacion")
+
+formNuevaOperacion.onsubmit=(e)=>{
+    e.preventDefault()
+    const nuevaOperacion={
+        descripcion:inputDescripcion.value,
+        monto:montoInput.value,
+        tipo:tipoInput.value,
+        categoria:selectCategorias.value,
+        fecha:fechaInput.value,
+        
+    }
+
+operaciones.push(nuevaOperacion)
+formNuevaOperacion.reset()
+obtenerOperaciones()
+guardarEnLocalStorage("operaciones",operaciones)
+agregarOperacionesAHTML()
 
 }
