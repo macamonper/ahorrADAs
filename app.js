@@ -16,7 +16,9 @@ const vistaOperacionesTitulos = document.querySelector("#vista-operaciones-titul
 const vistaSinOperaciones = document.querySelector("#sin-operaciones")
 
 const CARD_NUEVA_OPERACION = document.querySelector("#form-nueva-operacion")
+console.log(CARD_NUEVA_OPERACION)
 const SELECT_CATEGORIAS = document.querySelector("#select-de-categorias")
+console.log(SELECT_CATEGORIAS)
 const LISTA_CATEGORIAS = document.querySelector(".lista-categorias")
 const CARD_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria")
 const INPUT_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria-input")
@@ -192,5 +194,20 @@ CANCELAR_EDITAR_CAT.onclick=()=>{
     CARD_EDITAR_CATEGORIAS.classList.add("is-hidden")
     CARD_AGREGAR_CATEGORIAS.classList.remove("is-hidden")
     LISTA_CATEGORIAS.classList.remove("is-hidden")
+
+}
+
+
+//SECCION OPERACIONES
+const operaciones=[]
+
+const obtenerOperaciones=()=>{
+    const operacionesEnLocalStorage = localStorage.getItem("operaciones")
+    if (operacionesEnLocalStorage === null) {
+        return operaciones
+    }
+    else {
+        return JSON.parse(operacionesEnLocalStorage)
+    }
 
 }
