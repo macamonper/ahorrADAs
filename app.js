@@ -41,6 +41,11 @@ const listadoOperaciones = document.querySelector("#listado-operaciones")
 const formAgregarCategorias = document.querySelector("#form-agregar-categorias")
 const secciontitulosDeOperacionesCargadas = document.querySelector("#operaciones-cargadas")
 
+const FILTRO_TIPO = document.querySelector("#select-ordenar-tipo")
+const FILTRO_CATEGORIAS = document.querySelector("#select-de-categorias")
+const FILTRO_FECHAS = document.querySelector("#date")
+const FILTRO_ORDEN = document.querySelector("#select-ordenar-por")
+
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
 BTN_BALANCE.onclick = () => {
     CARD_CATEGORIAS.classList.add("is-hidden");
@@ -98,7 +103,7 @@ formAgregarCategorias.onsubmit = (e) => {
 }
 
 //CATEGORIAS EXISTENTES
-const categorias = ["Comida", "Servicios", "Salidas", "Educacion", "Transporte", "Trabajo"]
+const categorias = ["todos", "comida", "servicios", "salidas", "educacion", "transporte", "trabajo"]
 
 
 const guardarEnLocalStorage = (clave, objeto) => {
@@ -217,8 +222,11 @@ const obtenerOperaciones = () => {
 
 }
 
+
+
 const agregarOperacionesAHTML = () => {
     const operaciones = obtenerOperaciones()
+    
     const operacionesAHTML = operaciones.reduce((acc, operacion, index) => {
         return acc + `
         <div class="columns">
@@ -233,7 +241,10 @@ const agregarOperacionesAHTML = () => {
     </div>
 `
     }, "")
+
+
     listadoOperaciones.innerHTML = operacionesAHTML
+    
     if (operaciones.length > 0) {
         vistaSinOperaciones.classList.add("is-hidden")
         listadoOperaciones.classList.remove("is-hidden")
@@ -246,6 +257,10 @@ const agregarOperacionesAHTML = () => {
 
     }
 }
+
+
+
+
 agregarCategoriasAHTML()
 
 
@@ -254,6 +269,7 @@ const formGuardarOperaciones = document.querySelector("#form-guardar-operaciones
 
 
 agregarOperacionesAHTML()
+
 agregarCategoriasAlSelect()
 
 
@@ -325,3 +341,188 @@ botonCancelarForm.onclick=()=>{
 }
 
 agregarCategoriasAlSelect()
+
+
+// FUNCIONES PARA FILTROS
+
+let operacionesAFiltrar = obtenerOperaciones()
+
+
+const aplicarFiltros = () => {
+
+    const tipoFiltro = FILTRO_TIPO.value
+
+    const filtradoPorTipo = operacionesAFiltrar.filter((operacion) => {
+        if (tipoFiltro === "todos") {
+            return operacion
+        }
+        return operacion.tipo === tipoFiltro
+    })
+
+    const categoriaFiltro = FILTRO_CATEGORIAS.value
+    const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => {
+        if (categoriaFiltro === "todos") {
+            return operacion
+        }
+        return operacion.categoria === categoriaFiltro
+    })
+
+    const fechaFiltro = FILTRO_FECHAS.value
+    const filtradoPorFechas = filtradoPorCategoria.filter((operacion) => {
+        if (fechaFiltro === null) {
+            return operacion
+        }
+        return operacion.fecha >= fechaFiltro
+    })
+
+    const ordenFiltro = FILTRO_ORDEN.value
+    let copiaFiltradoPorFechas = [...filtradoPorFechas]
+    
+
+
+    const filtradoFinal = copiaFiltradoPorFechas.sort((a, b) => {
+
+        let nameA = a.descripcion.toUpperCase()
+        let nameB = b.descripcion.toUpperCase()
+
+        if (ordenFiltro === "mas-reciente") {
+            return new Date(b.fecha) - new Date(a.fecha)    
+        }
+
+        else if (ordenFiltro === "menos-reciente") {
+            return new Date(a.fecha) - new Date(b.fecha)
+        }
+
+        else if (ordenFiltro === "mayor-monto") {
+            return b.monto - a.monto
+        }
+
+        else if (ordenFiltro === "menor-monto") {
+            return a.monto - b.monto
+        }
+
+        else if (ordenFiltro === "a-z" && nameA < nameB) {
+            
+            return -1
+        }
+
+        else if (ordenFiltro === "z-a" && nameA > nameB) {
+            return 1
+        }
+
+    })
+
+  return filtradoFinal
+
+}
+
+
+FILTRO_FECHAS.onchange = () => {
+
+    const arrayFiltrado = aplicarFiltros()
+    console.log(arrayFiltrado)
+   
+    let acc = ""
+
+    arrayFiltrado.map((elemento, index) => {
+        acc = acc + `
+        <div class="columns">
+            <div class="column is-3">${elemento.descripcion}</div>
+            <div class="column is-3">${elemento.categoria}</div>
+            <div class="column is-2">${new Date(elemento.fecha).toLocaleDateString("es-AR", {timeZone:"UTC"})}</div>
+            <div class="column is-2">${elemento.monto}</div>
+            <div class="column is-2">
+                <button onclick='mostrarFormOperaciones(${JSON.stringify(elemento)},${index})' id=editar-operacion-${index} class="button is-small is-outlined mb-1">Editar</button>
+                <button onclick='eliminarOperacion(${index})' id=eliminar-operacion-${index} class="button is-small   is-outlined">Eliminar</button>
+            </div>
+        </div>
+        `
+
+    })
+
+    listadoOperaciones.innerHTML = acc
+
+}
+
+
+FILTRO_TIPO.onchange = () => {
+    const arrayFiltrado = aplicarFiltros()
+    console.log(arrayFiltrado)
+   
+    let acc = ""
+
+    arrayFiltrado.map((elemento, index) => {
+        acc = acc + `
+        <div class="columns">
+            <div class="column is-3">${elemento.descripcion}</div>
+            <div class="column is-3">${elemento.categoria}</div>
+            <div class="column is-2">${new Date(elemento.fecha).toLocaleDateString("es-AR", {timeZone:"UTC"})}</div>
+            <div class="column is-2">${elemento.monto}</div>
+            <div class="column is-2">
+                <button onclick='mostrarFormOperaciones(${JSON.stringify(elemento)},${index})' id=editar-operacion-${index} class="button is-small is-outlined mb-1">Editar</button>
+                <button onclick='eliminarOperacion(${index})' id=eliminar-operacion-${index} class="button is-small   is-outlined">Eliminar</button>
+            </div>
+        </div>
+        `
+
+    })
+
+    listadoOperaciones.innerHTML = acc
+    
+}
+
+FILTRO_CATEGORIAS.onchange = () => {
+    const arrayFiltrado = aplicarFiltros()
+    
+
+    let acc = ""
+
+    arrayFiltrado.map((elemento, index) => {
+        acc = acc + `
+        <div class="columns">
+            <div class="column is-3">${elemento.descripcion}</div>
+            <div class="column is-3">${elemento.categoria}</div>
+            <div class="column is-2">${new Date(elemento.fecha).toLocaleDateString("es-AR", {timeZone:"UTC"})}</div>
+            <div class="column is-2">${elemento.monto}</div>
+            <div class="column is-2">
+                <button onclick='mostrarFormOperaciones(${JSON.stringify(elemento)},${index})' id=editar-operacion-${index} class="button is-small is-outlined mb-1">Editar</button>
+                <button onclick='eliminarOperacion(${index})' id=eliminar-operacion-${index} class="button is-small   is-outlined">Eliminar</button>
+            </div>
+        </div>
+        `
+
+    })
+
+    listadoOperaciones.innerHTML = acc
+    
+}
+
+
+FILTRO_ORDEN.onchange = () => {
+    const arrayFiltrado = aplicarFiltros()
+    
+
+    let acc = ""
+
+    arrayFiltrado.map((elemento, index) => {
+        acc = acc + `
+        <div class="columns">
+            <div class="column is-3">${elemento.descripcion}</div>
+            <div class="column is-3">${elemento.categoria}</div>
+            <div class="column is-2">${new Date(elemento.fecha).toLocaleDateString("es-AR", {timeZone:"UTC"})}</div>
+            <div class="column is-2">${elemento.monto}</div>
+            <div class="column is-2">
+                <button onclick='mostrarFormOperaciones(${JSON.stringify(elemento)},${index})' id=editar-operacion-${index} class="button is-small is-outlined mb-1">Editar</button>
+                <button onclick='eliminarOperacion(${index})' id=eliminar-operacion-${index} class="button is-small   is-outlined">Eliminar</button>
+            </div>
+        </div>
+        `
+
+    })
+
+    listadoOperaciones.innerHTML = acc
+
+}
+
+
+    
