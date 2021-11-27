@@ -2,115 +2,81 @@ const BTN_BALANCE = document.getElementById("btn-balance");
 const BTN_CATEGORIAS = document.getElementById("btn-categorias");
 const BTN_REPORTES = document.getElementById("btn-reportes");
 const CARDS_PRINCIPALES = document.getElementById("cards-principales");
-
-
-const CARD_CATEGORIAS = document.getElementById("card-categorias");
 const CARD_REPORTES = document.getElementById("card-reportes");
-const BTN_FILTROS = document.getElementById("btn-filtros");
-const CARD_FILTROS = document.getElementById("card-filtros");
-const BTN_AGREGAR_CAT = document.getElementById("btn-agregar-cat");
-const INPUT_CATEGORIAS = document.getElementById("input-categorias");
+const SIN_OPERACIONES =  document.getElementById("sin-operaciones")
+const OPERACIONES_CARGADAS = document.querySelector("#operaciones-cargadas")
+const LISTA_OPERACIONES = document.querySelector("#listado-operaciones")
 const BTN_NUEVA_OPERACION = document.querySelector("#boton-nueva-operacion")
-
-
-const VISTA_OPERACIONES = document.querySelector("#vista-operaciones-cargadas")
-
-const vistaOperacionesTitulos = document.querySelector("#vista-operaciones-titulos")
-const vistaSinOperaciones = document.querySelector("#sin-operaciones")
-
-const CARD_NUEVA_OPERACION = document.querySelector("#form-nueva-operacion")
-
-const SELECT_CATEGORIAS = document.querySelector("#select-de-categorias")
-const SELECT_CATEGORIAS_CARGA = document.querySelector("#select-categorias-carga")
-
-const LISTA_CATEGORIAS = document.querySelector(".lista-categorias")
-const CARD_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria")
-const INPUT_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria-input")
-const CANCELAR_EDITAR_CAT = document.querySelector("#cancelar-categoria-boton")
-const EDITAR_CATEGORIA = document.querySelector("#editar-categoria-boton")
-const CARD_AGREGAR_CATEGORIAS = document.querySelector("#agregar-nuevas-categorias")
-
-
+const CARD_NUEVA_OPERACION = document.querySelector("#card-nueva-operacion")
 const INPUT_DESCRIPCION = document.querySelector("#descripcion-input")
 const MONTO_INPUT = document.querySelector("#monto-input")
 const TIPO_INPUT = document.querySelector("#editar-tipo-operacion")
 const FECHA_INPUT = document.querySelector("#editar-fecha-input")
-
-const listadoOperaciones = document.querySelector("#listado-operaciones")
-
-const formAgregarCategorias = document.querySelector("#form-agregar-categorias")
-const secciontitulosDeOperacionesCargadas = document.querySelector("#operaciones-cargadas")
-
+const CARD_CATEGORIAS = document.getElementById("card-categorias");
+const LISTA_CATEGORIAS = document.querySelector(".lista-categorias")
+const INPUT_CATEGORIAS = document.getElementById("input-categorias");
+const FORM_AGREGAR_CATEGORIAS = document.querySelector("#form-agregar-categorias")
+const CARD_AGREGAR_CATEGORIAS = document.querySelector("#agregar-nuevas-categorias")
+const CARD_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria")
+const INPUT_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria-input")
+const SELECT_CATEGORIAS = document.querySelector("#select-de-categorias")
+const CANCELAR_EDITAR_CAT = document.querySelector("#cancelar-categoria-boton")
+const BOTON_CANCELAR_EDICION=document.querySelector("#btn-cancelar-edicion-op")
+const SELECT_CATEGORIAS_CARGA = document.querySelector("#select-categorias-carga")
+const CARD_FILTROS = document.getElementById("card-filtros");
+const BTN_FILTROS = document.getElementById("btn-filtros");
 const FILTRO_TIPO = document.querySelector("#select-ordenar-tipo")
 const FILTRO_CATEGORIAS = document.querySelector("#select-de-categorias")
 const FILTRO_FECHAS = document.querySelector("#date")
 const FILTRO_ORDEN = document.querySelector("#select-ordenar-por")
 
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
+
 BTN_BALANCE.onclick = () => {
     CARD_CATEGORIAS.classList.add("is-hidden");
     CARD_REPORTES.classList.add("is-hidden");
-    formGuardarOperaciones.classList.add("is-hidden");
     CARDS_PRINCIPALES.classList.remove("is-hidden");
- 
-    agregarOperacionesAHTML()
+
+    agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
 }
 
+ 
 BTN_CATEGORIAS.onclick = () => {
     CARDS_PRINCIPALES.classList.add("is-hidden");
     CARD_REPORTES.classList.add("is-hidden");
     CARD_CATEGORIAS.classList.remove("is-hidden");
-    CARD_AGREGAR_CATEGORIAS.classList.remove("is-hidden");
-    CARD_EDITAR_CATEGORIAS.classList.add("is-hidden");
-    LISTA_CATEGORIAS.classList.remove("is-hidden");
-    formGuardarOperaciones.classList.add("is-hidden");
 
-}
+ }
 
-BTN_REPORTES.onclick = () => {
+BTN_REPORTES.onclick= () => {
     CARDS_PRINCIPALES.classList.add("is-hidden");
     CARD_CATEGORIAS.classList.add("is-hidden");
     CARD_REPORTES.classList.remove("is-hidden");
 }
 
 BTN_FILTROS.onclick = () => {
-    if (BTN_FILTROS.innerHTML === "Mostrar filtros") {
+    if (BTN_FILTROS.innerHTML=== "Mostrar filtros"){
         BTN_FILTROS.innerHTML = "Ocultar filtros"
         CARD_FILTROS.classList.remove("is-hidden");
-    } else {
+    }else{
         BTN_FILTROS.innerHTML = "Mostrar filtros"
         CARD_FILTROS.classList.add("is-hidden");
     }
 }
 
-BTN_NUEVA_OPERACION.onclick = () => {
-    mostrarFormOperaciones()
-}
 
-formAgregarCategorias.onsubmit = (e) => {
-    e.preventDefault()
-    const nuevaCategoria = INPUT_CATEGORIAS.value
-    const categorias = obtenerCategorias()
-    if (categorias.indexOf(nuevaCategoria) === -1) {
-        categorias.push(nuevaCategoria)
-        INPUT_CATEGORIAS.value = ""
 
-        guardarEnLocalStorage("categorias", categorias)
-        agregarCategoriasAlSelect()
-        agregarCategoriasAHTML()
-    }
-
-}
 
 //CATEGORIAS EXISTENTES
-const categorias = ["todos", "comida", "servicios", "salidas", "educacion", "transporte", "trabajo"]
 
+const categorias = ["todos", "comida", "servicios", "salidas", "educacion", "transporte", "trabajo"]
 
 const guardarEnLocalStorage = (clave, objeto) => {
     const objetoConvertidoAJSON = JSON.stringify(objeto)
     return localStorage.setItem(clave, objetoConvertidoAJSON)
-
+    
 }
+
 
 const obtenerCategorias = () => {
     const categoriasEnLocalStorage = localStorage.getItem("categorias")
@@ -127,7 +93,6 @@ const agregarCategoriasAlSelect = () => {
     const categoriasString = categorias.reduce((acc, categoria) => {
         return acc + `<option value=${categoria}>${categoria}</option>`
     }, "")
-
     SELECT_CATEGORIAS_CARGA.innerHTML = categoriasString
     SELECT_CATEGORIAS.innerHTML = categoriasString
 }
@@ -158,10 +123,24 @@ const agregarCategoriasAHTML = () => {
     }, "")
 
     LISTA_CATEGORIAS.innerHTML = categoriasAHTML;
-
+ 
 
 }
+FORM_AGREGAR_CATEGORIAS.onsubmit = (e) => {
 
+    e.preventDefault()
+    const nuevaCategoria = INPUT_CATEGORIAS.value
+    const categorias = obtenerCategorias()
+   if (categorias.indexOf(nuevaCategoria) === -1){
+    categorias.push(nuevaCategoria)
+    INPUT_CATEGORIAS.value = ""
+
+    guardarEnLocalStorage("categorias", categorias)
+    agregarCategoriasAlSelect()
+    agregarCategoriasAHTML(OPERACIONES_PARA_HTML)
+   }
+    
+}
 agregarCategoriasAlSelect()
 agregarCategoriasAHTML()
 
@@ -177,12 +156,20 @@ const editarCategoria = (categoria) => {
 
         e.preventDefault()
         const categorias = obtenerCategorias()
-        if (categorias.indexOf(INPUT_EDITAR_CATEGORIAS.value) === -1 || categoria === INPUT_EDITAR_CATEGORIAS.value) {
+
+        if (categorias.indexOf(INPUT_EDITAR_CATEGORIAS.value) === -1 ||
+         categoria === INPUT_EDITAR_CATEGORIAS.value) {
+
             const indice = categorias.indexOf(categoria)
+
             categorias[indice] = INPUT_EDITAR_CATEGORIAS.value
+
             guardarEnLocalStorage("categorias", categorias)
+
             agregarCategoriasAHTML()
+
             agregarCategoriasAlSelect()
+
             CARD_EDITAR_CATEGORIAS.classList.add("is-hidden")
             CARD_AGREGAR_CATEGORIAS.classList.remove("is-hidden")
             LISTA_CATEGORIAS.classList.remove("is-hidden")
@@ -193,20 +180,19 @@ const editarCategoria = (categoria) => {
 
 const eliminarCategoria = (categoria) => {
     const categorias = obtenerCategorias()
-    const categoriasFiltradas = categorias.filter((elemento) => {
+    const categoriasFiltradas=categorias.filter((elemento) => {
         return elemento != categoria
     })
-    guardarEnLocalStorage("categorias", categoriasFiltradas)
+    guardarEnLocalStorage("categorias",categoriasFiltradas)
     agregarCategoriasAHTML()
 }
 
-CANCELAR_EDITAR_CAT.onclick = () => {
+CANCELAR_EDITAR_CAT.onclick=()=>{
     CARD_EDITAR_CATEGORIAS.classList.add("is-hidden")
     CARD_AGREGAR_CATEGORIAS.classList.remove("is-hidden")
     LISTA_CATEGORIAS.classList.remove("is-hidden")
+
 }
-
-
 //SECCION OPERACIONES
 
 const operaciones = []
@@ -215,70 +201,76 @@ const obtenerOperaciones = () => {
     const operacionesEnLocalStorage = localStorage.getItem("operaciones")
     if (operacionesEnLocalStorage === null) {
         return operaciones
-    }
+}
     else {
         return JSON.parse(operacionesEnLocalStorage)
     }
 
 }
 
+const OPERACIONES_PARA_HTML = obtenerOperaciones()
 
-
-const agregarOperacionesAHTML = () => {
-    const operaciones = obtenerOperaciones()
+const agregarOperacionesAHTML = (arr) => {
     
-    const operacionesAHTML = operaciones.reduce((acc, operacion, index) => {
+    const operacionesAHTML = arr.reduce((acc, elemento, index) => {
+
         return acc + `
         <div class="columns">
-        <div class="column is-3">${operacion.descripcion}</div>
-        <div class="column is-3">${operacion.categoria}</div>
-        <div class="column is-2">${new Date(operacion.fecha).toLocaleDateString("es-AR", {timeZone:"UTC"})}</div>
-        <div class="column is-2">${operacion.monto}</div>
-        <div class="column is-2">
-            <button onclick='mostrarFormOperaciones(${JSON.stringify(operacion)},${index})' id=editar-operacion-${index} class="button is-small is-outlined mb-1">Editar</button>
-            <button onclick='eliminarOperacion(${index})' id=eliminar-operacion-${index} class="button is-small   is-outlined">Eliminar</button>
+            <div class="column is-3 ">
+                <p class="has-text-weight-semibold">
+                    ${elemento.descripcion}
+                </p>
+            </div>
+            <div class="column is-2 ">
+                <span class ="tag is-primary is-light">
+                    ${elemento.categoria}
+                </span>
+            </div>
+            <div class="column is-3 has-text-grey has-text-centered">   
+                ${new Date(elemento.fecha).toLocaleDateString("es-AR", {timeZone:"UTC"})}
+            </div>
+            <div class="column is-2 has-text-weight-bold ${elemento.tipo === "ganancia"
+            ? 'has-text-success'
+            : 'has-text-danger'}">
+
+                ${elemento.tipo === "ganancia" ? '+' : '-'}$${
+                elemento.monto
+              }
+            </div>
+            <div class="column is-2 has-text-right">
+                <button onclick='mostrarFormOperaciones(${JSON.stringify(elemento)},${index})' id=editar-operacion-${index} class="button is-small is-ghost pr-5">Editar</button>
+                <button onclick='eliminarOperacion(${index})' id=eliminar-operacion-${index} class="button is-small is-ghost">Eliminar</button>
+            </div>
         </div>
-    </div>
-`
+        `
     }, "")
 
-
-    listadoOperaciones.innerHTML = operacionesAHTML
+    LISTA_OPERACIONES.innerHTML = operacionesAHTML
     
-    if (operaciones.length > 0) {
-        vistaSinOperaciones.classList.add("is-hidden")
-        listadoOperaciones.classList.remove("is-hidden")
-        VISTA_OPERACIONES.classList.remove("is-hidden")
+    if (operacionesAHTML.length > 0) {
+        OPERACIONES_CARGADAS.classList.remove("is-hidden")
+        LISTA_OPERACIONES.classList.remove("is-hidden")
+        SIN_OPERACIONES.classList.add("is-hidden")
     }
     else {
-        vistaSinOperaciones.classList.remove("is-hidden")
-        listadoOperaciones.classList.add("is-hidden")
-        VISTA_OPERACIONES.classList.add("is-hidden")
-
+        OPERACIONES_CARGADAS.classList.add("is-hidden")
+        LISTA_OPERACIONES.classList.add("is-hidden")
+        SIN_OPERACIONES.classList.remove("is-hidden")
     }
 }
 
 
-
-
 agregarCategoriasAHTML()
-
-
-const formGuardarOperaciones = document.querySelector("#form-guardar-operaciones")
-
-
-
-agregarOperacionesAHTML()
-
+agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
 agregarCategoriasAlSelect()
 
 
-const tituloFormOperaciones = document.querySelector("#titulo-form-operaciones")
-
 const mostrarFormOperaciones = (operacion, indice) => {
-    VISTA_OPERACIONES.classList.add("is-hidden")
+
+    OPERACIONES_CARGADAS.classList.add("is-hidden")
     CARDS_PRINCIPALES.classList.add("is-hidden")
-    formGuardarOperaciones.classList.remove("is-hidden")
+    CARD_NUEVA_OPERACION.classList.remove("is-hidden")
+
 
     if (operacion) {
         INPUT_DESCRIPCION.value = operacion.descripcion
@@ -288,8 +280,9 @@ const mostrarFormOperaciones = (operacion, indice) => {
         FECHA_INPUT.value = operacion.fecha
     }
 
-    formGuardarOperaciones.onsubmit = (e) => {
+    CARD_NUEVA_OPERACION.onsubmit = (e) => {
         e.preventDefault()
+
         const nuevaOperacion = {
             descripcion: INPUT_DESCRIPCION.value,
             monto:Number(MONTO_INPUT.value),
@@ -298,6 +291,7 @@ const mostrarFormOperaciones = (operacion, indice) => {
             fecha:FECHA_INPUT.value,
 
         }
+
         const operaciones = obtenerOperaciones()
 
         if (indice > -1) {
@@ -308,40 +302,41 @@ const mostrarFormOperaciones = (operacion, indice) => {
 
             operaciones.push(nuevaOperacion)
         }
-        formGuardarOperaciones.reset()
-        guardarEnLocalStorage("operaciones", operaciones)
-        agregarOperacionesAHTML()
-        formGuardarOperaciones.classList.add("is-hidden")
 
+        CARD_NUEVA_OPERACION.reset()
+
+        guardarEnLocalStorage("operaciones", operaciones)
+
+        agregarOperacionesAHTML(operaciones)
+
+        CARD_NUEVA_OPERACION.classList.add("is-hidden")
         CARDS_PRINCIPALES.classList.remove("is-hidden")
 
-        agregarOperacionesAHTML()
-
-
+        agregarOperacionesAHTML(operaciones)
     }
 }
 
-const eliminarOperacion=(index)=>{
-    const operaciones=obtenerOperaciones()
-    operaciones.splice(index,1)
+const eliminarOperacion = (index) => {
+    OPERACIONES_PARA_HTML.splice(index,1)
     guardarEnLocalStorage("operaciones", operaciones)
-    agregarOperacionesAHTML()
-    formGuardarOperaciones.classList.add("is-hidden")
+    agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
+    CARD_NUEVA_OPERACION.classList.add("is-hidden")
 
     CARDS_PRINCIPALES.classList.remove("is-hidden")
 
-    agregarOperacionesAHTML()
+    agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
 }
 
-const botonCancelarForm=document.querySelector("#btn-cancelar")
-botonCancelarForm.onclick=()=>{
-    formGuardarOperaciones.classList.add("is-hidden")
+BTN_NUEVA_OPERACION.onclick = () => {
+    mostrarFormOperaciones()
+}
+BOTON_CANCELAR_EDICION.onclick = () => {
+    CARD_NUEVA_OPERACION.classList.add("is-hidden")
     CARDS_PRINCIPALES.classList.remove("is-hidden")
-    agregarOperacionesAHTML()
+    agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
 }
 
 agregarCategoriasAlSelect()
-
 
 // FUNCIONES PARA FILTROS
 
@@ -360,6 +355,7 @@ const aplicarFiltros = () => {
     })
 
     const categoriaFiltro = FILTRO_CATEGORIAS.value
+
     const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => {
         if (categoriaFiltro === "todos") {
             return operacion
@@ -420,54 +416,18 @@ const aplicarFiltros = () => {
 FILTRO_FECHAS.onchange = () => {
 
     const arrayFiltrado = aplicarFiltros()
-    console.log(arrayFiltrado)
    
-    let acc = ""
+    agregarOperacionesAHTML(arrayFiltrado)
 
-    arrayFiltrado.map((elemento, index) => {
-        acc = acc + `
-        <div class="columns">
-            <div class="column is-3">${elemento.descripcion}</div>
-            <div class="column is-3">${elemento.categoria}</div>
-            <div class="column is-2">${new Date(elemento.fecha).toLocaleDateString("es-AR", {timeZone:"UTC"})}</div>
-            <div class="column is-2">${elemento.monto}</div>
-            <div class="column is-2">
-                <button onclick='mostrarFormOperaciones(${JSON.stringify(elemento)},${index})' id=editar-operacion-${index} class="button is-small is-outlined mb-1">Editar</button>
-                <button onclick='eliminarOperacion(${index})' id=eliminar-operacion-${index} class="button is-small   is-outlined">Eliminar</button>
-            </div>
-        </div>
-        `
-
-    })
-
-    listadoOperaciones.innerHTML = acc
 
 }
 
 
 FILTRO_TIPO.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
-    console.log(arrayFiltrado)
+
+    agregarOperacionesAHTML(arrayFiltrado)
    
-    let acc = ""
-
-    arrayFiltrado.map((elemento, index) => {
-        acc = acc + `
-        <div class="columns">
-            <div class="column is-3">${elemento.descripcion}</div>
-            <div class="column is-3">${elemento.categoria}</div>
-            <div class="column is-2">${new Date(elemento.fecha).toLocaleDateString("es-AR", {timeZone:"UTC"})}</div>
-            <div class="column is-2">${elemento.monto}</div>
-            <div class="column is-2">
-                <button onclick='mostrarFormOperaciones(${JSON.stringify(elemento)},${index})' id=editar-operacion-${index} class="button is-small is-outlined mb-1">Editar</button>
-                <button onclick='eliminarOperacion(${index})' id=eliminar-operacion-${index} class="button is-small   is-outlined">Eliminar</button>
-            </div>
-        </div>
-        `
-
-    })
-
-    listadoOperaciones.innerHTML = acc
     
 }
 
@@ -475,25 +435,8 @@ FILTRO_CATEGORIAS.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
     
 
-    let acc = ""
+    agregarOperacionesAHTML(arrayFiltrado)
 
-    arrayFiltrado.map((elemento, index) => {
-        acc = acc + `
-        <div class="columns">
-            <div class="column is-3">${elemento.descripcion}</div>
-            <div class="column is-3">${elemento.categoria}</div>
-            <div class="column is-2">${new Date(elemento.fecha).toLocaleDateString("es-AR", {timeZone:"UTC"})}</div>
-            <div class="column is-2">${elemento.monto}</div>
-            <div class="column is-2">
-                <button onclick='mostrarFormOperaciones(${JSON.stringify(elemento)},${index})' id=editar-operacion-${index} class="button is-small is-outlined mb-1">Editar</button>
-                <button onclick='eliminarOperacion(${index})' id=eliminar-operacion-${index} class="button is-small   is-outlined">Eliminar</button>
-            </div>
-        </div>
-        `
-
-    })
-
-    listadoOperaciones.innerHTML = acc
     
 }
 
@@ -501,28 +444,7 @@ FILTRO_CATEGORIAS.onchange = () => {
 FILTRO_ORDEN.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
     
+    agregarOperacionesAHTML(arrayFiltrado)
 
-    let acc = ""
-
-    arrayFiltrado.map((elemento, index) => {
-        acc = acc + `
-        <div class="columns">
-            <div class="column is-3">${elemento.descripcion}</div>
-            <div class="column is-3">${elemento.categoria}</div>
-            <div class="column is-2">${new Date(elemento.fecha).toLocaleDateString("es-AR", {timeZone:"UTC"})}</div>
-            <div class="column is-2">${elemento.monto}</div>
-            <div class="column is-2">
-                <button onclick='mostrarFormOperaciones(${JSON.stringify(elemento)},${index})' id=editar-operacion-${index} class="button is-small is-outlined mb-1">Editar</button>
-                <button onclick='eliminarOperacion(${index})' id=eliminar-operacion-${index} class="button is-small   is-outlined">Eliminar</button>
-            </div>
-        </div>
-        `
-
-    })
-
-    listadoOperaciones.innerHTML = acc
 
 }
-
-
-    
