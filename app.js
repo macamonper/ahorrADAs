@@ -29,6 +29,11 @@ const FILTRO_TIPO = document.querySelector("#select-ordenar-tipo")
 const FILTRO_CATEGORIAS = document.querySelector("#select-de-categorias")
 const FILTRO_FECHAS = document.querySelector("#date")
 const FILTRO_ORDEN = document.querySelector("#select-ordenar-por")
+const CARD_BALANCE = document.querySelector("#card-balance");
+const BALANCE_GANANCIAS = document.querySelector("#balance-ganancias");
+const BALANCE_GASTOS = document.querySelector("#balance-gastos");
+const BALANCE_TOTAL = document.querySelector("#balance-total");
+
 
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
 
@@ -448,3 +453,48 @@ FILTRO_ORDEN.onchange = () => {
 
 
 }
+
+// BALANCE //
+
+const operacionesBalance = obtenerOperaciones()
+
+let TOTAL_BALANCE = {
+    ganancias: 0,
+    gastos: 0,
+    total: 0
+}
+
+const calcularBalance = (operaciones) => {
+    return operaciones.map((operacion) => {
+        if (operacion.tipo === "ganancia") {
+            TOTAL_BALANCE.ganancias = TOTAL_BALANCE.ganancias + operacion.monto
+        }
+        if (operacion.tipo === "gasto") {
+            TOTAL_BALANCE.gastos = TOTAL_BALANCE.gastos + operacion.monto
+        }
+
+        TOTAL_BALANCE.total = TOTAL_BALANCE.ganancias - TOTAL_BALANCE.gastos
+    })
+}
+
+calcularBalance(operacionesBalance);
+
+const actualizarBalance = () => {
+    BALANCE_GANANCIAS.innerText = `+$${TOTAL_BALANCE.ganancias}`
+    BALANCE_GASTOS.innerText = `-$${TOTAL_BALANCE.gastos}`
+    BALANCE_TOTAL.innerText = `${TOTAL_BALANCE.total >= 0 ? "+" : "-"}$${Math.abs(TOTAL_BALANCE.total)}`
+    BALANCE_TOTAL.classList.add(TOTAL_BALANCE.total >= 0 ? "has-text-success" : "has-text-danger")
+}
+
+actualizarBalance();
+
+// REPORTES
+
+const categoriasReportes = obtenerCategorias()
+
+
+
+
+
+
+ 
