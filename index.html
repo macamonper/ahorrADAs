@@ -465,173 +465,95 @@
 
         <!-- MODAL REPORTES                         MODAL REPORTES                      MODAL REPORTES-->
 
-        <div id="card-reportes" class="columns is-centered is-hidden ">
-
-            <div class="column is-8">
-                <article class="box ">
-
-                    <h2 class="title is-2 has-text-weight-bold pb-2">Reportes</h2>
-                        <!--SIN REPORTE-->
-                    <div class="is-hidden" id="sin-reporte">
-
-                        <div class="column is-offset-2 is-7 ">
-                            <figure class="image mt-6">
-                                <img src="undraw_Charts_re_5qe9.svg">
-                            </figure>
-                        </div>
-
-                        <div class="mb-6">
-                            <h3 class="title has-text-semi-bold has-text-centered mt-6">Operaciones insuficientes</h3>
-                            <h3 class="has-text-centered mb-6 has-text-weight-medium">Prueba agregando más operaciones
-                            </h3>
-                        </div>
-
-                    </div>
-                    
-                    <!--   RESUMEN            RESUMEN-->
-
-                    <div class="is-hidde">
-                        <div class="m-5 " id="resumen">
-
-                            <h4 class="title is-4 ">Resumen</h4>
-
-                            <div class="columns is-mobile">
-                                <div class="column is-6 ">
-                                    <h3 class="subtitle is-5">Categoría con mayor ganancia</h3>
-                                    <h3 class="subtitle is-5">Categoría con mayor gasto</h3>
-                                    <h3 class="subtitle is-5">Categoría con mayor balance</h3>
-                                    <h3 class="subtitle is-5">Mes con mayor ganancia</h3>
-                                    <h3 class="subtitle is-5">Mes con mayor gasto</h3>
-
+        <div class="container is-hidden" id="card-reportes">
+            <section class="section">
+                <div class="columns is-centered">
+                    <div class="column is-8">
+                        <div class="box">
+                            <h2 class="title is-2 has-text-weight-bold">Reportes</h2>
+                            
+                            <section class="section">
+                                <h3 class="subtitle is-4 has-text-weight-semibold">Resumen</h3>
+                                <div class="columns">
+                                    <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
+                                    <div class="column is-3 has-text-right"><span class="is-primary is-light tag">Trabajo</span></div>
+                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right">45215</div>
                                 </div>
-                                <!--           CATEGORIAS               -->
-
-                                <div class="column is-2 ">
-                                    <h3 class="field">
-                                        <span id="cat-mayor-ganancia" class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
-                                        </span>
-                                    </h3>
-                                    <h3 class="field">
-                                        <span id="cat-mayor-gasto" class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
-                                        </span>
-                                    </h3>
-                                    <h3 class="field">
-                                        <span id="cat-mayor-balance" class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
-                                        </span>
-                                    </h3>
-                                    <h3 class="field">
-                                        <span id="mes-mayor-ganancia" class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
-                                        </span>
-                                    </h3>
-                                    <h3 class="field">
-                                        <span id="mes-mayor-gasto" class="tag is-medium is-primary is-light has-text-weight-semibold"> comida
-                                        </span>
-                                    </h3>
-
+                                <div class="columns">
+                                    <div class="column is-6 has-text-weight-semibold">Categoría con mayor gasto</div>
+                                    <div class="column is-3 has-text-right"><span class="is-primary is-light tag">Trabajo</span></div>
+                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right">45215</div>
                                 </div>
-                                <!--        MONTOS              -->
-                                <div class="column is-4 has-text-right">
-                                    <h3 id="monto-mayor" class="subtitle has-text-weight-bold">
-                                        +0843u081
-                                    </h3>
-                                    <h3 id="monto-menor" class="subtitle has-text-weight-bold">
-                                        +0843u081
-                                    </h3>
-                                    <h3 id="mayor-balance" class="subtitle has-text-weight-bold">
-                                        +0843u081
-                                    </h3>
-                                    <h3 id="monto-mayor-mes" class="subtitle has-text-weight-bold">
-                                        +0843u081
-                                    </h3>
-                                    <h3 id="monto-menor-mes"class="subtitle has-text-weight-bold">
-                                        +0843u081
-                                    </h3>
-
+                                <div class="columns">
+                                    <div class="column is-6 has-text-weight-semibold">Categoría con mayor balance</div>
+                                    <div class="column is-3 has-text-right"><span class="is-primary is-light tag">Trabajo</span></div>
+                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right">45215</div>
                                 </div>
-
-                            </div>
-
-                        </div>
-                        <!--  TOTALES POR CATEGORIA                  TOTALES POR CATEGORIA-->
-
-                        <div class="mx-5 my-6">
-                            <h4 class="title is-size-4 ">
-                                Totales por categorías
-                            </h4>
-
-                            <div id="reporte-categorias">
-                                <div class="columns is-mobile">
-
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold">Categoria</h4>
-                                    </div>
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold has-text-right  ">Ganancias</h4>
-                                    </div>
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold has-text-right">Gastos</h4>
-                                    </div>
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold has-text-right">Balance</h4>
-                                    </div>
+                                <div class="columns">
+                                    <div class="column is-6 has-text-weight-semibold">Mes con mayor ganancia</div>
+                                    <div class="column is-3 has-text-right">10/08/2021</div>
+                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right">45215</div>
                                 </div>
-
-                                <div class="columns ">
-                                    <div class="column">
-                                        <h3 class="has-text-weight-semibold" id="categoria-reporte">Comida</h3>
-                                    </div>
-                                    <div class="column has-text-success has-text-right" id="">
-                                        +$43443
-                                    </div>
-                                    <div class="column has-text-danger has-text-right" id="">
-                                        -$2734
-                                    </div>
-                                    <div class="column has-text-right" id="">
-                                        $40709
-                                    </div>
+                                <div class="columns">
+                                    <div class="column is-6 has-text-weight-semibold">Mes con mayor gasto</div>
+                                    <div class="column is-3 has-text-right">11/06/2021</div>
+                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right">45215</div>
                                 </div>
-                            </div>
-                        </div>
-                        <!--        TOTALES POR MES                 TOTALES POR MES                   -->
-
-                        <div class="mx-5 my-6">
-                            <h3 class="title is-size-4 ">Totales por mes</h3>
-                            <div id="reporte-mes">
-                                <div class="columns is-mobile">
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold" >Mes</h4>
-                                    </div>
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold has-text-right  ">Ganancias</h4>
-                                    </div>
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold has-text-right">Gastos</h4>
-                                    </div>
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold has-text-right">Balance</h4>
-                                    </div>
+                            </section>
+    
+                            <section class="section">
+                                <h3 class="subtitle is-4 has-text-weight-semibold">Totales por categoría</h3>
+                                <div class="columns">
+                                    <div class="column has-text-weight-semibold">Categoría</div>
+                                    <div class="column has-text-weight-semibold has-text-right">Ganancias</div>
+                                    <div class="column has-text-weight-semibold has-text-right">Gastos</div>
+                                    <div class="column has-text-weight-semibold has-text-right">Balance</div>
                                 </div>
-
-                                <div class="columns is-mobile">
-                                    <div class="column">
-                                        <h3 class="has-text-weight-semibold" id="">11/2021</h3>
-                                    </div>
-                                    <div class="column has-text-success has-text-right" id="">
-                                        +$43443
-                                    </div>
-                                    <div class="column has-text-danger has-text-right" id="">
-                                        -$2734
-                                    </div>
-                                    <div class="column has-text-right" id="">
-                                        $40709
-                                    </div>
+                                <div class="columns">
+                                    <div class="column has-text-weight-semibold">Trabajo</div>
+                                    <div class="column has-text-success has-text-right">23562</div>
+                                    <div class="column has-text-danger has-text-right">0</div>
+                                    <div class="column has-text-right">23562</div>
                                 </div>
-                            </div>
+                                <div class="columns">
+                                    <div class="column has-text-weight-semibold">Servicios</div>
+                                    <div class="column has-text-success has-text-right">23562</div>
+                                    <div class="column has-text-danger has-text-right">0</div>
+                                    <div class="column has-text-right">23562</div>
+                                </div>
+                                <div class="columns">
+                                    <div class="column has-text-weight-semibold">Comida</div>
+                                    <div class="column has-text-success has-text-right">23562</div>
+                                    <div class="column has-text-danger has-text-right">0</div>
+                                    <div class="column has-text-right">23562</div>
+                                </div>
+                            </section>
+    
+                            <section class="section">
+                                <h3 class="subtitle is-4 has-text-weight-semibold">Totales por mes</h3>
+                                <div class="columns">
+                                    <div class="column has-text-weight-semibold">Mes</div>
+                                    <div class="column has-text-weight-semibold has-text-right">Ganancias</div>
+                                    <div class="column has-text-weight-semibold has-text-right">Gastos</div>
+                                    <div class="column has-text-weight-semibold has-text-right">Balance</div>
+                                </div>
+                                <div class="columns">
+                                    <div class="column has-text-weight-semibold">8/2021</div>
+                                    <div class="column has-text-success has-text-right">23562</div>
+                                    <div class="column has-text-danger has-text-right">0</div>
+                                    <div class="column has-text-right">23562</div>
+                                </div>
+                                <div class="columns">
+                                    <div class="column has-text-weight-semibold">9/2021</div>
+                                    <div class="column has-text-success has-text-right">23562</div>
+                                    <div class="column has-text-danger has-text-right">0</div>
+                                    <div class="column has-text-right">23562</div>
+                                </div>
+                            </section>
                         </div>
                     </div>
-                </article>
-            </div>
-
+                </div>
+            </section>
         </div>
 
     </main>
