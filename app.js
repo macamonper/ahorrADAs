@@ -269,7 +269,6 @@ agregarCategoriasAHTML()
 agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
 agregarCategoriasAlSelect()
 
-
 const mostrarFormOperaciones = (operacion, indice) => {
 
     OPERACIONES_CARGADAS.classList.add("is-hidden")
@@ -322,15 +321,17 @@ const mostrarFormOperaciones = (operacion, indice) => {
 }
 
 const eliminarOperacion = (index) => {
-    OPERACIONES_PARA_HTML.splice(index,1)
+
+    const operaciones=obtenerOperaciones()
+
+    operaciones.splice(index,1)
+
     guardarEnLocalStorage("operaciones", operaciones)
-    agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
     CARD_NUEVA_OPERACION.classList.add("is-hidden")
-
     CARDS_PRINCIPALES.classList.remove("is-hidden")
-
-    agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
+    agregarOperacionesAHTML((operaciones))
 }
+
 
 BTN_NUEVA_OPERACION.onclick = () => {
     mostrarFormOperaciones()
