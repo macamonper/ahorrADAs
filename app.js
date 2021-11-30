@@ -3,32 +3,36 @@ const BTN_CATEGORIAS = document.getElementById("btn-categorias");
 const BTN_REPORTES = document.getElementById("btn-reportes");
 const CARDS_PRINCIPALES = document.getElementById("cards-principales");
 const CARD_REPORTES = document.getElementById("card-reportes");
-const SIN_OPERACIONES =  document.getElementById("sin-operaciones")
-const OPERACIONES_CARGADAS = document.querySelector("#operaciones-cargadas")
-const LISTA_OPERACIONES = document.querySelector("#listado-operaciones")
-const BTN_NUEVA_OPERACION = document.querySelector("#boton-nueva-operacion")
-const CARD_NUEVA_OPERACION = document.querySelector("#card-nueva-operacion")
-const INPUT_DESCRIPCION = document.querySelector("#descripcion-input")
-const MONTO_INPUT = document.querySelector("#monto-input")
-const TIPO_INPUT = document.querySelector("#editar-tipo-operacion")
-const FECHA_INPUT = document.querySelector("#editar-fecha-input")
+const SIN_OPERACIONES =  document.getElementById("sin-operaciones");
+const OPERACIONES_CARGADAS = document.querySelector("#operaciones-cargadas");
+const LISTA_OPERACIONES = document.querySelector("#listado-operaciones");
+const BTN_NUEVA_OPERACION = document.querySelector("#boton-nueva-operacion");
+const CARD_NUEVA_OPERACION = document.querySelector("#card-nueva-operacion");
+const INPUT_DESCRIPCION = document.querySelector("#descripcion-input");
+const MONTO_INPUT = document.querySelector("#monto-input");
+const TIPO_INPUT = document.querySelector("#editar-tipo-operacion");
+const FECHA_INPUT = document.querySelector("#editar-fecha-input");
 const CARD_CATEGORIAS = document.getElementById("card-categorias");
-const LISTA_CATEGORIAS = document.querySelector(".lista-categorias")
+const LISTA_CATEGORIAS = document.querySelector(".lista-categorias");
 const INPUT_CATEGORIAS = document.getElementById("input-categorias");
-const FORM_AGREGAR_CATEGORIAS = document.querySelector("#form-agregar-categorias")
-const CARD_AGREGAR_CATEGORIAS = document.querySelector("#agregar-nuevas-categorias")
-const CARD_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria")
-const INPUT_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria-input")
-const SELECT_CATEGORIAS = document.querySelector("#select-de-categorias")
-const CANCELAR_EDITAR_CAT = document.querySelector("#cancelar-categoria-boton")
-const BOTON_CANCELAR_EDICION=document.querySelector("#btn-cancelar-edicion-op")
-const SELECT_CATEGORIAS_CARGA = document.querySelector("#select-categorias-carga")
+const FORM_AGREGAR_CATEGORIAS = document.querySelector("#form-agregar-categorias");
+const CARD_AGREGAR_CATEGORIAS = document.querySelector("#agregar-nuevas-categorias");
+const CARD_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria");
+const INPUT_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria-input");
+const SELECT_CATEGORIAS = document.querySelector("#select-de-categorias");
+const CANCELAR_EDITAR_CAT = document.querySelector("#cancelar-categoria-boton");
+const BOTON_CANCELAR_EDICION=document.querySelector("#btn-cancelar-edicion-op");
+const SELECT_CATEGORIAS_CARGA = document.querySelector("#select-categorias-carga");
 const CARD_FILTROS = document.getElementById("card-filtros");
 const BTN_FILTROS = document.getElementById("btn-filtros");
-const FILTRO_TIPO = document.querySelector("#select-ordenar-tipo")
-const FILTRO_CATEGORIAS = document.querySelector("#select-de-categorias")
-const FILTRO_FECHAS = document.querySelector("#date")
-const FILTRO_ORDEN = document.querySelector("#select-ordenar-por")
+const FILTRO_TIPO = document.querySelector("#select-ordenar-tipo");
+const FILTRO_CATEGORIAS = document.querySelector("#select-de-categorias");
+const FILTRO_FECHAS = document.querySelector("#date");
+const FILTRO_ORDEN = document.querySelector("#select-ordenar-por");
+const BALANCE_GANANCIAS = document.getElementById("balance-ganancias");
+const BALANCE_GASTOS = document.getElementById("balance-gastos");
+const BALANCE_TOTAL = document.getElementById("balance-total");
+
 
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
 
@@ -281,7 +285,6 @@ const mostrarFormOperaciones = (operacion, indice) => {
     }
 
     CARD_NUEVA_OPERACION.onsubmit = (e) => {
-        e.preventDefault()
 
         const nuevaOperacion = {
             descripcion: INPUT_DESCRIPCION.value,
@@ -307,8 +310,6 @@ const mostrarFormOperaciones = (operacion, indice) => {
 
         guardarEnLocalStorage("operaciones", operaciones)
 
-        agregarOperacionesAHTML(operaciones)
-
         CARD_NUEVA_OPERACION.classList.add("is-hidden")
         CARDS_PRINCIPALES.classList.remove("is-hidden")
 
@@ -316,24 +317,31 @@ const mostrarFormOperaciones = (operacion, indice) => {
     }
 }
 
-const eliminarOperacion = (index) => {
+const eliminarOperacion=(index)=>{
+
     OPERACIONES_PARA_HTML.splice(index,1)
+
     guardarEnLocalStorage("operaciones", operaciones)
+
     agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
+
     CARD_NUEVA_OPERACION.classList.add("is-hidden")
 
     CARDS_PRINCIPALES.classList.remove("is-hidden")
 
     agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
+
+    balance(OPERACIONES_PARA_HTML)
+
 }
 
 BTN_NUEVA_OPERACION.onclick = () => {
     mostrarFormOperaciones()
 }
+
 BOTON_CANCELAR_EDICION.onclick = () => {
     CARD_NUEVA_OPERACION.classList.add("is-hidden")
     CARDS_PRINCIPALES.classList.remove("is-hidden")
-    agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
 }
 
 agregarCategoriasAlSelect()
@@ -341,7 +349,6 @@ agregarCategoriasAlSelect()
 // FUNCIONES PARA FILTROS
 
 let operacionesAFiltrar = obtenerOperaciones()
-
 
 const aplicarFiltros = () => {
 
@@ -403,7 +410,7 @@ const aplicarFiltros = () => {
         }
 
         else if (ordenFiltro === "z-a" && nameA > nameB) {
-            return 1
+            return -1
         }
 
     })
@@ -418,6 +425,7 @@ FILTRO_FECHAS.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
    
     agregarOperacionesAHTML(arrayFiltrado)
+    balance(arrayFiltrado)
 
 
 }
@@ -427,7 +435,8 @@ FILTRO_TIPO.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
 
     agregarOperacionesAHTML(arrayFiltrado)
-   
+    balance(arrayFiltrado)
+
     
 }
 
@@ -436,6 +445,7 @@ FILTRO_CATEGORIAS.onchange = () => {
     
 
     agregarOperacionesAHTML(arrayFiltrado)
+    balance(arrayFiltrado)
 
     
 }
@@ -448,3 +458,53 @@ FILTRO_ORDEN.onchange = () => {
 
 
 }
+// BALANCE //
+
+let operacionesBalance = obtenerOperaciones();
+
+const balance = (arr) => { 
+
+    const gastos = arr.filter((elemento) =>{
+        return elemento.tipo ==="gasto"
+    })
+
+    const ganancias = arr.filter ((elemento) =>{
+        return elemento.tipo ==="ganancia"
+    })
+
+   const sumaGastos = gastos.reduce ((acc,elemento) =>{
+       return acc + elemento.monto
+   },0)
+
+   const sumaGanancias = ganancias.reduce ((acc,elemento) =>{
+    return acc + elemento.monto
+   },0)
+
+   const total = sumaGanancias - sumaGastos
+
+
+    BALANCE_GANANCIAS.innerHTML = sumaGanancias
+    BALANCE_GASTOS.innerHTML = sumaGastos
+    
+    if(total < 0){
+        BALANCE_TOTAL.innerHTML = `${total}`
+
+        BALANCE_TOTAL.classList.remove("has-text-success")
+
+        BALANCE_TOTAL.classList.add("has-text-danger")
+    }
+    if(total >= 0 ){
+        BALANCE_TOTAL.innerHTML = `+${total}`
+
+        BALANCE_TOTAL.classList.remove("has-text-danger")
+
+        BALANCE_TOTAL.classList.add("has-text-success")
+    }
+
+
+}
+    balance(operacionesBalance)
+
+
+
+ 
