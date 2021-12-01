@@ -92,20 +92,41 @@ const obtenerCategorias = () => {
     }
 }
 
-const agregarCategoriasAlSelect = () => {
+const agregarCatASelects = () => {
+
     const categorias = obtenerCategorias()
+
     const categoriasString = categorias.reduce((acc, categoria) => {
+
         return acc + `<option value=${categoria}>${categoria}</option>`
+
     }, "")
-    SELECT_CATEGORIAS_CARGA.innerHTML = categoriasString
+
     SELECT_CATEGORIAS.innerHTML = categoriasString
+
+    const categoriasSinTodos = categorias.filter( categoria => categoria !== "todos") 
+
+
+    const categoriasSelectOperaciones = categoriasSinTodos.reduce((acc, categoria) => {
+
+        return acc + `<option value=${categoria}>${categoria}</option>`
+
+    }, "")
+
+    SELECT_CATEGORIAS_CARGA.innerHTML = categoriasSelectOperaciones
+
 }
+
 
 const agregarCategoriasAHTML = () => {
 
     const categorias = obtenerCategorias()
 
-    const categoriasAHTML = categorias.reduce((acc, categoria, index) => {
+    const categoriasSinTodos = categorias.filter( categoria => categoria !== "todos") 
+
+
+    const categoriasAHTML = categoriasSinTodos.reduce((acc, categoria, index) => {
+
         return acc + `
 
         <div class="columns ">
@@ -130,22 +151,36 @@ const agregarCategoriasAHTML = () => {
  
 
 }
+
 FORM_AGREGAR_CATEGORIAS.onsubmit = (e) => {
 
-    e.preventDefault()
-    const nuevaCategoria = INPUT_CATEGORIAS.value
-    const categorias = obtenerCategorias()
-   if (categorias.indexOf(nuevaCategoria) === -1){
-    categorias.push(nuevaCategoria)
-    INPUT_CATEGORIAS.value = ""
+	e.preventDefault()
+	
+	const categorias = obtenerCategorias()
 
-    guardarEnLocalStorage("categorias", categorias)
-    agregarCategoriasAlSelect()
-    agregarCategoriasAHTML(OPERACIONES_PARA_HTML)
-   }
-    
+	let nuevaCategoria = INPUT_CATEGORIAS.value
+
+
+   if (categorias.indexOf(nuevaCategoria) === -1 ){
+		
+    categorias.push(nuevaCategoria)
+
+		INPUT_CATEGORIAS.value = ""
+
+		guardarEnLocalStorage("categorias", categorias)
+
+		agregarCatASelects()
+		
+		agregarCategoriasAHTML(OPERACIONES_PARA_HTML)
+		
+	}
+	else if (nuevaCategoria = nuevaCategoria){
+
+		alert("Esa categoria ya existe. Por favor ingresa otro nombre.")
+	}
 }
-agregarCategoriasAlSelect()
+
+agregarCatASelects()
 agregarCategoriasAHTML()
 
 
@@ -172,21 +207,26 @@ const editarCategoria = (categoria) => {
 
             agregarCategoriasAHTML()
 
-            agregarCategoriasAlSelect()
+            agregarCatASelects()
 
             CARD_EDITAR_CATEGORIAS.classList.add("is-hidden")
             CARD_AGREGAR_CATEGORIAS.classList.remove("is-hidden")
             LISTA_CATEGORIAS.classList.remove("is-hidden")
         }
+        else if (INPUT_EDITAR_CATEGORIAS.value = categoria){
+        
+            alert("Esa categoria ya existe. Por favor ingresa otro nombre.")
+        }
     }
 }
 
-
 const eliminarCategoria = (categoria) => {
+
     const categorias = obtenerCategorias()
     const categoriasFiltradas=categorias.filter((elemento) => {
         return elemento != categoria
     })
+
     guardarEnLocalStorage("categorias",categoriasFiltradas)
     agregarCategoriasAHTML()
 }
@@ -231,7 +271,7 @@ const agregarOperacionesAHTML = (arr) => {
                 </span>
             </div>
             <div class="column is-3 has-text-grey has-text-centered">   
-                ${new Date(elemento.fecha).toLocaleDateString("es-AR", {timeZone:"UTC"})}
+                ${new Date(elemento.fecha).toLocaleDateString("es-AR",{timeZone:"UTC"})}
             </div>
             <div class="column is-2 has-text-weight-bold ${elemento.tipo === "ganancia"
             ? 'has-text-success'
@@ -263,11 +303,14 @@ const agregarOperacionesAHTML = (arr) => {
     }
 }
 
+Date.prototype.toDateInputValue = ( function() {
+    const local = new Date(this);
+    return local.toJSON().slice(0,10);
+});
 
-agregarCategoriasAHTML()
-agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
-agregarCategoriasAlSelect()
 
+FECHA_INPUT.value = new Date().toDateInputValue();
+FILTRO_FECHAS.value = new Date().toDateInputValue();
 
 const mostrarFormOperaciones = (operacion, indice) => {
 
@@ -316,6 +359,8 @@ const mostrarFormOperaciones = (operacion, indice) => {
         agregarOperacionesAHTML(operaciones)
     }
 }
+agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
+
 
 const eliminarOperacion=(index)=>{
 
@@ -337,14 +382,17 @@ const eliminarOperacion=(index)=>{
 
 BTN_NUEVA_OPERACION.onclick = () => {
     mostrarFormOperaciones()
+    
 }
 
 BOTON_CANCELAR_EDICION.onclick = () => {
     CARD_NUEVA_OPERACION.classList.add("is-hidden")
     CARDS_PRINCIPALES.classList.remove("is-hidden")
+    agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
+
 }
 
-agregarCategoriasAlSelect()
+agregarCatASelects()
 
 // FUNCIONES PARA FILTROS
 
