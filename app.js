@@ -1,9 +1,16 @@
+//HEADER
 const BTN_BALANCE = document.getElementById("btn-balance");
 const BTN_CATEGORIAS = document.getElementById("btn-categorias");
 const BTN_REPORTES = document.getElementById("btn-reportes");
+//CARDS PRINCIPALES
 const CARDS_PRINCIPALES = document.getElementById("cards-principales");
 const CARD_REPORTES = document.getElementById("card-reportes");
 const SIN_OPERACIONES =  document.getElementById("sin-operaciones");
+//BALANCE
+const BALANCE_GANANCIAS = document.getElementById("balance-ganancias");
+const BALANCE_GASTOS = document.getElementById("balance-gastos");
+const BALANCE_TOTAL = document.getElementById("balance-total");
+//OPERACIONES
 const OPERACIONES_CARGADAS = document.querySelector("#operaciones-cargadas");
 const LISTA_OPERACIONES = document.querySelector("#listado-operaciones");
 const BTN_NUEVA_OPERACION = document.querySelector("#boton-nueva-operacion");
@@ -12,6 +19,8 @@ const INPUT_DESCRIPCION = document.querySelector("#descripcion-input");
 const MONTO_INPUT = document.querySelector("#monto-input");
 const TIPO_INPUT = document.querySelector("#editar-tipo-operacion");
 const FECHA_INPUT = document.querySelector("#editar-fecha-input");
+const BOTON_CANCELAR_EDICION = document.querySelector("#btn-cancelar-edicion-op");
+//CATEGORIAS
 const CARD_CATEGORIAS = document.getElementById("card-categorias");
 const LISTA_CATEGORIAS = document.querySelector(".lista-categorias");
 const INPUT_CATEGORIAS = document.getElementById("input-categorias");
@@ -21,22 +30,25 @@ const CARD_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria");
 const INPUT_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria-input");
 const SELECT_CATEGORIAS = document.querySelector("#select-de-categorias");
 const CANCELAR_EDITAR_CAT = document.querySelector("#cancelar-categoria-boton");
-const BOTON_CANCELAR_EDICION=document.querySelector("#btn-cancelar-edicion-op");
 const SELECT_CATEGORIAS_CARGA = document.querySelector("#select-categorias-carga");
+//FILTROS
 const CARD_FILTROS = document.getElementById("card-filtros");
 const BTN_FILTROS = document.getElementById("btn-filtros");
 const FILTRO_TIPO = document.querySelector("#select-ordenar-tipo");
 const FILTRO_CATEGORIAS = document.querySelector("#select-de-categorias");
 const FILTRO_FECHAS = document.querySelector("#date");
 const FILTRO_ORDEN = document.querySelector("#select-ordenar-por");
-const BALANCE_GANANCIAS = document.getElementById("balance-ganancias");
-const BALANCE_GASTOS = document.getElementById("balance-gastos");
-const BALANCE_TOTAL = document.getElementById("balance-total");
+//RESUMEN
+const CAT_MAYOR_GANANCIA = document.getElementById("cat-mayor-ganancia")
+const MONTO_MAYOR_GANANCIA = document.getElementById("monto-mayor-ganancia")
+const CAT_MAYOR_GASTO = document.getElementById("cat-mayor-gasto")
+const MONTO_MAYOR_GASTO = document.getElementById ("monto-mayor-gasto")
 
 
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
 
 BTN_BALANCE.onclick = () => {
+
     CARD_CATEGORIAS.classList.add("is-hidden");
     CARD_REPORTES.classList.add("is-hidden");
     CARDS_PRINCIPALES.classList.remove("is-hidden");
@@ -44,21 +56,23 @@ BTN_BALANCE.onclick = () => {
     agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
 }
 
- 
 BTN_CATEGORIAS.onclick = () => {
+
     CARDS_PRINCIPALES.classList.add("is-hidden");
     CARD_REPORTES.classList.add("is-hidden");
     CARD_CATEGORIAS.classList.remove("is-hidden");
 
- }
+}
 
 BTN_REPORTES.onclick= () => {
+
     CARDS_PRINCIPALES.classList.add("is-hidden");
     CARD_CATEGORIAS.classList.add("is-hidden");
     CARD_REPORTES.classList.remove("is-hidden");
 }
 
 BTN_FILTROS.onclick = () => {
+
     if (BTN_FILTROS.innerHTML=== "Mostrar filtros"){
         BTN_FILTROS.innerHTML = "Ocultar filtros"
         CARD_FILTROS.classList.remove("is-hidden");
@@ -68,21 +82,15 @@ BTN_FILTROS.onclick = () => {
     }
 }
 
-
-
-
-//CATEGORIAS EXISTENTES
-
-const categorias = ["todos", "comida", "servicios", "salidas", "educacion", "transporte", "trabajo"]
-
 const guardarEnLocalStorage = (clave, objeto) => {
+
     const objetoConvertidoAJSON = JSON.stringify(objeto)
     return localStorage.setItem(clave, objetoConvertidoAJSON)
     
 }
 
-
 const obtenerCategorias = () => {
+
     const categoriasEnLocalStorage = localStorage.getItem("categorias")
     if (categoriasEnLocalStorage === null) {
         return categorias
@@ -91,6 +99,21 @@ const obtenerCategorias = () => {
         return JSON.parse(categoriasEnLocalStorage)
     }
 }
+const obtenerOperaciones = () => {
+
+    const operacionesEnLocalStorage = localStorage.getItem("operaciones")
+    if (operacionesEnLocalStorage === null) {
+        return operaciones
+}
+    else {
+        return JSON.parse(operacionesEnLocalStorage)
+    }
+
+}
+//CATEGORIAS EXISTENTES
+
+const categorias = ["todos", "comida", "servicios", "salidas", "educacion", "transporte", "trabajo"]
+
 
 const agregarCatASelects = () => {
 
@@ -237,23 +260,18 @@ CANCELAR_EDITAR_CAT.onclick=()=>{
     LISTA_CATEGORIAS.classList.remove("is-hidden")
 
 }
+
 //SECCION OPERACIONES
 
 const operaciones = []
 
-const obtenerOperaciones = () => {
-    const operacionesEnLocalStorage = localStorage.getItem("operaciones")
-    if (operacionesEnLocalStorage === null) {
-        return operaciones
-}
-    else {
-        return JSON.parse(operacionesEnLocalStorage)
-    }
-
-}
-
 const OPERACIONES_PARA_HTML = obtenerOperaciones()
 
+BTN_NUEVA_OPERACION.onclick = () => {
+    
+    mostrarFormOperaciones()
+    
+}
 const agregarOperacionesAHTML = (arr) => {
     
     const operacionesAHTML = arr.reduce((acc, elemento, index) => {
@@ -302,12 +320,11 @@ const agregarOperacionesAHTML = (arr) => {
         SIN_OPERACIONES.classList.remove("is-hidden")
     }
 }
-
+//FECHA ACTUAL
 Date.prototype.toDateInputValue = ( function() {
     const local = new Date(this);
     return local.toJSON().slice(0,10);
 });
-
 
 FECHA_INPUT.value = new Date().toDateInputValue();
 FILTRO_FECHAS.value = new Date().toDateInputValue();
@@ -361,6 +378,10 @@ const mostrarFormOperaciones = (operacion, indice) => {
 }
 agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
 
+BTN_NUEVA_OPERACION.onclick = () => {
+    mostrarFormOperaciones()
+    
+}
 
 const eliminarOperacion=(index)=>{
 
@@ -378,11 +399,6 @@ const eliminarOperacion=(index)=>{
 
     balance(OPERACIONES_PARA_HTML)
 
-}
-
-BTN_NUEVA_OPERACION.onclick = () => {
-    mostrarFormOperaciones()
-    
 }
 
 BOTON_CANCELAR_EDICION.onclick = () => {
@@ -551,8 +567,64 @@ const balance = (arr) => {
 
 
 }
-    balance(operacionesBalance)
+balance(operacionesBalance)
+
+
+//REPORTES
+
+const operacionesReportes = obtenerOperaciones()
+const categoriasReportes = obtenerCategorias()
+
+const operacionesGanancias = operacionesReportes.filter((operacion) =>{
+    return operacion.tipo ==="ganancia"
+})
+
+
+const mayorGanancia = operacionesGanancias.reduce(function (acc, operacion) {
+    return ( acc.monto > operacion.monto) ? acc : operacion
+}) 
+
+MONTO_MAYOR_GANANCIA.innerHTML = `+$${mayorGanancia.monto}`
+CAT_MAYOR_GANANCIA.innerHTML = mayorGanancia.categoria
+
+
+const operacionesGastos = operacionesReportes.filter ((operacion) =>{
+    return operacion.tipo === "gasto"
+})
+
+const mayorGasto = operacionesGastos.reduce(function (acc, operacion) {
+    return ( acc.monto > operacion.monto) ? acc : operacion
+}) 
+
+MONTO_MAYOR_GASTO.innerHTML = `-$${mayorGasto.monto}`
+CAT_MAYOR_GASTO.innerHTML = mayorGasto.categoria
 
 
 
  
+//obtener balance (ganancia-gasto) de cada categoria
+//ordenar por monto mas grande 
+//sacar cat y monto para html
+
+   
+
+let operacionPorCategoria = []
+
+const separarPorCategoria = () => {
+  
+    categoriasReportes.map((categoria) => {
+        operacionPorCategoria.push([])
+    })
+  
+   operacionesReportes.map((operacion) => {
+    const indiceCategoria = categoriasReportes.indexOf(operacion.categoria)
+    operacionPorCategoria[indiceCategoria].push(operacion)
+   
+})
+}
+separarPorCategoria()
+console.log (operacionPorCategoria)
+
+
+
+
