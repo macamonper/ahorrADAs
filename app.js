@@ -43,6 +43,7 @@ const CAT_MAYOR_GANANCIA = document.getElementById("cat-mayor-ganancia")
 const MONTO_MAYOR_GANANCIA = document.getElementById("monto-mayor-ganancia")
 const CAT_MAYOR_GASTO = document.getElementById("cat-mayor-gasto")
 const MONTO_MAYOR_GASTO = document.getElementById ("monto-mayor-gasto")
+const LISTA_TOTALES = document.getElementById("lista-balance-categoria")
 
 
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
@@ -599,13 +600,6 @@ const mayorGasto = operacionesGastos.reduce(function (acc, operacion) {
 MONTO_MAYOR_GASTO.innerHTML = `-$${mayorGasto.monto}`
 CAT_MAYOR_GASTO.innerHTML = mayorGasto.categoria
 
-
-
- 
-//obtener balance (ganancia-gasto) de cada categoria
-//ordenar por monto mas grande 
-//sacar cat y monto para html
-
    
 
 let operacionPorCategoria = []
@@ -619,12 +613,57 @@ const separarPorCategoria = () => {
    operacionesReportes.map((operacion) => {
     const indiceCategoria = categoriasReportes.indexOf(operacion.categoria)
     operacionPorCategoria[indiceCategoria].push(operacion)
+    })
    
-})
 }
+
 separarPorCategoria()
-console.log (operacionPorCategoria)
+
+operacionPorCategoria.splice(0,1)
+
+const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria)=>{
+
+    let gananciaBalance = 0 ;
+    let gastosBalance = 0;
+    let totalBalance = 0;
+    let categoria = "";
+    
+
+    for ( const operacion of arrayPorCategoria)
+    {
+        categoria = operacion.categoria
+
+        if(operacion.tipo == "ganancia"){
+            gananciaBalance += operacion.monto
+            
+        }else{
+            gastosBalance += operacion.monto
+        }
+        totalBalance = gananciaBalance - gastosBalance
+    }
+    
+    return {
+        nombre: categoria,
+        gananciaBalance,
+        gastosBalance,
+        totalBalance,
+    }
+    
+})
 
 
+const operacionesBalanceAHTML = operacionesBalanceParaHTML.reduce((acc,operacion) => {
+
+   return acc + `
+    <div class="columns">
+        <div class="column has-text-weight-semibold">${operacion.nombre}</div>
+        <div class="column has-text-success has-text-right">$+${operacion.gananciaBalance}</div>
+        <div class="column has-text-danger has-text-right ">$-${operacion.gastosBalance}</div>
+        <div class="column has-text-right">${operacion.totalBalance > 0 ? "+" : ""}$${operacion.totalBalance}</div>
+    </div>
+    `
+},"")
+
+LISTA_TOTALES.innerHTML = operacionesBalanceAHTML
 
 
