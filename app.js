@@ -601,7 +601,6 @@ MONTO_MAYOR_GASTO.innerHTML = `-$${mayorGasto.monto}`
 CAT_MAYOR_GASTO.innerHTML = mayorGasto.categoria
 
    
-
 let operacionPorCategoria = []
 
 const separarPorCategoria = () => {
@@ -611,15 +610,12 @@ const separarPorCategoria = () => {
     })
   
    operacionesReportes.map((operacion) => {
-    const indiceCategoria = categoriasReportes.indexOf(operacion.categoria)
-    operacionPorCategoria[indiceCategoria].push(operacion)
+            const indiceCategoria = categoriasReportes.indexOf(operacion.categoria)
+            operacionPorCategoria[indiceCategoria].push(operacion)
     })
-   
 }
-
 separarPorCategoria()
 
-operacionPorCategoria.splice(0,1)
 
 const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria)=>{
 
@@ -627,10 +623,8 @@ const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria)
     let gastosBalance = 0;
     let totalBalance = 0;
     let categoria = "";
-    
+    for ( const operacion of arrayPorCategoria){
 
-    for ( const operacion of arrayPorCategoria)
-    {
         categoria = operacion.categoria
 
         if(operacion.tipo == "ganancia"){
@@ -639,10 +633,11 @@ const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria)
         }else{
             gastosBalance += operacion.monto
         }
+
         totalBalance = gananciaBalance - gastosBalance
     }
-    
-    return {
+
+return {
         nombre: categoria,
         gananciaBalance,
         gastosBalance,
@@ -651,10 +646,9 @@ const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria)
     
 })
 
-
 const operacionesBalanceAHTML = operacionesBalanceParaHTML.reduce((acc,operacion) => {
 
-   return acc + `
+    return acc + `
     <div class="columns">
         <div class="column has-text-weight-semibold">${operacion.nombre}</div>
         <div class="column has-text-success has-text-right">$+${operacion.gananciaBalance}</div>
@@ -666,4 +660,33 @@ const operacionesBalanceAHTML = operacionesBalanceParaHTML.reduce((acc,operacion
 
 LISTA_TOTALES.innerHTML = operacionesBalanceAHTML
 
+
+
+//CATEGORIA MAYOR GANANCIA
+const copia1= [...operacionesBalanceParaHTML]
+ copia1.sort((a,b)=>{
+
+    return b.gananciaBalance - a.gananciaBalance
+})
+
+console.log(copia1)
+
+//CATEGORIA MAYOR GASTO
+const copia2= [...operacionesBalanceParaHTML]
+
+ copia2.sort((a,b)=>{
+     
+    return b.gastosBalance - a.gastosBalance
+}) 
+console.log(copia2)
+
+
+//CATEGORIA CON MAYOR BALANCE
+
+const copia3= [...operacionesBalanceParaHTML]
+
+ copia3.sort((a,b)=>{
+     return b.totalBalance-a.totalBalance
+ })
+ console.log(copia3)
 
