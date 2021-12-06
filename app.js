@@ -2,6 +2,8 @@
 const BTN_BALANCE = document.getElementById("btn-balance");
 const BTN_CATEGORIAS = document.getElementById("btn-categorias");
 const BTN_REPORTES = document.getElementById("btn-reportes");
+const MENU_HAMBURGUESA = document.getElementById("menu-hamburguesa")
+const MENU_NAV = document.getElementById("menu-nav")
 //CARDS PRINCIPALES
 const CARDS_PRINCIPALES = document.getElementById("cards-principales");
 const CARD_REPORTES = document.getElementById("card-reportes");
@@ -47,6 +49,19 @@ const LISTA_TOTALES = document.getElementById("lista-balance-categoria")
 
 
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
+
+
+
+MENU_HAMBURGUESA.onclick = () => {
+    MENU_HAMBURGUESA.classList.toggle("is-active");
+    MENU_NAV.classList.toggle("is-active");
+    BTN_BALANCE.classList.toggle("button");
+    BTN_CATEGORIAS.classList.toggle("button")
+    BTN_REPORTES.classList.toggle("button")
+
+  };
+
+
 
 BTN_BALANCE.onclick = () => {
 
@@ -278,21 +293,21 @@ const agregarOperacionesAHTML = (arr) => {
     const operacionesAHTML = arr.reduce((acc, elemento, index) => {
 
         return acc + `
-        <div class="columns">
-            <div class="column is-3 ">
+        <div class="columns is-multiline is-mobile is-vcentered">
+            <div class="column is-3-tablet is-6-mobile">
                 <p class="has-text-weight-semibold">
                     ${elemento.descripcion}
                 </p>
             </div>
-            <div class="column is-2 ">
+            <div class="column column is-3-tablet is-6-mobile has-text-right-mobile ">
                 <span class ="tag is-primary is-light">
                     ${elemento.categoria}
                 </span>
             </div>
-            <div class="column is-3 has-text-grey has-text-centered">   
+            <div class="column is-2-tablet has-text-grey is-hidden-mobile has-text-right-tablet has-text-centered">   
                 ${new Date(elemento.fecha).toLocaleDateString("es-AR",{timeZone:"UTC"})}
             </div>
-            <div class="column is-2 has-text-weight-bold ${elemento.tipo === "ganancia"
+            <div class="column is-2-tablet is-6-mobile has-text-weight-bold has-text-right-tablet is-size-4-mobile ${elemento.tipo === "ganancia"
             ? 'has-text-success'
             : 'has-text-danger'}">
 
@@ -300,7 +315,7 @@ const agregarOperacionesAHTML = (arr) => {
                 elemento.monto
               }
             </div>
-            <div class="column is-2 has-text-right">
+            <div class="column is-2-tablet is-6-mobile has-text-right">
                 <button onclick='mostrarFormOperaciones(${JSON.stringify(elemento)},${index})' id=editar-operacion-${index} class="button is-small is-ghost pr-5">Editar</button>
                 <button onclick='eliminarOperacion(${index})' id=eliminar-operacion-${index} class="button is-small is-ghost">Eliminar</button>
             </div>
@@ -614,7 +629,8 @@ const separarPorCategoria = () => {
             operacionPorCategoria[indiceCategoria].push(operacion)
     })
 }
-separarPorCategoria()
+
+// console.log(operacionPorCategoria)
 
 
 const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria)=>{
@@ -623,21 +639,23 @@ const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria)
     let gastosBalance = 0;
     let totalBalance = 0;
     let categoria = "";
-    for ( const operacion of arrayPorCategoria){
+
+    for (const operacion of arrayPorCategoria){
 
         categoria = operacion.categoria
 
         if(operacion.tipo == "ganancia"){
             gananciaBalance += operacion.monto
             
-        }else{
+        }
+        else {
             gastosBalance += operacion.monto
         }
 
         totalBalance = gananciaBalance - gastosBalance
     }
 
-return {
+    return {
         nombre: categoria,
         gananciaBalance,
         gastosBalance,
@@ -645,6 +663,8 @@ return {
     }
     
 })
+
+// console.log(operacionesBalanceParaHTML)
 
 const operacionesBalanceAHTML = operacionesBalanceParaHTML.reduce((acc,operacion) => {
 
@@ -658,35 +678,39 @@ const operacionesBalanceAHTML = operacionesBalanceParaHTML.reduce((acc,operacion
     `
 },"")
 
+
+
+// console.log(operacionesBalance)
+
 LISTA_TOTALES.innerHTML = operacionesBalanceAHTML
 
 
 
 //CATEGORIA MAYOR GANANCIA
-const copia1= [...operacionesBalanceParaHTML]
- copia1.sort((a,b)=>{
+// const copia1= [...operacionesBalanceParaHTML]
+//  copia1.sort((a,b)=>{
 
-    return b.gananciaBalance - a.gananciaBalance
-})
+//     return b.gananciaBalance - a.gananciaBalance
+// })
 
-console.log(copia1)
+// console.log(copia1)
 
 //CATEGORIA MAYOR GASTO
-const copia2= [...operacionesBalanceParaHTML]
+// const copia2= [...operacionesBalanceParaHTML]
 
- copia2.sort((a,b)=>{
+//  copia2.sort((a,b)=>{
      
-    return b.gastosBalance - a.gastosBalance
-}) 
-console.log(copia2)
+//     return b.gastosBalance - a.gastosBalance
+// }) 
+// console.log(copia2)
 
 
 //CATEGORIA CON MAYOR BALANCE
 
-const copia3= [...operacionesBalanceParaHTML]
+// const copia3= [...operacionesBalanceParaHTML]
 
- copia3.sort((a,b)=>{
-     return b.totalBalance-a.totalBalance
- })
- console.log(copia3)
+//  copia3.sort((a,b)=>{
+//      return b.totalBalance-a.totalBalance
+//  })
+//  console.log(copia3)
 
