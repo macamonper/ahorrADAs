@@ -28,6 +28,3 @@ Las tecnologias utilizadas fueron :
 -En tu terminal escribis el comando para hacer el clon, que sería algo como esto:
 
 git clone https://github.com/macamonper/ahorrADAS.git . 
-
-
-
