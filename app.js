@@ -46,6 +46,12 @@ const monto_mayor_ganancia = document.getElementById("monto-mayor-ganancia")
 const cat_mayor_gasto = document.getElementById("cat-mayor-gasto")
 const monto_mayor_gasto = document.getElementById ("monto-mayor-gasto")
 const lista_totales = document.getElementById("lista-balance-categoria")
+const categoria_mayor_balance = document.querySelector("#categoria-mayor-balance");
+const monto_categoria_mayor_balance = document.querySelector("#monto-categoria-mayor-balance");
+const mayor_ganancia_html = document.querySelector("#mes-mayor-ganancia")
+const monto_mes_mayor_ganancia = document.querySelector("#monto-mes-mayor-ganancia")
+const mes_mayor_gasto_html = document.querySelector("#mes-mayor-gasto")
+const monto_mes_mayor_gasto = document.querySelector("#monto-mes-mayor-gasto")
 
 
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
@@ -701,4 +707,34 @@ const catMayorBalance= [...operacionesBalanceParaHTML]
 
  })
 
+categoria_mayor_balance.innerText = catMayorBalance[0].nombre
+monto_categoria_mayor_balance.innerText = `$${catMayorBalance[0].totalBalance}`
 
+
+// MESES CON MAYOR GASTO Y GANANCIAR
+        
+let MAYOR_GANANCIA = 0
+let MES_MAYOR_GANANCIA = ""
+let MAYOR_GASTO = 0
+let MES_MAYOR_GASTO = ""
+        
+const mesesConMayorGastoYGanancia = operacionesReportes.map((operacion) => {
+    if (operacion.tipo === "ganancia") {
+        if (operacion.monto > MAYOR_GANANCIA) {
+            MAYOR_GANANCIA = operacion.monto
+            MES_MAYOR_GANANCIA = operacion.fecha
+        }
+    }
+        
+    if (operacion.tipo === "gasto") {
+        if (operacion.monto > MAYOR_GASTO) {
+            MAYOR_GASTO = operacion.monto
+            MES_MAYOR_GASTO = operacion.fecha
+        }
+    }
+})
+        
+mayor_ganancia_html.innerText = MES_MAYOR_GANANCIA
+monto_mes_mayor_ganancia.innerText = `$${MAYOR_GANANCIA}`
+mes_mayor_gasto_html.innerText = MES_MAYOR_GASTO
+monto_mes_mayor_gasto.innerText = `-$${MAYOR_GASTO}`
