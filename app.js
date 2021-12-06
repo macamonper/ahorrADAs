@@ -721,38 +721,4 @@ const catMayorBalance= [...operacionesBalanceParaHTML]
 
  })
 
-         // MESES CON MAYOR GASTO Y GANANCIAR
-
-const MES_MAYOR_GANANCIA_HTML = document.querySelector("#mes-mayor-ganancia")
-const MONTO_MES_MAYOR_GANANCIA = document.querySelector("#monto-mes-mayor-ganancia")
-const MES_MAYOR_GASTO_HTML = document.querySelector("#mes-mayor-gasto")
-const MONTO_MES_MAYOR_GASTO = document.querySelector("#monto-mes-mayor-gasto")
-        
-let MAYOR_GANANCIA = 0
-let MES_MAYOR_GANANCIA = ""
-let MAYOR_GASTO = 0
-let MES_MAYOR_GASTO = ""
-        
-const mesesConMayorGastoYGanancia = operacionesReportes.map((operacion) => {
-    if (operacion.tipo === "ganancia") {
-        if (operacion.monto > MAYOR_GANANCIA) {
-            MAYOR_GANANCIA = operacion.monto
-            MES_MAYOR_GANANCIA = operacion.fecha
-        }
-    }
-        
-    if (operacion.tipo === "gasto") {
-        if (operacion.monto > MAYOR_GASTO) {
-            MAYOR_GASTO = operacion.monto
-            MES_MAYOR_GASTO = operacion.fecha
-        }
-    }
-    return console.log(MAYOR_GASTO)
-})
-        
-MES_MAYOR_GANANCIA_HTML.innerText = MES_MAYOR_GANANCIA
-MONTO_MES_MAYOR_GANANCIA.innerText = `$${MAYOR_GANANCIA}`
-MES_MAYOR_GASTO_HTML.innerText = MES_MAYOR_GASTO
-MONTO_MES_MAYOR_GASTO.innerText = `-$${MAYOR_GASTO}`
-
 
