@@ -631,7 +631,20 @@ const separarPorCategoria = () => {
 }
 separarPorCategoria()
 
+for (const operacion of operacionPorCategoria){
+    
+    if(!operacion.length){
 
+        for (const indice in operacionPorCategoria){
+            if(operacion===operacionPorCategoria[indice]){
+                operacionPorCategoria.splice(indice,1)
+            }
+        }
+
+    }
+    
+}
+  
 const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria)=>{
 
     let gananciaBalance = 0 ;
@@ -686,7 +699,6 @@ const catMayorGanancia= [...operacionesBalanceParaHTML]
 
 })
 
-console.log(copia1)
 
 //CATEGORIA MAYOR GASTO
 const catMayorGasto = [...operacionesBalanceParaHTML]
@@ -697,7 +709,6 @@ const catMayorGasto = [...operacionesBalanceParaHTML]
     return b.gastosBalance - a.gastosBalance
 
 }) 
-console.log
 
 
 //CATEGORIA CON MAYOR BALANCE
