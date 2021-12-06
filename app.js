@@ -562,8 +562,8 @@ const balance = (arr) => {
    const total = sumaGanancias - sumaGastos
 
 
-    balance_ganancias.innerHTML = sumaGanancias
-    balance_gastos.innerHTML = sumaGastos
+    balance_ganancias.innerHTML = `+$${sumaGanancias}`
+    balance_gastos.innerHTML = `-$${sumaGastos}`
     
     if(total < 0){
         balance_total.innerHTML = `${total}`
