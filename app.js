@@ -299,29 +299,28 @@ const agregarOperacionesAHTML = (arr) => {
     const operacionesAHTML = arr.reduce((acc, elemento, index) => {
 
         return acc + `
-        <div class="columns">
-            <div class="column is-3 ">
+        <div class="columns is-multiline is-mobile is-vcentered">
+            <div class="column is-3-tablet is-6-mobile">
                 <p class="has-text-weight-semibold">
                     ${elemento.descripcion}
                 </p>
             </div>
-            <div class="column is-2 ">
+            <div class="column column is-3-tablet is-6-mobile has-text-right-mobile ">
                 <span class ="tag is-primary is-light">
                     ${elemento.categoria}
                 </span>
             </div>
-            <div class="column is-3 has-text-grey has-text-centered">   
+            <div class="column is-2-tablet has-text-grey is-hidden-mobile has-text-right-tablet has-text-centered">   
                 ${new Date(elemento.fecha).toLocaleDateString("es-AR",{timeZone:"UTC"})}
             </div>
-            <div class="column is-2 has-text-weight-bold ${elemento.tipo === "ganancia"
+            <div class="column is-2-tablet is-6-mobile has-text-weight-bold has-text-right-tablet is-size-4-mobile ${elemento.tipo === "ganancia"
             ? 'has-text-success'
             : 'has-text-danger'}">
-
                 ${elemento.tipo === "ganancia" ? '+' : '-'}$${
                 elemento.monto
               }
             </div>
-            <div class="column is-2 has-text-right">
+            <div class="column is-2-tablet is-6-mobile has-text-right">
                 <button onclick='mostrarFormOperaciones(${JSON.stringify(elemento)},${index})' id=editar-operacion-${index} class="button is-small is-ghost pr-5">Editar</button>
                 <button onclick='eliminarOperacion(${index})' id=eliminar-operacion-${index} class="button is-small is-ghost">Eliminar</button>
             </div>
