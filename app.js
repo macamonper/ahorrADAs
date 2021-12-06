@@ -407,7 +407,7 @@ const eliminarOperacion=(index)=>{
 
     operacionesParaHTML.splice(index,1)
 
-    guardarEnLocalStorage("operaciones", operaciones)
+    guardarEnLocalStorage("operaciones", operacionesParaHTML)
 
     agregarOperacionesAHTML(operacionesParaHTML)
 
@@ -415,7 +415,6 @@ const eliminarOperacion=(index)=>{
 
     cards_principales.classList.remove("is-hidden")
 
-    agregarOperacionesAHTML(operacionesParaHTML)
 
     balance(operacionesParaHTML)
 
@@ -631,20 +630,21 @@ const separarPorCategoria = () => {
 }
 separarPorCategoria()
 
+
 for (const operacion of operacionPorCategoria){
     
     if(!operacion.length){
 
         for (const indice in operacionPorCategoria){
+
             if(operacion===operacionPorCategoria[indice]){
                 operacionPorCategoria.splice(indice,1)
             }
         }
 
     }
-    
 }
-  
+
 const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria)=>{
 
     let gananciaBalance = 0 ;
