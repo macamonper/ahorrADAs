@@ -1,89 +1,111 @@
-const BTN_BALANCE = document.getElementById("btn-balance");
-const BTN_CATEGORIAS = document.getElementById("btn-categorias");
-const BTN_REPORTES = document.getElementById("btn-reportes");
-const CARDS_PRINCIPALES = document.getElementById("cards-principales");
-const CARD_REPORTES = document.getElementById("card-reportes");
-const SIN_OPERACIONES =  document.getElementById("sin-operaciones")
-const OPERACIONES_CARGADAS = document.querySelector("#operaciones-cargadas")
-const LISTA_OPERACIONES = document.querySelector("#listado-operaciones")
-const BTN_NUEVA_OPERACION = document.querySelector("#boton-nueva-operacion")
-const CARD_NUEVA_OPERACION = document.querySelector("#card-nueva-operacion")
-const INPUT_DESCRIPCION = document.querySelector("#descripcion-input")
-const MONTO_INPUT = document.querySelector("#monto-input")
-const TIPO_INPUT = document.querySelector("#editar-tipo-operacion")
-const FECHA_INPUT = document.querySelector("#editar-fecha-input")
-const CARD_CATEGORIAS = document.getElementById("card-categorias");
-const LISTA_CATEGORIAS = document.querySelector(".lista-categorias")
-const INPUT_CATEGORIAS = document.getElementById("input-categorias");
-const FORM_AGREGAR_CATEGORIAS = document.querySelector("#form-agregar-categorias")
-const CARD_AGREGAR_CATEGORIAS = document.querySelector("#agregar-nuevas-categorias")
-const CARD_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria")
-const INPUT_EDITAR_CATEGORIAS = document.querySelector("#editar-categoria-input")
-const SELECT_CATEGORIAS = document.querySelector("#select-de-categorias")
-const CANCELAR_EDITAR_CAT = document.querySelector("#cancelar-categoria-boton")
-const BOTON_CANCELAR_EDICION=document.querySelector("#btn-cancelar-edicion-op")
-const SELECT_CATEGORIAS_CARGA = document.querySelector("#select-categorias-carga")
-const CARD_FILTROS = document.getElementById("card-filtros");
-const BTN_FILTROS = document.getElementById("btn-filtros");
-const FILTRO_TIPO = document.querySelector("#select-ordenar-tipo")
-const FILTRO_CATEGORIAS = document.querySelector("#select-de-categorias")
-const FILTRO_FECHAS = document.querySelector("#date")
-const FILTRO_ORDEN = document.querySelector("#select-ordenar-por")
-const CARD_BALANCE = document.querySelector("#card-balance");
-const BALANCE_GANANCIAS = document.querySelector("#balance-ganancias");
-const BALANCE_GASTOS = document.querySelector("#balance-gastos");
-const BALANCE_TOTAL = document.querySelector("#balance-total");
+//HEADER
+const btn_balance = document.getElementById("btn-balance");
+const btn_categorias = document.getElementById("btn-categorias");
+const btn_reportes = document.getElementById("btn-reportes");
+const menu_hamburguesa = document.getElementById("menu-hamburguesa")
+const menu_nav = document.getElementById("menu-nav")
+//CARDS PRINCIPALES
+const cards_principales = document.getElementById("cards-principales");
+const card_reportes = document.getElementById("card-reportes");
+const sin_operaciones =  document.getElementById("sin-operaciones");
+//BALANCE
+const balance_ganancias = document.getElementById("balance-ganancias");
+const balance_gastos = document.getElementById("balance-gastos");
+const balance_total = document.getElementById("balance-total");
+//OPERACIONES
+const operaciones_cargadas = document.querySelector("#operaciones-cargadas");
+const lista_operaciones = document.querySelector("#listado-operaciones");
+const btn_nueva_operacion = document.querySelector("#boton-nueva-operacion");
+const card_nueva_operacion = document.querySelector("#card-nueva-operacion");
+const input_descripcion = document.querySelector("#descripcion-input");
+const monto_input = document.querySelector("#monto-input");
+const tipo_input = document.querySelector("#editar-tipo-operacion");
+const fecha_input = document.querySelector("#editar-fecha-input");
+const btn_cancelar_edicion = document.querySelector("#btn-cancelar-edicion-op");
+//CATEGORIAS
+const card_categorias = document.getElementById("card-categorias");
+const lista_categorias = document.querySelector(".lista-categorias");
+const input_categorias = document.getElementById("input-categorias");
+const form_agregar_categorias = document.querySelector("#form-agregar-categorias");
+const card_agregar_categorias = document.querySelector("#agregar-nuevas-categorias");
+const card_editar_categorias = document.querySelector("#editar-categoria");
+const input_editar_categorias = document.querySelector("#editar-categoria-input");
+const select_categorias = document.querySelector("#select-de-categorias");
+const cancelar_editar_cat = document.querySelector("#cancelar-categoria-boton");
+const select_cat_carga = document.querySelector("#select-categorias-carga");
+//FILTROS
+const card_filtros = document.getElementById("card-filtros");
+const btn_filtros = document.getElementById("btn-filtros");
+const filtro_tipo = document.querySelector("#select-ordenar-tipo");
+const filtro_categorias = document.querySelector("#select-de-categorias");
+const filtro_fechas = document.querySelector("#date");
+const filtro_orden = document.querySelector("#select-ordenar-por");
+//RESUMEN
+const cat_mayor_ganancia = document.getElementById("cat-mayor-ganancia")
+const monto_mayor_ganancia = document.getElementById("monto-mayor-ganancia")
+const cat_mayor_gasto = document.getElementById("cat-mayor-gasto")
+const monto_mayor_gasto = document.getElementById ("monto-mayor-gasto")
+const lista_totales = document.getElementById("lista-balance-categoria")
 
 
 //FUNCIONES BASICAS PARA NAVEGAR LA WEB
 
-BTN_BALANCE.onclick = () => {
-    CARD_CATEGORIAS.classList.add("is-hidden");
-    CARD_REPORTES.classList.add("is-hidden");
-    CARDS_PRINCIPALES.classList.remove("is-hidden");
+menu_hamburguesa.onclick = () => {
+    menu_hamburguesa.classList.toggle("is-active");
+    menu_nav.classList.toggle("is-active");
+    btn_balance.classList.toggle("button");
+    btn_categorias.classList.toggle("button")
+    btn_reportes.classList.toggle("button")
 
-    agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
+  };
+
+
+
+btn_balance.onclick = () => {
+
+    card_categorias.classList.add("is-hidden");
+    card_reportes.classList.add("is-hidden");
+    cards_principales.classList.remove("is-hidden");
+
+    agregarOperacionesAHTML(operacionesParaHTML)
 }
 
- 
-BTN_CATEGORIAS.onclick = () => {
-    CARDS_PRINCIPALES.classList.add("is-hidden");
-    CARD_REPORTES.classList.add("is-hidden");
-    CARD_CATEGORIAS.classList.remove("is-hidden");
+btn_categorias.onclick = () => {
 
- }
+    cards_principales.classList.add("is-hidden");
+    card_reportes.classList.add("is-hidden");
+    card_categorias.classList.remove("is-hidden");
 
-BTN_REPORTES.onclick= () => {
-    CARDS_PRINCIPALES.classList.add("is-hidden");
-    CARD_CATEGORIAS.classList.add("is-hidden");
-    CARD_REPORTES.classList.remove("is-hidden");
 }
 
-BTN_FILTROS.onclick = () => {
-    if (BTN_FILTROS.innerHTML=== "Mostrar filtros"){
-        BTN_FILTROS.innerHTML = "Ocultar filtros"
-        CARD_FILTROS.classList.remove("is-hidden");
+btn_reportes.onclick= () => {
+
+    cards_principales.classList.add("is-hidden");
+    card_categorias.classList.add("is-hidden");
+    card_reportes.classList.remove("is-hidden");
+}
+
+btn_filtros.onclick = () => {
+
+    if (btn_filtros.innerHTML=== "Mostrar filtros"){
+        btn_filtros.innerHTML = "Ocultar filtros"
+        card_filtros.classList.remove("is-hidden");
     }else{
-        BTN_FILTROS.innerHTML = "Mostrar filtros"
-        CARD_FILTROS.classList.add("is-hidden");
+        btn_filtros.innerHTML = "Mostrar filtros"
+        card_filtros.classList.add("is-hidden");
     }
 }
 
-
-
-
-//CATEGORIAS EXISTENTES
-
-const categorias = ["todos", "comida", "servicios", "salidas", "educacion", "transporte", "trabajo"]
-
+//LOCAL STORAGE
 const guardarEnLocalStorage = (clave, objeto) => {
+
     const objetoConvertidoAJSON = JSON.stringify(objeto)
     return localStorage.setItem(clave, objetoConvertidoAJSON)
     
 }
 
-
 const obtenerCategorias = () => {
+
     const categoriasEnLocalStorage = localStorage.getItem("categorias")
     if (categoriasEnLocalStorage === null) {
         return categorias
@@ -92,21 +114,57 @@ const obtenerCategorias = () => {
         return JSON.parse(categoriasEnLocalStorage)
     }
 }
+const obtenerOperaciones = () => {
 
-const agregarCategoriasAlSelect = () => {
-    const categorias = obtenerCategorias()
-    const categoriasString = categorias.reduce((acc, categoria) => {
-        return acc + `<option value=${categoria}>${categoria}</option>`
-    }, "")
-    SELECT_CATEGORIAS_CARGA.innerHTML = categoriasString
-    SELECT_CATEGORIAS.innerHTML = categoriasString
+    const operacionesEnLocalStorage = localStorage.getItem("operaciones")
+    if (operacionesEnLocalStorage === null) {
+        return operaciones
 }
+    else {
+        return JSON.parse(operacionesEnLocalStorage)
+    }
+
+}
+//CATEGORIAS EXISTENTES
+
+const categorias = ["todos", "comida", "servicios", "salidas", "educacion", "transporte", "trabajo"]
+
+
+const agregarCatASelects = () => {
+
+    const categorias = obtenerCategorias()
+
+    const categoriasString = categorias.reduce((acc, categoria) => {
+
+        return acc + `<option value=${categoria}>${categoria}</option>`
+
+    }, "")
+
+    select_categorias.innerHTML = categoriasString
+
+    const categoriasSinTodos = categorias.filter( categoria => categoria !== "todos") 
+
+
+    const categoriasSelectOperaciones = categoriasSinTodos.reduce((acc, categoria) => {
+
+        return acc + `<option value=${categoria}>${categoria}</option>`
+
+    }, "")
+
+    select_cat_carga.innerHTML = categoriasSelectOperaciones
+
+}
+
 
 const agregarCategoriasAHTML = () => {
 
     const categorias = obtenerCategorias()
 
-    const categoriasAHTML = categorias.reduce((acc, categoria, index) => {
+    const categoriasSinTodos = categorias.filter( categoria => categoria !== "todos") 
+
+
+    const categoriasAHTML = categoriasSinTodos.reduce((acc, categoria, index) => {
+
         return acc + `
 
         <div class="columns ">
@@ -127,94 +185,109 @@ const agregarCategoriasAHTML = () => {
        `
     }, "")
 
-    LISTA_CATEGORIAS.innerHTML = categoriasAHTML;
+    lista_categorias.innerHTML = categoriasAHTML;
  
 
 }
-FORM_AGREGAR_CATEGORIAS.onsubmit = (e) => {
 
-    e.preventDefault()
-    const nuevaCategoria = INPUT_CATEGORIAS.value
-    const categorias = obtenerCategorias()
-   if (categorias.indexOf(nuevaCategoria) === -1){
+form_agregar_categorias.onsubmit = (e) => {
+
+	e.preventDefault()
+	
+	const categorias = obtenerCategorias()
+
+	let nuevaCategoria = input_categorias.value
+
+
+   if (categorias.indexOf(nuevaCategoria) === -1 ){
+		
     categorias.push(nuevaCategoria)
-    INPUT_CATEGORIAS.value = ""
 
-    guardarEnLocalStorage("categorias", categorias)
-    agregarCategoriasAlSelect()
-    agregarCategoriasAHTML(OPERACIONES_PARA_HTML)
-   }
-    
+		input_categorias.value = ""
+
+		guardarEnLocalStorage("categorias", categorias)
+
+		agregarCatASelects()
+		
+		agregarCategoriasAHTML(operacionesParaHTML)
+		
+	}
+	else if (nuevaCategoria = nuevaCategoria){
+
+		alert("Esa categoria ya existe. Por favor ingresa otro nombre.")
+	}
 }
-agregarCategoriasAlSelect()
+
+agregarCatASelects()
 agregarCategoriasAHTML()
 
 
 const editarCategoria = (categoria) => {
 
-    CARD_EDITAR_CATEGORIAS.classList.remove("is-hidden")
-    CARD_AGREGAR_CATEGORIAS.classList.add("is-hidden")
-    LISTA_CATEGORIAS.classList.add("is-hidden")
-    INPUT_EDITAR_CATEGORIAS.value = categoria
+    card_editar_categorias.classList.remove("is-hidden")
+    card_agregar_categorias.classList.add("is-hidden")
+    lista_categorias.classList.add("is-hidden")
+    input_editar_categorias.value = categoria
 
-    CARD_EDITAR_CATEGORIAS.onsubmit = (e) => {
+    card_editar_categorias.onsubmit = (e) => {
 
         e.preventDefault()
         const categorias = obtenerCategorias()
 
-        if (categorias.indexOf(INPUT_EDITAR_CATEGORIAS.value) === -1 ||
-         categoria === INPUT_EDITAR_CATEGORIAS.value) {
+        if (categorias.indexOf(input_editar_categorias.value) === -1 ||
+         categoria === input_editar_categorias.value) {
 
             const indice = categorias.indexOf(categoria)
 
-            categorias[indice] = INPUT_EDITAR_CATEGORIAS.value
+            categorias[indice] = input_editar_categorias.value
 
             guardarEnLocalStorage("categorias", categorias)
 
             agregarCategoriasAHTML()
 
-            agregarCategoriasAlSelect()
+            agregarCatASelects()
 
-            CARD_EDITAR_CATEGORIAS.classList.add("is-hidden")
-            CARD_AGREGAR_CATEGORIAS.classList.remove("is-hidden")
-            LISTA_CATEGORIAS.classList.remove("is-hidden")
+            card_editar_categorias.classList.add("is-hidden")
+            card_agregar_categorias.classList.remove("is-hidden")
+            lista_categorias.classList.remove("is-hidden")
+        }
+        else if (input_editar_categorias.value = categoria){
+        
+            alert("Esa categoria ya existe. Por favor ingresa otro nombre.")
         }
     }
 }
 
-
 const eliminarCategoria = (categoria) => {
+
     const categorias = obtenerCategorias()
     const categoriasFiltradas=categorias.filter((elemento) => {
         return elemento != categoria
     })
+
     guardarEnLocalStorage("categorias",categoriasFiltradas)
     agregarCategoriasAHTML()
 }
 
-CANCELAR_EDITAR_CAT.onclick=()=>{
-    CARD_EDITAR_CATEGORIAS.classList.add("is-hidden")
-    CARD_AGREGAR_CATEGORIAS.classList.remove("is-hidden")
-    LISTA_CATEGORIAS.classList.remove("is-hidden")
+cancelar_editar_cat.onclick=()=>{
+    card_editar_categorias.classList.add("is-hidden")
+    card_agregar_categorias.classList.remove("is-hidden")
+    lista_categorias.classList.remove("is-hidden")
 
 }
+
 //SECCION OPERACIONES
 
 const operaciones = []
 
-const obtenerOperaciones = () => {
-    const operacionesEnLocalStorage = localStorage.getItem("operaciones")
-    if (operacionesEnLocalStorage === null) {
-        return operaciones
+const operacionesParaHTML = obtenerOperaciones()
+
+
+btn_nueva_operacion.onclick = () => {
+    
+    mostrarFormOperaciones()
+    
 }
-    else {
-        return JSON.parse(operacionesEnLocalStorage)
-    }
-
-}
-
-const OPERACIONES_PARA_HTML = obtenerOperaciones()
-
 const agregarOperacionesAHTML = (arr) => {
     
     const operacionesAHTML = arr.reduce((acc, elemento, index) => {
@@ -232,7 +305,7 @@ const agregarOperacionesAHTML = (arr) => {
                 </span>
             </div>
             <div class="column is-3 has-text-grey has-text-centered">   
-                ${new Date(elemento.fecha).toLocaleDateString("es-AR", {timeZone:"UTC"})}
+                ${new Date(elemento.fecha).toLocaleDateString("es-AR",{timeZone:"UTC"})}
             </div>
             <div class="column is-2 has-text-weight-bold ${elemento.tipo === "ganancia"
             ? 'has-text-success'
@@ -250,49 +323,53 @@ const agregarOperacionesAHTML = (arr) => {
         `
     }, "")
 
-    LISTA_OPERACIONES.innerHTML = operacionesAHTML
+    lista_operaciones.innerHTML = operacionesAHTML
     
     if (operacionesAHTML.length > 0) {
-        OPERACIONES_CARGADAS.classList.remove("is-hidden")
-        LISTA_OPERACIONES.classList.remove("is-hidden")
-        SIN_OPERACIONES.classList.add("is-hidden")
+        operaciones_cargadas.classList.remove("is-hidden")
+        lista_operaciones.classList.remove("is-hidden")
+        sin_operaciones.classList.add("is-hidden")
     }
     else {
-        OPERACIONES_CARGADAS.classList.add("is-hidden")
-        LISTA_OPERACIONES.classList.add("is-hidden")
-        SIN_OPERACIONES.classList.remove("is-hidden")
+        operaciones_cargadas.classList.add("is-hidden")
+        lista_operaciones.classList.add("is-hidden")
+        sin_operaciones.classList.remove("is-hidden")
     }
 }
+//FECHA ACTUAL
 
+Date.prototype.toDateInputValue = ( function() {
+    const local = new Date(this);
+    return local.toJSON().slice(0,10);
+});
 
-agregarCategoriasAHTML()
-agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
-agregarCategoriasAlSelect()
+fecha_input.value = new Date().toDateInputValue();
+filtro_fechas.value = new Date().toDateInputValue();
+
 
 const mostrarFormOperaciones = (operacion, indice) => {
 
-    OPERACIONES_CARGADAS.classList.add("is-hidden")
-    CARDS_PRINCIPALES.classList.add("is-hidden")
-    CARD_NUEVA_OPERACION.classList.remove("is-hidden")
+    operaciones_cargadas.classList.add("is-hidden")
+    cards_principales.classList.add("is-hidden")
+    card_nueva_operacion.classList.remove("is-hidden")
 
 
     if (operacion) {
-        INPUT_DESCRIPCION.value = operacion.descripcion
-        MONTO_INPUT.value = operacion.monto
-        TIPO_INPUT.value = operacion.tipo
-        SELECT_CATEGORIAS_CARGA.value = operacion.categoria
-        FECHA_INPUT.value = operacion.fecha
+        input_descripcion.value = operacion.descripcion
+        monto_input.value = operacion.monto
+        tipo_input.value = operacion.tipo
+        select_cat_carga.value = operacion.categoria
+        fecha_input.value = operacion.fecha
     }
 
-    CARD_NUEVA_OPERACION.onsubmit = (e) => {
-        e.preventDefault()
+    card_nueva_operacion.onsubmit = (e) => {
 
         const nuevaOperacion = {
-            descripcion: INPUT_DESCRIPCION.value,
-            monto:Number(MONTO_INPUT.value),
-            tipo: TIPO_INPUT.value,
-            categoria: SELECT_CATEGORIAS_CARGA.value,
-            fecha:FECHA_INPUT.value,
+            descripcion: input_descripcion.value,
+            monto:Number(monto_input.value),
+            tipo: tipo_input.value,
+            categoria: select_cat_carga.value,
+            fecha:fecha_input.value,
 
         }
 
@@ -307,51 +384,60 @@ const mostrarFormOperaciones = (operacion, indice) => {
             operaciones.push(nuevaOperacion)
         }
 
-        CARD_NUEVA_OPERACION.reset()
+        card_nueva_operacion.reset()
 
         guardarEnLocalStorage("operaciones", operaciones)
 
-        agregarOperacionesAHTML(operaciones)
-
-        CARD_NUEVA_OPERACION.classList.add("is-hidden")
-        CARDS_PRINCIPALES.classList.remove("is-hidden")
+        card_nueva_operacion.classList.add("is-hidden")
+        cards_principales.classList.remove("is-hidden")
 
         agregarOperacionesAHTML(operaciones)
     }
 }
+agregarOperacionesAHTML(operacionesParaHTML)
 
-const eliminarOperacion = (index) => {
 
-    const operaciones=obtenerOperaciones()
+btn_nueva_operacion.onclick = () => {
 
-    operaciones.splice(index,1)
+    mostrarFormOperaciones()
+    
+}
+
+const eliminarOperacion=(index)=>{
+
+    operacionesParaHTML.splice(index,1)
 
     guardarEnLocalStorage("operaciones", operaciones)
-    CARD_NUEVA_OPERACION.classList.add("is-hidden")
-    CARDS_PRINCIPALES.classList.remove("is-hidden")
-    agregarOperacionesAHTML((operaciones))
+
+    agregarOperacionesAHTML(operacionesParaHTML)
+
+    card_nueva_operacion.classList.add("is-hidden")
+
+    cards_principales.classList.remove("is-hidden")
+
+    agregarOperacionesAHTML(operacionesParaHTML)
+
+    balance(operacionesParaHTML)
+
 }
 
+btn_cancelar_edicion.onclick = () => {
 
-BTN_NUEVA_OPERACION.onclick = () => {
-    mostrarFormOperaciones()
-}
-BOTON_CANCELAR_EDICION.onclick = () => {
-    CARD_NUEVA_OPERACION.classList.add("is-hidden")
-    CARDS_PRINCIPALES.classList.remove("is-hidden")
-    agregarOperacionesAHTML(OPERACIONES_PARA_HTML)
+    card_nueva_operacion.classList.add("is-hidden")
+    cards_principales.classList.remove("is-hidden")
+    agregarOperacionesAHTML(operacionesParaHTML)
+
 }
 
-agregarCategoriasAlSelect()
+agregarCatASelects()
 
 // FUNCIONES PARA FILTROS
 
 let operacionesAFiltrar = obtenerOperaciones()
 
-
 const aplicarFiltros = () => {
 
-    const tipoFiltro = FILTRO_TIPO.value
+    const tipoFiltro = filtro_tipo.value
 
     const filtradoPorTipo = operacionesAFiltrar.filter((operacion) => {
         if (tipoFiltro === "todos") {
@@ -360,7 +446,7 @@ const aplicarFiltros = () => {
         return operacion.tipo === tipoFiltro
     })
 
-    const categoriaFiltro = FILTRO_CATEGORIAS.value
+    const categoriaFiltro = filtro_categorias.value
 
     const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => {
         if (categoriaFiltro === "todos") {
@@ -369,7 +455,7 @@ const aplicarFiltros = () => {
         return operacion.categoria === categoriaFiltro
     })
 
-    const fechaFiltro = FILTRO_FECHAS.value
+    const fechaFiltro = filtro_fechas.value
     const filtradoPorFechas = filtradoPorCategoria.filter((operacion) => {
         if (fechaFiltro === null) {
             return operacion
@@ -377,7 +463,7 @@ const aplicarFiltros = () => {
         return operacion.fecha >= fechaFiltro
     })
 
-    const ordenFiltro = FILTRO_ORDEN.value
+    const ordenFiltro = filtro_orden.value
     let copiaFiltradoPorFechas = [...filtradoPorFechas]
     
 
@@ -409,7 +495,7 @@ const aplicarFiltros = () => {
         }
 
         else if (ordenFiltro === "z-a" && nameA > nameB) {
-            return 1
+            return -1
         }
 
     })
@@ -419,83 +505,220 @@ const aplicarFiltros = () => {
 }
 
 
-FILTRO_FECHAS.onchange = () => {
+filtro_fechas.onchange = () => {
 
     const arrayFiltrado = aplicarFiltros()
    
     agregarOperacionesAHTML(arrayFiltrado)
-
+    balance(arrayFiltrado)
 
 }
 
 
-FILTRO_TIPO.onchange = () => {
+filtro_tipo.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
 
     agregarOperacionesAHTML(arrayFiltrado)
-   
+    balance(arrayFiltrado)
     
 }
 
-FILTRO_CATEGORIAS.onchange = () => {
-    const arrayFiltrado = aplicarFiltros()
-    
-
-    agregarOperacionesAHTML(arrayFiltrado)
-
-    
-}
-
-
-FILTRO_ORDEN.onchange = () => {
+filtro_categorias.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
     
     agregarOperacionesAHTML(arrayFiltrado)
-
-
+    balance(arrayFiltrado)
+    
 }
 
+
+filtro_orden.onchange = () => {
+    const arrayFiltrado = aplicarFiltros()
+    
+    agregarOperacionesAHTML(arrayFiltrado)
+
+}
 // BALANCE //
 
-const operacionesBalance = obtenerOperaciones()
+let operacionesBalance = obtenerOperaciones();
 
-let TOTAL_BALANCE = {
-    ganancias: 0,
-    gastos: 0,
-    total: 0
-}
+const balance = (arr) => { 
 
-const calcularBalance = (operaciones) => {
-    return operaciones.map((operacion) => {
-        if (operacion.tipo === "ganancia") {
-            TOTAL_BALANCE.ganancias = TOTAL_BALANCE.ganancias + operacion.monto
-        }
-        if (operacion.tipo === "gasto") {
-            TOTAL_BALANCE.gastos = TOTAL_BALANCE.gastos + operacion.monto
-        }
-
-        TOTAL_BALANCE.total = TOTAL_BALANCE.ganancias - TOTAL_BALANCE.gastos
+    const gastos = arr.filter((elemento) =>{
+        return elemento.tipo ==="gasto"
     })
+
+    const ganancias = arr.filter ((elemento) =>{
+        return elemento.tipo ==="ganancia"
+    })
+
+   const sumaGastos = gastos.reduce ((acc,elemento) =>{
+       return acc + elemento.monto
+   },0)
+
+   const sumaGanancias = ganancias.reduce ((acc,elemento) =>{
+    return acc + elemento.monto
+   },0)
+
+   const total = sumaGanancias - sumaGastos
+
+
+    balance_ganancias.innerHTML = sumaGanancias
+    balance_gastos.innerHTML = sumaGastos
+    
+    if(total < 0){
+        balance_total.innerHTML = `${total}`
+
+        balance_total.classList.remove("has-text-success")
+
+        balance_total.classList.add("has-text-danger")
+    }
+    if(total >= 0 ){
+        balance_total.innerHTML = `+${total}`
+
+        balance_total.classList.remove("has-text-danger")
+
+        balance_total.classList.add("has-text-success")
+    }
+
+
 }
+balance(operacionesBalance)
 
-calcularBalance(operacionesBalance);
 
-const actualizarBalance = () => {
-    BALANCE_GANANCIAS.innerText = `+$${TOTAL_BALANCE.ganancias}`
-    BALANCE_GASTOS.innerText = `-$${TOTAL_BALANCE.gastos}`
-    BALANCE_TOTAL.innerText = `${TOTAL_BALANCE.total >= 0 ? "+" : "-"}$${Math.abs(TOTAL_BALANCE.total)}`
-    BALANCE_TOTAL.classList.add(TOTAL_BALANCE.total >= 0 ? "has-text-success" : "has-text-danger")
-}
+//REPORTES
 
-actualizarBalance();
-
-// REPORTES
-
+const operacionesReportes = obtenerOperaciones()
 const categoriasReportes = obtenerCategorias()
 
+const operacionesGanancias = operacionesReportes.filter((operacion) =>{
+    return operacion.tipo ==="ganancia"
+})
 
 
+const mayorGanancia = operacionesGanancias.reduce(function (acc, operacion) {
+    return ( acc.monto > operacion.monto) ? acc : operacion
+}) 
+
+monto_mayor_ganancia.innerHTML = `+$${mayorGanancia.monto}`
+cat_mayor_ganancia.innerHTML = mayorGanancia.categoria
 
 
+const operacionesGastos = operacionesReportes.filter ((operacion) =>{
+    return operacion.tipo === "gasto"
+})
 
- 
+const mayorGasto = operacionesGastos.reduce(function (acc, operacion) {
+    return ( acc.monto > operacion.monto) ? acc : operacion
+}) 
+
+monto_mayor_gasto.innerHTML = `-$${mayorGasto.monto}`
+cat_mayor_gasto.innerHTML = mayorGasto.categoria
+
+   
+let operacionPorCategoria = []
+
+const separarPorCategoria = () => {
+  
+    categoriasReportes.map((categoria) => {
+        operacionPorCategoria.push([])
+    })
+  
+   operacionesReportes.map((operacion) => {
+            const indiceCategoria = categoriasReportes.indexOf(operacion.categoria)
+            operacionPorCategoria[indiceCategoria].push(operacion)
+    })
+}
+separarPorCategoria()
+
+for (const operacion of operacionPorCategoria){
+    
+    if(!operacion.length){
+
+        for (const indice in operacionPorCategoria){
+            if(operacion===operacionPorCategoria[indice]){
+                operacionPorCategoria.splice(indice,1)
+            }
+        }
+
+    }
+    
+}
+  
+const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria)=>{
+
+    let gananciaBalance = 0 ;
+    let gastosBalance = 0;
+    let totalBalance = 0;
+    let categoria = "";
+    
+    for ( const operacion of arrayPorCategoria){
+
+        categoria = operacion.categoria
+
+        if(operacion.tipo == "ganancia"){
+            gananciaBalance += operacion.monto
+            
+        }else{
+            gastosBalance += operacion.monto
+        }
+
+        totalBalance = gananciaBalance - gastosBalance
+    }
+
+return {
+        nombre: categoria,
+        gananciaBalance,
+        gastosBalance,
+        totalBalance,
+    }
+    
+})
+
+const operacionesBalanceAHTML = operacionesBalanceParaHTML.reduce((acc,operacion) => {
+
+    return acc + `
+    <div class="columns">
+        <div class="column has-text-weight-semibold">${operacion.nombre}</div>
+        <div class="column has-text-success has-text-right">$+${operacion.gananciaBalance}</div>
+        <div class="column has-text-danger has-text-right ">$-${operacion.gastosBalance}</div>
+        <div class="column has-text-right">${operacion.totalBalance > 0 ? "+" : ""}$${operacion.totalBalance}</div>
+    </div>
+    `
+},"")
+
+lista_totales.innerHTML = operacionesBalanceAHTML
+
+
+//CATEGORIA MAYOR GANANCIA
+const catMayorGanancia= [...operacionesBalanceParaHTML]
+
+ catMayorGanancia.sort((a,b)=>{
+
+    return b.gananciaBalance - a.gananciaBalance
+
+})
+
+
+//CATEGORIA MAYOR GASTO
+const catMayorGasto = [...operacionesBalanceParaHTML]
+
+
+ catMayorGasto.sort((a,b)=>{
+
+    return b.gastosBalance - a.gastosBalance
+
+}) 
+
+
+//CATEGORIA CON MAYOR BALANCE
+
+const catMayorBalance= [...operacionesBalanceParaHTML]
+
+ catMayorBalance.sort((a,b)=>{
+
+     return b.totalBalance-a.totalBalance
+
+ })
+
+

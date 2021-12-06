@@ -26,10 +26,11 @@
     <!-- NAVBAR                                    NAVBAR                                 NAVBAR -->
     <header>
 
-        <nav class=" navbar is-primary is-spaced py-4" aria-label="navegacion principal">
+        <nav class="navbar is-primary is-spaced py-4" role="navigation" aria-label="navegacion principal">
+            
             <div class="navbar-brand ">
                 <!-- NO CONSIDERO QUE ESTE SEA UN ENLACE PERO NO SABIA COMO HACERLE EL HOVER SINO. EN LA WEB DE ADA ESTA COMO ESTE -->
-                <a class="navbar-item ">
+                <a class="navbar-item">
 
                     <h1 class="title is-2 has-text-white">
                         <i class="fas fa-wallet" aria-hidden="true"></i>
@@ -38,59 +39,67 @@
 
                 </a>
 
-                <button role="button" id="menu-hamburguesa" class="navbar-burger" aria-label="menu"
-                    aria-expanded="false">
+                <button role="button" id="menu-hamburguesa" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </button>
             </div>
             <!-- NAVBAR END                                          NAVBAR END                                 NAVBAR END    -->
+            <div class="navbar-menu" id="menu-nav">
             <div class="navbar-end">
                 <div class="navbar-item">
-                    <button id="btn-balance" class="button is-primary " aria-label="Balance">
-                        <span>
-                            <i class="fas fa-chart-line"></i>
-                            Balance
-                        </span>
-                    </button>
+                    <div class="buttons">
+                        <a id="btn-balance" class="button is-primary navbar-item" aria-label="Balance">
+                            <span>
+                                <i class="fas fa-chart-line"></i>
+                                Balance
+                            </span>
+                        </a>
+                    </div>
                 </div>
                 <div class="navbar-item">
-
-                    <button id="btn-categorias" class="button is-primary" aria-label="Categorias">
-                        <span>
-                            <i class="fas fa-tag "></i>
-                            Categorias
-                        </span>
-                    </button>
+                    <div class="buttons">
+                
+                        <a id="btn-categorias" class="button is-primary navbar-item" aria-label="Categorias">
+                            <span>
+                                <i class="fas fa-tag "></i>
+                                Categorias
+                            </span>
+                        </a>
+                    </div>
                 </div>
                 <div class="navbar-item">
-                    <button id="btn-reportes" class="button is-primary" aria-label="Reportes">
-                        <span>
-                            <i class="fas fa-chart-pie"></i>
-                            Reportes
-                        </span>
-                    </button>
+                    <div class="buttons">
+                
+                        <a id="btn-reportes" class="button is-primary navbar-item" aria-label="Reportes">
+                            <span>
+                                <i class="fas fa-chart-pie"></i>
+                                Reportes
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
+        </div>
 
         </nav>
     </header>
 
     <!-- MAIN                                MAIN                                       MAIN-->
 
-    <main class="section mt-5  ">
+    <main class="section mt-5">
 
-        <div id="cards-principales" class="columns is-centered">
+        <div id="cards-principales" class="columns is-multiline">
 
             <!-- CARD BALANCE                CARD BALANCE                    CARD BALANCE  -->
 
-            <div class="column is-3 " id="card-balance">
+            <div class="column is-3-widescreen is-12-desktop is-12-tablet is-offset-1-widescreen" id="card-balance">
 
                 <article class="box mb-6">
                     <h3 class="title has-text-weight-bold pb-5">Balance</h3>
 
-                    <div class="columns">
+                    <div class="columns is-mobile is-centered">
 
                         <div class="column is-7">
 
@@ -105,7 +114,7 @@
                         </div>
                     </div>
                     <!--GASTOS                     GASTOS                       GASTOS   -->
-                    <div class="columns">
+                    <div class="columns is-mobile is-centered">
 
                         <div class="column is-7">
 
@@ -115,12 +124,12 @@
 
                         <div class="column is-5 has-text-right ">
 
-                            <p class=" subtitle is-6 has-text-danger" id="balance-gastos">-$0</p>
+                            <p class=" subtitle is-6 has-text-danger " id="balance-gastos">-$0</p>
 
                         </div>
                     </div>
 
-                    <div class="columns">
+                    <div class="columns is-mobile is-centered">
 
                         <div class="column is-7">
 
@@ -137,129 +146,129 @@
 
                 </article>
             <!--  CARD FILTROS                CARD FILTROS               CARD FILTROS -->
-            <article class="box">
+                <article class="box">
 
-                <div class="columns">
-
-                    <div class="column is-6">
-
-                        <h3 class="title is-4 has-text-weight-bold">Filtros</h3>
-
-                    </div>
-
-                    <div class="column is-6 has-text-right">
-
-                        <button id="btn-filtros" class="button is-ghost is-small is-rounded"> Ocultar
-                            Filtros</button>
-
-                    </div>
-
-                </div>
-
-                <!-- TIPO DE FILTRO           TIPO DE FILTRO              TIPO DE FILTRO-->
-
-                <div id="card-filtros">
                     <div class="columns">
 
-                        <div class="column is-12">
+                        <div class="column is-6">
 
-                            <div class="field">
+                            <h3 class="title is-4 has-text-weight-bold">Filtros</h3>
 
-                                <label class="label">Tipo</label>
+                        </div>
 
-                                <div class="control">
+                        <div class="column is-6 has-text-right">
 
-                                    <div class="select is-fullwidth">
+                            <button id="btn-filtros" class="button is-ghost is-small is-rounded"> Ocultar
+                                Filtros</button>
 
-                                        <select id="select-ordenar-tipo">
-                                            <option value="todos">Todos</option>
-                                            <option value="ganancia">Ganancias</option>
-                                            <option value="gasto">Gastos</option>
+                        </div>
 
-                                        </select>
+                    </div>
+
+                    <!-- TIPO DE FILTRO           TIPO DE FILTRO              TIPO DE FILTRO-->
+
+                    <div id="card-filtros">
+                        <div class="columns">
+
+                            <div class="column is-12">
+
+                                <div class="field">
+
+                                    <label class="label">Tipo</label>
+
+                                    <div class="control">
+
+                                        <div class="select is-fullwidth">
+
+                                            <select id="select-ordenar-tipo">
+                                                <option value="todos">Todos</option>
+                                                <option value="ganancia">Ganancias</option>
+                                                <option value="gasto">Gastos</option>
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--        CATEGORIAS                              CATEGORIAS-->
+
+                        <div class="columns">
+
+                            <div class="column is-12">
+
+                                <div class="field">
+                                    <label class="label">Categoría</label>
+                                    <div class="control">
+
+                                        <div class="select is-fullwidth">
+                                            <select id="select-de-categorias">
+                                                <option value="comidas">Comidas</option>
+                                                <option value="servicios">Servicios</option>
+                                                <option value="salidas">Salidas</option>
+                                                <option value="educacion">Educación</option>
+                                                <option value="transportes">Transporte</option>
+                                                <option value="trabajo">Trabajo</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--       DESDE                                   DESDE-->
+
+                        <div class="columns">
+                            <div class="column is-12">
+
+                                <div class="field">
+                                    <label class="label" for="date">Desde</label>
+                                    <div class="control">
+                                        <input class="input" id="date" type="date">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--       ORDENAR POR                             ORDENAR POR-->
+
+                        <div class="columns">
+
+                            <div class="column is-12">
+
+                                <div class="field">
+                                    <label class="label">Ordenar por</label>
+                                    <div class="control">
+
+                                        <div class="select is-fullwidth">
+                                            <select id="select-ordenar-por">
+                                                <option value="mas-reciente">Más reciente</option>
+                                                <option value="menos-reciente">Menos reciente</option>
+                                                <option value="mayor-monto">Mayor monto</option>
+                                                <option value="menor-monto">Menor monto</option>
+                                                <option value="a-z">A/Z</option>
+                                                <option value="z-a">Z/A</option>
+
+                                            </select>
+                                        </div>
 
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--        CATEGORIAS                              CATEGORIAS-->
-
-                    <div class="columns">
-
-                        <div class="column is-12">
-
-                            <div class="field">
-                                <label class="label">Categoría</label>
-                                <div class="control">
-
-                                    <div class="select is-fullwidth">
-                                        <select id="select-de-categorias">
-                                            <option value="comidas">Comidas</option>
-                                            <option value="servicios">Servicios</option>
-                                            <option value="salidas">Salidas</option>
-                                            <option value="educacion">Educación</option>
-                                            <option value="transportes">Transporte</option>
-                                            <option value="trabajo">Trabajo</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--       DESDE                                   DESDE-->
-
-                    <div class="columns">
-                        <div class="column is-12">
-
-                            <div class="field">
-                                <label class="label" for="date">Desde</label>
-                                <div class="control">
-                                    <input class="input" id="date" type="date">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--       ORDENAR POR                             ORDENAR POR-->
-
-                    <div class="columns">
-
-                        <div class="column is-12">
-
-                            <div class="field">
-                                <label class="label">Ordenar por</label>
-                                <div class="control">
-
-                                    <div class="select is-fullwidth">
-                                        <select id="select-ordenar-por">
-                                            <option value="mas-reciente">Más reciente</option>
-                                            <option value="menos-reciente">Menos reciente</option>
-                                            <option value="mayor-monto">Mayor monto</option>
-                                            <option value="menor-monto">Menor monto</option>
-                                            <option value="a-z">A/Z</option>
-                                            <option value="z-a">Z/A</option>
-
-                                        </select>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+                </article>
 
             </div>
 
             <!-- CARD OPERACIONES       CARD OPERACIONES               CARD OPERACIONES  -->
 
-            <div class="column is-7 ">
+            <div class="column is-7-widescreen is-12-desktop">
 
                 <article class="box ">
 
-                    <div>
-                        <div class="columns mb-4">
+                    
+                        <div class="columns mb-4 ">
                             <div class="column is-6">
                                 <h2 class="title is-4 has-text-weight-bold">Operaciones</h2>
 
@@ -269,7 +278,7 @@
                                 <button id="boton-nueva-operacion" class="button is-primary"> + Nueva operación</button>
                             </div>
                         </div>
-                    </div>
+                    
 
                     <div id="sin-operaciones" class="">
 
@@ -295,9 +304,9 @@
     
                     <!--    HEADER OPERACIONES                HEADER OPERACIONES -->
 
-                    <div id="operaciones-cargadas" class="is-hidden">
+                    <div class="is-8-desktop" id="operaciones-cargadas" class="is-hidden">
 
-                        <div class="columns">
+                        <div class="columns is-hidden-mobile">
                             <div class="column is-3 ">
                                 <p class=" has-text-weight-semibold">Descripción</p>
                             </div>
@@ -476,18 +485,20 @@
                                 <h3 class="subtitle is-4 has-text-weight-semibold">Resumen</h3>
                                 <div class="columns">
                                     <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
-                                    <div class="column is-3 has-text-right"><span class="is-primary is-light tag">Trabajo</span></div>
-                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right">45215</div>
+                                    <div class="column is-3 has-text-right">
+                                        <span class="is-primary is-light tag" id="cat-mayor-ganancia"></span>
+                                    </div>
+                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right" id="monto-mayor-ganancia"></div>
                                 </div>
                                 <div class="columns">
                                     <div class="column is-6 has-text-weight-semibold">Categoría con mayor gasto</div>
-                                    <div class="column is-3 has-text-right"><span class="is-primary is-light tag">Trabajo</span></div>
-                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right">45215</div>
+                                    <div class="column is-3 has-text-right"><span class="is-primary is-light tag" id="cat-mayor-gasto"></span></div>
+                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right has-text-danger" id="monto-mayor-gasto"></div>
                                 </div>
                                 <div class="columns">
                                     <div class="column is-6 has-text-weight-semibold">Categoría con mayor balance</div>
-                                    <div class="column is-3 has-text-right"><span class="is-primary is-light tag">Trabajo</span></div>
-                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right">45215</div>
+                                    <div class="column is-3 has-text-right"><span class="is-primary is-light tag"></span></div>
+                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right"></div>
                                 </div>
                                 <div class="columns">
                                     <div class="column is-6 has-text-weight-semibold">Mes con mayor ganancia</div>
@@ -509,24 +520,7 @@
                                     <div class="column has-text-weight-semibold has-text-right">Gastos</div>
                                     <div class="column has-text-weight-semibold has-text-right">Balance</div>
                                 </div>
-                                <div class="columns">
-                                    <div class="column has-text-weight-semibold">Trabajo</div>
-                                    <div class="column has-text-success has-text-right">23562</div>
-                                    <div class="column has-text-danger has-text-right">0</div>
-                                    <div class="column has-text-right">23562</div>
-                                </div>
-                                <div class="columns">
-                                    <div class="column has-text-weight-semibold">Servicios</div>
-                                    <div class="column has-text-success has-text-right">23562</div>
-                                    <div class="column has-text-danger has-text-right">0</div>
-                                    <div class="column has-text-right">23562</div>
-                                </div>
-                                <div class="columns">
-                                    <div class="column has-text-weight-semibold">Comida</div>
-                                    <div class="column has-text-success has-text-right">23562</div>
-                                    <div class="column has-text-danger has-text-right">0</div>
-                                    <div class="column has-text-right">23562</div>
-                                </div>
+                                <div id="lista-balance-categoria">
                             </section>
     
                             <section class="section">
