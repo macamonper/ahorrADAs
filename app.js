@@ -563,18 +563,18 @@ const balance = (arr) => {
    const total = sumaGanancias - sumaGastos
 
 
-    BALANCE_GANANCIAS.innerHTML = sumaGanancias
-    BALANCE_GASTOS.innerHTML = sumaGastos
+    BALANCE_GANANCIAS.innerHTML = `+$${sumaGanancias}`
+    BALANCE_GASTOS.innerHTML = `-$${sumaGastos}`
     
     if(total < 0){
-        BALANCE_TOTAL.innerHTML = `${total}`
+        BALANCE_TOTAL.innerHTML = `$${total}`
 
         BALANCE_TOTAL.classList.remove("has-text-success")
 
         BALANCE_TOTAL.classList.add("has-text-danger")
     }
     if(total >= 0 ){
-        BALANCE_TOTAL.innerHTML = `+${total}`
+        BALANCE_TOTAL.innerHTML = `+$${total}`
 
         BALANCE_TOTAL.classList.remove("has-text-danger")
 
