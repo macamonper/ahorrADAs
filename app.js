@@ -690,26 +690,6 @@ const operacionesBalanceAHTML = operacionesBalanceParaHTML.reduce((acc,operacion
 lista_totales.innerHTML = operacionesBalanceAHTML
 
 
-//CATEGORIA MAYOR GANANCIA
-const catMayorGanancia= [...operacionesBalanceParaHTML]
-
- catMayorGanancia.sort((a,b)=>{
-
-    return b.gananciaBalance - a.gananciaBalance
-
-})
-
-
-//CATEGORIA MAYOR GASTO
-const catMayorGasto = [...operacionesBalanceParaHTML]
-
-
- catMayorGasto.sort((a,b)=>{
-
-    return b.gastosBalance - a.gastosBalance
-
-}) 
-
 
 //CATEGORIA CON MAYOR BALANCE
 
