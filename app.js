@@ -713,28 +713,28 @@ monto_categoria_mayor_balance.innerText = `$${catMayorBalance[0].totalBalance}`
 
 // MESES CON MAYOR GASTO Y GANANCIAR
         
-let MAYOR_GANANCIA = 0
-let MES_MAYOR_GANANCIA = ""
-let MAYOR_GASTO = 0
-let MES_MAYOR_GASTO = ""
+let mayor_ganancia = 0
+let mes_mayor_ganancia = ""
+let mayor_gasto = 0
+let mes_mayor_gasto = ""
         
 const mesesConMayorGastoYGanancia = operacionesReportes.map((operacion) => {
     if (operacion.tipo === "ganancia") {
-        if (operacion.monto > MAYOR_GANANCIA) {
-            MAYOR_GANANCIA = operacion.monto
-            MES_MAYOR_GANANCIA = operacion.fecha
+        if (operacion.monto > mayor_ganancia) {
+            mayor_ganancia = operacion.monto
+            mes_mayor_ganancia = operacion.fecha
         }
     }
         
     if (operacion.tipo === "gasto") {
-        if (operacion.monto > MAYOR_GASTO) {
-            MAYOR_GASTO = operacion.monto
-            MES_MAYOR_GASTO = operacion.fecha
+        if (operacion.monto > mayor_gasto) {
+            mayor_gasto = operacion.monto
+            mes_mayor_gasto = operacion.fecha
         }
     }
 })
         
-mayor_ganancia_html.innerText = MES_MAYOR_GANANCIA
-monto_mes_mayor_ganancia.innerText = `$${MAYOR_GANANCIA}`
-mes_mayor_gasto_html.innerText = MES_MAYOR_GASTO
-monto_mes_mayor_gasto.innerText = `-$${MAYOR_GASTO}`
+mayor_ganancia_html.innerText = mes_mayor_ganancia
+monto_mes_mayor_ganancia.innerText = `$${mayor_ganancia}`
+mes_mayor_gasto_html.innerText = mes_mayor_gasto
+monto_mes_mayor_gasto.innerText = `-$${mayor_gasto}`

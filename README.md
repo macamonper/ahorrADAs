@@ -23,8 +23,8 @@ Las tecnologias utilizadas fueron :
 
 ## Como clonar este repositorio 🖥➡💻
 
--Primero copiarás la URL del respositorio remoto.
--Luego abrirás una ventana de terminal, para situarte sobre la carpeta del proyecto.
--En tu terminal escribis el comando para hacer el clon, que sería algo como esto:
+- Primero copiarás la URL del respositorio remoto.
+- Luego abrirás una ventana de terminal, para situarte sobre la carpeta del proyecto.
+- En tu terminal escribis el comando para hacer el clon, que sería algo como esto:
 
 git clone https://github.com/macamonper/ahorrADAS.git . 
