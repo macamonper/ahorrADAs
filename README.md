@@ -2,7 +2,7 @@
 
 En este repositorio creamos una web para llevar un registro de tus gastos, ganancias y un balance total de esas operaciones.
 
-Podes visitar la web en https://macamonper.github.io/ahorrADAS/ . 
+Podes visitar la web en https://macamonper.github.io/ahorrADAs/ . 
 
 Las tecnologias utilizadas fueron :
 
@@ -27,4 +27,4 @@ Las tecnologias utilizadas fueron :
 - Luego abrirás una ventana de terminal, para situarte sobre la carpeta del proyecto.
 - En tu terminal escribis el comando para hacer el clon, que sería algo como esto:
 
-git clone https://github.com/macamonper/ahorrADAS.git . 
+git clone https://github.com/macamonper/ahorrADAs.git . 
