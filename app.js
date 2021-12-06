@@ -707,8 +707,6 @@ const catMayorBalance= [...operacionesBalanceParaHTML]
 
  })
 
-console.log(catMayorBalance)
-
 categoria_mayor_balance.innerText = catMayorBalance[0].nombre
 monto_categoria_mayor_balance.innerText = `$${catMayorBalance[0].totalBalance}`
 
@@ -734,7 +732,6 @@ const mesesConMayorGastoYGanancia = operacionesReportes.map((operacion) => {
             MES_MAYOR_GASTO = operacion.fecha
         }
     }
-    return console.log(MAYOR_GASTO)
 })
         
 mayor_ganancia_html.innerText = MES_MAYOR_GANANCIA
