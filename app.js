@@ -548,19 +548,19 @@ let operacionesBalance = obtenerOperaciones();
 
 const balance = (arr) => { 
 
-    const gastos = arr.filter((elemento) =>{
+    const gastos = arr.filter((elemento) => {
         return elemento.tipo ==="gasto"
     })
 
-    const ganancias = arr.filter ((elemento) =>{
+    const ganancias = arr.filter ((elemento) => {
         return elemento.tipo ==="ganancia"
     })
 
-   const sumaGastos = gastos.reduce ((acc,elemento) =>{
+   const sumaGastos = gastos.reduce ((acc,elemento) => {
        return acc + elemento.monto
    },0)
 
-   const sumaGanancias = ganancias.reduce ((acc,elemento) =>{
+   const sumaGanancias = ganancias.reduce ((acc,elemento) => {
     return acc + elemento.monto
    },0)
 
@@ -595,7 +595,7 @@ balance(operacionesBalance)
 const operacionesReportes = obtenerOperaciones()
 const categoriasReportes = obtenerCategorias()
 
-const operacionesGanancias = operacionesReportes.filter((operacion) =>{
+const operacionesGanancias = operacionesReportes.filter((operacion) => {
     return operacion.tipo ==="ganancia"
 })
 
@@ -608,7 +608,7 @@ monto_mayor_ganancia.innerHTML = `+$${mayorGanancia.monto}`
 cat_mayor_ganancia.innerHTML = mayorGanancia.categoria
 
 
-const operacionesGastos = operacionesReportes.filter ((operacion) =>{
+const operacionesGastos = operacionesReportes.filter ((operacion) => {
     return operacion.tipo === "gasto"
 })
 
@@ -650,7 +650,7 @@ for (const operacion of operacionPorCategoria){
     }
 }
 
-const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria)=>{
+const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria) => {
 
     let gananciaBalance = 0 ;
     let gastosBalance = 0;
@@ -700,9 +700,9 @@ lista_totales.innerHTML = operacionesBalanceAHTML
 
 const catMayorBalance= [...operacionesBalanceParaHTML]
 
- catMayorBalance.sort((a,b)=>{
+ catMayorBalance.sort((a,b) => {
 
-     return b.totalBalance-a.totalBalance
+     return b.totalBalance - a.totalBalance
 
  })
 
