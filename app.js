@@ -649,6 +649,8 @@ for (const operacion of operacionPorCategoria){
 
     }
 }
+//Male, aca no termina de eliminar los arrays vacios. Asumo que es algo del for que termina 
+//salteandolo porque... NO SE . jajajaj hice lo que pude -maca
 
 const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria) => {
 
