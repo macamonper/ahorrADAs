@@ -635,24 +635,11 @@ const separarPorCategoria = () => {
 }
 separarPorCategoria()
 
+const categoriasConOperaciones = operacionPorCategoria.filter ((operacion)=>{
+    return operacion.length >= 1
+})
 
-for (const operacion of operacionPorCategoria){
-    
-    if(!operacion.length){
-
-        for (const indice in operacionPorCategoria){
-
-            if(operacion===operacionPorCategoria[indice]){
-                operacionPorCategoria.splice(indice,1)
-            }
-        }
-
-    }
-}
-//Male, aca no termina de eliminar los arrays vacios. Asumo que es algo del for que termina 
-//salteandolo porque... NO SE . jajajaj hice lo que pude -maca
-
-const operacionesBalanceParaHTML = operacionPorCategoria.map((arrayPorCategoria) => {
+const operacionesBalanceParaHTML = categoriasConOperaciones.map((arrayPorCategoria) => {
 
     let gananciaBalance = 0 ;
     let gastosBalance = 0;
