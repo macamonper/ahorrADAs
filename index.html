@@ -7,9 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/5bbce2ab5d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    
     <title>AhorrADAs</title>
 </head>
 
+
+<!-- tienen dos veces el html y el head!!!! -->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,6 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/5bbce2ab5d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <!-- falta un favicon!> -->
     <title>AhorrADAs</title>
 </head>
 
@@ -29,6 +33,7 @@
         <nav class="navbar is-primary is-spaced py-4" role="navigation" aria-label="navegacion principal">
             
             <div class="navbar-brand ">
+                <!-- lo resolvieron bien, efectivamente esta raro en el de ada -->
                 <!-- NO CONSIDERO QUE ESTE SEA UN ENLACE PERO NO SABIA COMO HACERLE EL HOVER SINO. EN LA WEB DE ADA ESTA COMO ESTE -->
                 <a class="navbar-item">
 
@@ -287,6 +292,7 @@
                             <div class="column is-offset-3 is-6  ">
 
                                 <div class="image px-4">
+                                    <!-- falta el alt en esta imagen -->
                                     <img src="undraw_wallet_aym5.svg" aria-hidden="true">
                                 </div>
 
@@ -303,7 +309,7 @@
                     </div>
     
                     <!--    HEADER OPERACIONES                HEADER OPERACIONES -->
-
+<!-- ojo, aca escribieron la class dos veces -->
                     <div class="is-8-desktop" id="operaciones-cargadas" class="is-hidden">
 
                         <div class="columns is-hidden-mobile">
@@ -364,6 +370,7 @@
                         </div>
 
                         <div class="field">
+                            <!-- el for debe ser igual al id del elemento!!! -->
                             <label class="label" for="tipo">Tipo</label>
                             <div class="control">
                                 <div class="select is-fullwidth">
@@ -376,6 +383,7 @@
                         </div>
 
                         <div class="field">
+                            <!-- el id es select-categorias-carga!! -->
                             <label class="label" for="editar-categoria">Categoria</label>
                             <div class="control">
                                 <div class="select is-fullwidth">
@@ -397,6 +405,7 @@
 
                         <div class="buttons mt-6">
                             <button class="button is-light" type="button" id="btn-cancelar-edicion-op">Cancelar</button>
+                            <!-- no dejen un id vacio, borrenlo -->
                             <button class="button is-success" type="submit" id="">Agregar</button>
                         </div>
                     </div>
@@ -453,6 +462,7 @@
 
                         <div class="field">
                             <div class="control is-expanded">
+                                <!-- no dejen el name vacio: borrenlo en todo caso -->
                                 <input required class="input" type="text" name="" id="editar-categoria-input" value="">
                             </div>
                         </div>
@@ -520,9 +530,10 @@
                                     <div class="column has-text-weight-semibold has-text-right">Gastos</div>
                                     <div class="column has-text-weight-semibold has-text-right">Balance</div>
                                 </div>
+                                <!-- este div nunca se cierra -->
                                 <div id="lista-balance-categoria">
                             </section>
-    
+    <!-- no dejen codigo comentado en una entrega -->
                             <!-- <section class="section">
                                 <h3 class="subtitle is-4 has-text-weight-semibold">Totales por mes</h3>
                                 <div class="columns">

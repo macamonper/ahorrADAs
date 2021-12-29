@@ -1,3 +1,6 @@
+// Por favor no usen guion bajo para separar palabras en javascript! Esto esta reservado a las variables 
+// que nos vienen del backend. En javascript usamos camelCase: botonBalance, menuHamburguesa. Esto es *muy* importante!
+
 //HEADER
 const btn_balance = document.getElementById("btn-balance");
 const btn_categorias = document.getElementById("btn-categorias");
@@ -72,7 +75,7 @@ btn_balance.onclick = () => {
     card_categorias.classList.add("is-hidden");
     card_reportes.classList.add("is-hidden");
     cards_principales.classList.remove("is-hidden");
-
+    // por que ejecutan esta funcion aqui?
     agregarOperacionesAHTML(operacionesParaHTML)
 }
 
@@ -96,6 +99,7 @@ btn_filtros.onclick = () => {
     if (btn_filtros.innerHTML=== "Mostrar filtros"){
         btn_filtros.innerHTML = "Ocultar filtros"
         card_filtros.classList.remove("is-hidden");
+        // sean prolijas, dejen espacio entre las llaves y la palabra: } else {
     }else{
         btn_filtros.innerHTML = "Mostrar filtros"
         card_filtros.classList.add("is-hidden");
@@ -114,6 +118,11 @@ const obtenerCategorias = () => {
 
     const categoriasEnLocalStorage = localStorage.getItem("categorias")
     if (categoriasEnLocalStorage === null) {
+        // aca dicen: si categoriasEnLocalStorage es null retornamos categorias pero... 
+        // de donde sacan esas categorias?
+        // estan declaradas mas abajo!
+        // esto no es un problema en su codigo pero podria serlo a futuro:
+        // siempre declaren esas variables globales arriba de todo
         return categorias
     }
     else {
@@ -124,6 +133,7 @@ const obtenerOperaciones = () => {
 
     const operacionesEnLocalStorage = localStorage.getItem("operaciones")
     if (operacionesEnLocalStorage === null) {
+        // mismo comentario que para categorias mas arriba
         return operaciones
 }
     else {
@@ -135,6 +145,11 @@ const obtenerOperaciones = () => {
 
 const categorias = ["todos", "comida", "servicios", "salidas", "educacion", "transporte", "trabajo"]
 
+
+// En toda esta seccion agregan un salto de linea extra en todos lados
+// Distrae mucho al lector. Evitenlos, seria como agregar un salto de linea extra en un texto. 
+// Hace que sea mas molesto para leer
+// Recuerden que con click derecho + format document VSCode se los deja acomodado!
 
 const agregarCatASelects = () => {
 
@@ -170,7 +185,8 @@ const agregarCategoriasAHTML = () => {
 
 
     const categoriasAHTML = categoriasSinTodos.reduce((acc, categoria, index) => {
-
+        // no es buena practica asignar funciones al html como hacen aqui
+        // seleccionen el elemento desde JS y solo despues le asignan la funcion
         return acc + `
 
         <div class="columns ">
@@ -219,7 +235,7 @@ form_agregar_categorias.onsubmit = (e) => {
 		
 	}
 	else if (nuevaCategoria = nuevaCategoria){
-
+// excelente
 		alert("Esa categoria ya existe. Por favor ingresa otro nombre.")
 	}
 }
@@ -439,6 +455,7 @@ agregarCatASelects()
 
 let operacionesAFiltrar = obtenerOperaciones()
 
+// excelente esta funcion!!
 const aplicarFiltros = () => {
 
     const tipoFiltro = filtro_tipo.value
@@ -449,7 +466,6 @@ const aplicarFiltros = () => {
         }
         return operacion.tipo === tipoFiltro
     })
-
     const categoriaFiltro = filtro_categorias.value
 
     const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => {
@@ -547,7 +563,7 @@ filtro_orden.onchange = () => {
 let operacionesBalance = obtenerOperaciones();
 
 const balance = (arr) => { 
-
+// excelente
     const gastos = arr.filter((elemento) => {
         return elemento.tipo ==="gasto"
     })
@@ -706,6 +722,7 @@ let mes_mayor_ganancia = ""
 let mayor_gasto = 0
 let mes_mayor_gasto = ""
         
+// nunca usan esta funcion!
 const mesesConMayorGastoYGanancia = operacionesReportes.map((operacion) => {
     if (operacion.tipo === "ganancia") {
         if (operacion.monto > mayor_ganancia) {
