@@ -10,24 +10,12 @@
     <title>AhorrADAs</title>
 </head>
 
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/5bbce2ab5d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <title>AhorrADAs</title>
-</head>
-
 <body class="has-background-white-ter">
     <!-- NAVBAR                                    NAVBAR                                 NAVBAR -->
     <header>
 
         <nav class="navbar is-primary is-spaced py-4" role="navigation" aria-label="navegacion principal">
-            
+
             <div class="navbar-brand ">
                 <!-- NO CONSIDERO QUE ESTE SEA UN ENLACE PERO NO SABIA COMO HACERLE EL HOVER SINO. EN LA WEB DE ADA ESTA COMO ESTE -->
                 <a class="navbar-item">
@@ -39,7 +27,8 @@
 
                 </a>
 
-                <button role="button" id="menu-hamburguesa" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                <button role="button" id="menu-hamburguesa" class="navbar-burger" aria-label="menu"
+                    aria-expanded="false" data-target="navMenu">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -47,41 +36,41 @@
             </div>
             <!-- NAVBAR END                                          NAVBAR END                                 NAVBAR END    -->
             <div class="navbar-menu" id="menu-nav">
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a id="btn-balance" class="button is-primary navbar-item" aria-label="Balance">
-                            <span>
-                                <i class="fas fa-chart-line"></i>
-                                Balance
-                            </span>
-                        </a>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a id="btn-balance" class="button is-primary navbar-item" aria-label="Balance">
+                                <span>
+                                    <i class="fas fa-chart-line"></i>
+                                    Balance
+                                </span>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="navbar-item">
-                    <div class="buttons">
-                
-                        <a id="btn-categorias" class="button is-primary navbar-item" aria-label="Categorias">
-                            <span>
-                                <i class="fas fa-tag "></i>
-                                Categorias
-                            </span>
-                        </a>
+                    <div class="navbar-item">
+                        <div class="buttons">
+
+                            <a id="btn-categorias" class="button is-primary navbar-item" aria-label="Categorias">
+                                <span>
+                                    <i class="fas fa-tag "></i>
+                                    Categorias
+                                </span>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="navbar-item">
-                    <div class="buttons">
-                
-                        <a id="btn-reportes" class="button is-primary navbar-item" aria-label="Reportes">
-                            <span>
-                                <i class="fas fa-chart-pie"></i>
-                                Reportes
-                            </span>
-                        </a>
+                    <div class="navbar-item">
+                        <div class="buttons">
+
+                            <a id="btn-reportes" class="button is-primary navbar-item" aria-label="Reportes">
+                                <span>
+                                    <i class="fas fa-chart-pie"></i>
+                                    Reportes
+                                </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
         </nav>
     </header>
@@ -145,7 +134,7 @@
                     </div>
 
                 </article>
-            <!--  CARD FILTROS                CARD FILTROS               CARD FILTROS -->
+                <!--  CARD FILTROS                CARD FILTROS               CARD FILTROS -->
                 <article class="box">
 
                     <div class="columns">
@@ -267,18 +256,18 @@
 
                 <article class="box ">
 
-                    
-                        <div class="columns mb-4 ">
-                            <div class="column is-6">
-                                <h2 class="title is-4 has-text-weight-bold">Operaciones</h2>
 
-                            </div>
+                    <div class="columns mb-4 ">
+                        <div class="column is-6">
+                            <h2 class="title is-4 has-text-weight-bold">Operaciones</h2>
 
-                            <div class="column is-6 has-text-right">
-                                <button id="boton-nueva-operacion" class="button is-primary"> + Nueva operación</button>
-                            </div>
                         </div>
-                    
+
+                        <div class="column is-6 has-text-right">
+                            <button id="boton-nueva-operacion" class="button is-primary"> + Nueva operación</button>
+                        </div>
+                    </div>
+
 
                     <div id="sin-operaciones" class="">
 
@@ -301,10 +290,10 @@
                         </div>
 
                     </div>
-    
+
                     <!--    HEADER OPERACIONES                HEADER OPERACIONES -->
 
-                    <div class="is-8-desktop" id="operaciones-cargadas" class="is-hidden">
+                    <div class="is-8-desktop is-hidden" id="operaciones-cargadas">
 
                         <div class="columns is-hidden-mobile">
                             <div class="column is-3 ">
@@ -330,15 +319,15 @@
 
                         <!--       LISTA DE OPERACIONES                LISTA DE OPERACIONES -->
                         <div id="listado-operaciones"></div>
-                        
+
                     </div>
-    
+
                 </article>
-                  
+
             </div>
-         
+
         </div>
-               <!--    AGREGAR OPERACION                       AGREGAR OPERACION        -->
+        <!--    AGREGAR OPERACION                       AGREGAR OPERACION        -->
         <form class="section is-hidden" id="card-nueva-operacion">
             <div class="columns is-multiline">
                 <div class="column is-8 is-offset-2">
@@ -348,8 +337,7 @@
                             <label class="label" for="descripcion-input">Descripción</label>
                             <div class="control">
                                 <div class="is-fullwidth">
-                                    <input class="input" type="text" name="descripcion-input"
-                                        id="descripcion-input">
+                                    <input class="input" type="text" name="descripcion-input" id="descripcion-input">
                                 </div>
                             </div>
                         </div>
@@ -364,7 +352,7 @@
                         </div>
 
                         <div class="field">
-                            <label class="label" for="tipo">Tipo</label>
+                            <label class="label" for="editar-tipo-operacion">Tipo</label>
                             <div class="control">
                                 <div class="select is-fullwidth">
                                     <select id="editar-tipo-operacion">
@@ -376,7 +364,7 @@
                         </div>
 
                         <div class="field">
-                            <label class="label" for="editar-categoria">Categoria</label>
+                            <label class="label" for="select-categorias-carga">Categoria</label>
                             <div class="control">
                                 <div class="select is-fullwidth">
                                     <select id="select-categorias-carga">
@@ -397,12 +385,12 @@
 
                         <div class="buttons mt-6">
                             <button class="button is-light" type="button" id="btn-cancelar-edicion-op">Cancelar</button>
-                            <button class="button is-success" type="submit" id="">Agregar</button>
+                            <button class="button is-success" type="submit">Agregar</button>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </form>
         <!--  MODAL CATEGORIAS                  MODAL CATEGORIAS              MODAL CATEGORIAS        -->
 
@@ -429,15 +417,15 @@
                                     </div>
 
                                     <div class="column is-2 ">
-                                        
+
                                         <input id="btn-agregar-cat" type="submit" value="Agregar"
                                             class="button is-medium is-success  ">
                                     </div>
                                 </div>
                             </form>
-                            
+
                         </div>
-                        
+
                     </div>
                     <!--LISTA CATEGORIAS-->
                     <div class="lista-categorias"></div>
@@ -453,15 +441,15 @@
 
                         <div class="field">
                             <div class="control is-expanded">
-                                <input required class="input" type="text" name="" id="editar-categoria-input" value="">
+                                <input required class="input" type="text" id="editar-categoria-input" value="">
                             </div>
                         </div>
                         <div class="buttons mt-6 is-flex is-justify-content-end ">
                             <button class="button is-light" id="cancelar-categoria-boton" type="button">
-                            Cancelar
+                                Cancelar
                             </button>
-                            <button class="button is-success" type="submit" >
-                            Editar
+                            <button class="button is-success" type="submit">
+                                Editar
                             </button>
                         </div>
                     </form>
@@ -480,7 +468,7 @@
                     <div class="column is-8">
                         <div class="box">
                             <h2 class="title is-2 has-text-weight-bold">Reportes</h2>
-                            
+
                             <section class="section">
                                 <h3 class="subtitle is-4 has-text-weight-semibold">Resumen</h3>
                                 <div class="columns">
@@ -488,30 +476,37 @@
                                     <div class="column is-3 has-text-right">
                                         <span class="is-primary is-light tag" id="cat-mayor-ganancia"></span>
                                     </div>
-                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right" id="monto-mayor-ganancia"></div>
+                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right"
+                                        id="monto-mayor-ganancia"></div>
                                 </div>
                                 <div class="columns">
                                     <div class="column is-6 has-text-weight-semibold">Categoría con mayor gasto</div>
-                                    <div class="column is-3 has-text-right"><span class="is-primary is-light tag" id="cat-mayor-gasto"></span></div>
-                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right has-text-danger" id="monto-mayor-gasto"></div>
+                                    <div class="column is-3 has-text-right"><span class="is-primary is-light tag"
+                                            id="cat-mayor-gasto"></span></div>
+                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right has-text-danger"
+                                        id="monto-mayor-gasto"></div>
                                 </div>
                                 <div class="columns">
                                     <div class="column is-6 has-text-weight-semibold">Categoría con mayor balance</div>
-                                    <div class="column is-3 has-text-right"><span class="is-primary is-light tag" id="categoria-mayor-balance"></span></div>
-                                    <div class="column is-3 has-text-weight-semibold has-text-right" id="monto-categoria-mayor-balance"></div>
+                                    <div class="column is-3 has-text-right"><span class="is-primary is-light tag"
+                                            id="categoria-mayor-balance"></span></div>
+                                    <div class="column is-3 has-text-weight-semibold has-text-right"
+                                        id="monto-categoria-mayor-balance"></div>
                                 </div>
                                 <div class="columns">
                                     <div class="column is-6 has-text-weight-semibold">Mes con mayor ganancia</div>
                                     <div class="column is-3 has-text-right" id="mes-mayor-ganancia">0</div>
-                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right" id="monto-mes-mayor-ganancia">0</div>
+                                    <div class="column is-3 has-text-success has-text-weight-semibold has-text-right"
+                                        id="monto-mes-mayor-ganancia">0</div>
                                 </div>
                                 <div class="columns">
                                     <div class="column is-6 has-text-weight-semibold">Mes con mayor gasto</div>
                                     <div class="column is-3 has-text-right" id="mes-mayor-gasto">0</div>
-                                    <div class="column is-3 has-text-danger has-text-weight-semibold has-text-right" id="monto-mes-mayor-gasto">0</div>
+                                    <div class="column is-3 has-text-danger has-text-weight-semibold has-text-right"
+                                        id="monto-mes-mayor-gasto">0</div>
                                 </div>
                             </section>
-    
+
                             <section class="section">
                                 <h3 class="subtitle is-4 has-text-weight-semibold">Totales por categoría</h3>
                                 <div class="columns">
@@ -521,8 +516,9 @@
                                     <div class="column has-text-weight-semibold has-text-right">Balance</div>
                                 </div>
                                 <div id="lista-balance-categoria">
+                                </div>
                             </section>
-    
+
                             <!-- <section class="section">
                                 <h3 class="subtitle is-4 has-text-weight-semibold">Totales por mes</h3>
                                 <div class="columns">
